@@ -1,0 +1,7 @@
+6
+PlayerRightLowerIdle
+PlayerRightLowerMove
+PlayerRightLowerMoveStart
+PlayerLeftLowerIdle
+PlayerLeftLowerMoveStart
+PlayerLeftLowerMove

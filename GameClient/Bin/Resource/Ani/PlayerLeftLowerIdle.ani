@@ -1,0 +1,58 @@
+PlayerLeftIdle.png
+PlayerLeftLowerIdle
+1
+20 8 41 33
+0.500000 0.500000
+0.000000
+0.000000
+1
+PlayerLeftNormalMidShot
+3 1
+-14 14
+-14 14
+-14 14
+PlayerLeftNormalMidShotEnd
+7 1
+-2 14
+-3 14
+-5 13
+-5 13
+-6 13
+-4 12
+-3 12
+PlayerLeftAimUpStart
+2 1
+-4 15
+-5 16
+PlayerLeftAimUpIdle
+6 1
+-2 16
+-2 16
+-2 16
+-2 16
+-2 16
+-2 16
+PlayerLeftAimDown
+2 1
+-5 16
+-4 15
+PlayerLeftUpperIdle
+6 1
+-3 12
+-3 12
+-3 12
+-3 12
+-3 12
+-3 12
+PlayerLeftUpperMoveEnd
+4 1
+-2 12
+-2 12
+-2 12
+-2 12
+PlayerLeftUpperMoveStart
+4 1
+-2 12
+-2 12
+-2 12
+-2 12

@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="01. GameMode">
+      <UniqueIdentifier>{d1178055-f95c-4233-8e9b-5c79a32271ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Object">
+      <UniqueIdentifier>{07cb9fad-8511-4098-b751-72a07ac1aafe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Object\01. Player">
+      <UniqueIdentifier>{701c824e-c900-4bdb-bf40-809c51f67869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Object\02. Bullet">
+      <UniqueIdentifier>{fc0ac9bf-31fa-466d-a057-606279bb6246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. ViewManager">
+      <UniqueIdentifier>{5b2f2b24-a1f2-419d-977d-2b286d78c25e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="04. AnimationEditor">
+      <UniqueIdentifier>{12ecc73a-0f31-439a-8237-967d1e2aa739}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. EditorDevice">
+      <UniqueIdentifier>{bcfa7c59-9a5f-4fba-bfd0-e99de696a480}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Viewer">
+      <UniqueIdentifier>{d5ae0348-af08-4b61-96c4-a1bf204ea733}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="02. Object\03. Monster">
+      <UniqueIdentifier>{5bfd170b-42b5-428a-bd3f-e644c03ad54e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="07. PlayerEditor">
+      <UniqueIdentifier>{9c45fccd-84d6-4d81-bda4-142de8a58d81}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="08. SceneEditor">
+      <UniqueIdentifier>{faa8df16-312b-4907-9447-2f18a31dbffe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="09. UI">
+      <UniqueIdentifier>{13932a36-8d69-434b-917f-1948358c3194}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="GameEditor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MainFrm.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEditorDoc.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameEditorView.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Editor.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\GameMode\MainGameMode.h">
+      <Filter>01. GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Object\Player.h">
+      <Filter>02. Object\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Object\Bullet.h">
+      <Filter>02. Object\02. Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="WorldObjectDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="DetailObjDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\ClientCreateSystem.h">
+      <Filter>01. GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="ToolBarDlg.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Client.h">
+      <Filter>01. GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="ViewManager.h">
+      <Filter>03. ViewManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation2DEditorDlg.h">
+      <Filter>04. AnimationEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationEditorView.h">
+      <Filter>04. AnimationEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="EditDevice.h">
+      <Filter>05. EditorDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureViewer.h">
+      <Filter>06. Viewer</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Object\Monster.h">
+      <Filter>02. Object\03. Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="RectViewer.h">
+      <Filter>06. Viewer</Filter>
+    </ClInclude>
+    <ClInclude Include="Viewer.h">
+      <Filter>06. Viewer</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationPlayerView.h">
+      <Filter>04. AnimationEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerEditDlg.h">
+      <Filter>07. PlayerEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\GameMode\TestGameMode.h">
+      <Filter>01. GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneEditor.h">
+      <Filter>08. SceneEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\Object\TestObj.h">
+      <Filter>02. Object\01. Player</Filter>
+    </ClInclude>
+    <ClInclude Include="Animation2DBindDlg.h">
+      <Filter>04. AnimationEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationBinderPlayerView.h">
+      <Filter>04. AnimationEditor</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\GameMode\ClientGameInstance.h">
+      <Filter>01. GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\UI\TestButton.h">
+      <Filter>09. UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\UI\TestBar.h">
+      <Filter>09. UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\UI\CheckBox.h">
+      <Filter>09. UI</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="GameEditor.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="MainFrm.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEditorDoc.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameEditorView.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\GameMode\MainGameMode.cpp">
+      <Filter>01. GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\Object\Player.cpp">
+      <Filter>02. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\Object\Bullet.cpp">
+      <Filter>02. Object\02. Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="WorldObjectDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="DetailObjDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\ClientCreateSystem.cpp">
+      <Filter>01. GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="ToolBarDlg.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ViewManager.cpp">
+      <Filter>03. ViewManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\Client.cpp">
+      <Filter>01. GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation2DEditorDlg.cpp">
+      <Filter>04. AnimationEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationEditorView.cpp">
+      <Filter>04. AnimationEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="EditDevice.cpp">
+      <Filter>05. EditorDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureViewer.cpp">
+      <Filter>06. Viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\Object\Monster.cpp">
+      <Filter>02. Object\03. Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="RectViewer.cpp">
+      <Filter>06. Viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="Viewer.cpp">
+      <Filter>06. Viewer</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationPlayerView.cpp">
+      <Filter>04. AnimationEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerEditDlg.cpp">
+      <Filter>07. PlayerEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\GameMode\TestGameMode.cpp">
+      <Filter>01. GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneEditor.cpp">
+      <Filter>08. SceneEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\Object\TestObj.cpp">
+      <Filter>02. Object\01. Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Animation2DBindDlg.cpp">
+      <Filter>04. AnimationEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationBinderPlayerView.cpp">
+      <Filter>04. AnimationEditor</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\GameMode\ClientGameInstance.cpp">
+      <Filter>01. GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\UI\TestButton.cpp">
+      <Filter>09. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\UI\TestBar.cpp">
+      <Filter>09. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\UI\CheckBox.cpp">
+      <Filter>09. UI</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="GameEditor.rc">
+      <Filter>리소스 파일</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="res\GameEditor.rc2">
+      <Filter>리소스 파일</Filter>
+    </None>
+    <None Include="..\..\EditorCopy.bat">
+      <Filter>소스 파일</Filter>
+    </None>
+    <None Include="cpp.hint" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="res\GameEditorDoc.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+    <Image Include="res\GameEditor.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="..\Bin\Resource\Shader\TextureViewerShare.fx">
+      <Filter>06. Viewer</Filter>
+    </FxCompile>
+    <FxCompile Include="..\Bin\Resource\Shader\TextureViewerStandard2D.fx">
+      <Filter>06. Viewer</Filter>
+    </FxCompile>
+  </ItemGroup>
+</Project>

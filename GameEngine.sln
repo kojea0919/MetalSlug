@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameClient", "GameClient\Include\GameClient.vcxproj", "{953B28D4-5A7D-4139-BE2E-D49C508A2D79}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2955016C-1582-4B87-AAD4-F01E5771B0C5} = {2955016C-1582-4B87-AAD4-F01E5771B0C5}
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB} = {B5193E95-70E1-4AC4-A419-E0C91E3915DB}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01. Client", "01. Client", "{5666A055-DF6F-4E0A-825F-4900781A9404}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02. Engine", "02. Engine", "{22B0EAE6-9736-41C9-8CCD-F3FA367D3987}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03. Editor", "03. Editor", "{C2D7E850-591C-450C-8D7C-D07B3ED0E90F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEngine", "GameEngine\Include\GameEngine.vcxproj", "{B5193E95-70E1-4AC4-A419-E0C91E3915DB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GameEditor", "GameEditor\Include\GameEditor.vcxproj", "{2955016C-1582-4B87-AAD4-F01E5771B0C5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB} = {B5193E95-70E1-4AC4-A419-E0C91E3915DB}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{953B28D4-5A7D-4139-BE2E-D49C508A2D79}.Debug|x64.ActiveCfg = Debug|x64
+		{953B28D4-5A7D-4139-BE2E-D49C508A2D79}.Debug|x64.Build.0 = Debug|x64
+		{953B28D4-5A7D-4139-BE2E-D49C508A2D79}.Debug|x86.ActiveCfg = Debug|Win32
+		{953B28D4-5A7D-4139-BE2E-D49C508A2D79}.Debug|x86.Build.0 = Debug|Win32
+		{953B28D4-5A7D-4139-BE2E-D49C508A2D79}.Release|x64.ActiveCfg = Release|x64
+		{953B28D4-5A7D-4139-BE2E-D49C508A2D79}.Release|x64.Build.0 = Release|x64
+		{953B28D4-5A7D-4139-BE2E-D49C508A2D79}.Release|x86.ActiveCfg = Release|Win32
+		{953B28D4-5A7D-4139-BE2E-D49C508A2D79}.Release|x86.Build.0 = Release|Win32
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB}.Debug|x64.ActiveCfg = Debug|x64
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB}.Debug|x64.Build.0 = Debug|x64
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB}.Debug|x86.ActiveCfg = Debug|Win32
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB}.Debug|x86.Build.0 = Debug|Win32
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB}.Release|x64.ActiveCfg = Release|x64
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB}.Release|x64.Build.0 = Release|x64
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB}.Release|x86.ActiveCfg = Release|Win32
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB}.Release|x86.Build.0 = Release|Win32
+		{2955016C-1582-4B87-AAD4-F01E5771B0C5}.Debug|x64.ActiveCfg = Debug|x64
+		{2955016C-1582-4B87-AAD4-F01E5771B0C5}.Debug|x64.Build.0 = Debug|x64
+		{2955016C-1582-4B87-AAD4-F01E5771B0C5}.Debug|x86.ActiveCfg = Debug|Win32
+		{2955016C-1582-4B87-AAD4-F01E5771B0C5}.Debug|x86.Build.0 = Debug|Win32
+		{2955016C-1582-4B87-AAD4-F01E5771B0C5}.Release|x64.ActiveCfg = Release|x64
+		{2955016C-1582-4B87-AAD4-F01E5771B0C5}.Release|x64.Build.0 = Release|x64
+		{2955016C-1582-4B87-AAD4-F01E5771B0C5}.Release|x86.ActiveCfg = Release|Win32
+		{2955016C-1582-4B87-AAD4-F01E5771B0C5}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{953B28D4-5A7D-4139-BE2E-D49C508A2D79} = {5666A055-DF6F-4E0A-825F-4900781A9404}
+		{B5193E95-70E1-4AC4-A419-E0C91E3915DB} = {22B0EAE6-9736-41C9-8CCD-F3FA367D3987}
+		{2955016C-1582-4B87-AAD4-F01E5771B0C5} = {C2D7E850-591C-450C-8D7C-D07B3ED0E90F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {934083B8-8EFE-4AAE-8AD6-7A5C08683877}
+	EndGlobalSection
+EndGlobal
