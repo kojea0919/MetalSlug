@@ -145,7 +145,10 @@ void CPlayer::UpdateAttackState(float fTime)
 	//---------------------------------
 	if (m_bIsShooting)
 	{
-		SetNormalMidShotState();
+		if(m_bIsAimUp)
+			SetNormalUpShotState();
+		else
+			SetNormalMidShotState();
 	}
 	//---------------------------------
 }
@@ -195,6 +198,12 @@ void CPlayer::UpdateAnimation(float fTime)
 		case PLAYER_ANIMSTATE::PS_AIMDOWN:
 			m_pUpperMesh->ChangeSprite("PlayerRightAimDown");
 			break;
+		case PLAYER_ANIMSTATE::PS_NORMALUPSHOT:
+			m_pUpperMesh->ChangeSprite("PlayerRightNormalUpShot");
+			break;
+		case PLAYER_ANIMSTATE::PS_NORMALUPSHOTEND:
+			m_pUpperMesh->ChangeSprite("PlayerRightNormalUpShotEnd");
+			break;
 		default:
 			break;
 		}
@@ -241,6 +250,12 @@ void CPlayer::UpdateAnimation(float fTime)
 			break;
 		case PLAYER_ANIMSTATE::PS_AIMDOWN:
 			m_pUpperMesh->ChangeSprite("PlayerLeftAimDown");
+			break;
+		case PLAYER_ANIMSTATE::PS_NORMALUPSHOT:
+			m_pUpperMesh->ChangeSprite("PlayerLeftNormalUpShot");
+			break;
+		case PLAYER_ANIMSTATE::PS_NORMALUPSHOTEND:
+			m_pUpperMesh->ChangeSprite("PlayerLeftNormalUpShotEnd");
 			break;
 		default:
 			break;
@@ -517,7 +532,10 @@ void CPlayer::AttackEndProc()
 	if(!m_bRecvFireInput)
 	{
 		m_bIsShooting = false;
-		SetNormalMidShotEndState();
+		if(m_bIsAimUp)
+			SetNormalUpShotEndState();
+		else
+			SetNormalMidShotEndState();
 	}
 	//-----------------------------------------------
 }
@@ -530,7 +548,10 @@ void CPlayer::GotoIdleProc()
 	}
 	else
 	{
-		SetIdleState();
+		if (m_bIsAimUp)
+			SetAimUpIdleState();
+		else
+			SetIdleState();
 	}
 }
 
@@ -606,6 +627,16 @@ void CPlayer::SetAimUpIdleState()
 void CPlayer::SetAimDownState()
 {
 	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_AIMDOWN;
+}
+
+void CPlayer::SetNormalUpShotState()
+{
+	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_NORMALUPSHOT;
+}
+
+void CPlayer::SetNormalUpShotEndState()
+{
+	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_NORMALUPSHOTEND;
 }
 
 void CPlayer::Save(FILE* pFile)

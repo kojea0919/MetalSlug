@@ -367,6 +367,10 @@ void CScene::SetAnimNotify()
 	m_pResource->AddAnimation2DNotify("PlayerRightNormalMidShotEnd", "GotoIdle", 7);
 	m_pResource->AddAnimation2DNotify("PlayerLeftNormalMidShot", "ShotEnd", 3);
 	m_pResource->AddAnimation2DNotify("PlayerLeftNormalMidShotEnd", "GotoIdle", 7);
+	m_pResource->AddAnimation2DNotify("PlayerRightNormalUpShot", "ShotEnd", 3);
+	m_pResource->AddAnimation2DNotify("PlayerRightNormalUpShotEnd", "GotoIdle", 7);
+	m_pResource->AddAnimation2DNotify("PlayerLeftNormalUpShot", "ShotEnd", 3);
+	m_pResource->AddAnimation2DNotify("PlayerLeftNormalUpShotEnd", "GotoIdle", 7);
 	m_pResource->AddAnimation2DNotify("PlayerRightAimUpStart", "AimUp", 2);
 	m_pResource->AddAnimation2DNotify("PlayerRightAimDown", "GotoIdle", 2);
 	m_pResource->AddAnimation2DNotify("PlayerLeftAimUpStart", "AimUp", 2);

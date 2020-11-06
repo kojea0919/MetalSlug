@@ -11,7 +11,9 @@ enum class PLAYER_ANIMSTATE
 	PS_NORMALSHOTEND,
 	PS_AIMUPSTART,
 	PS_ANIMUPIDLE,
-	PS_AIMDOWN
+	PS_AIMDOWN,
+	PS_NORMALUPSHOT,
+	PS_NORMALUPSHOTEND
 };
 
 class CPlayer :
@@ -135,6 +137,8 @@ protected:
 	void SetAimUpState();
 	void SetAimUpIdleState();
 	void SetAimDownState();
+	void SetNormalUpShotState();
+	void SetNormalUpShotEndState();
 	//---------------------------------
 public:
 	virtual void Save(FILE* pFile);
