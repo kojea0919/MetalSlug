@@ -4,7 +4,8 @@ DEFINITION_SINGLE(CDevice)
 
 CDevice::CDevice()
 	: m_pDevice(nullptr), m_pContext(nullptr), m_pSwapChain(nullptr),
-	m_pTargetView(nullptr), m_pDepthView(nullptr)
+	m_pTargetView(nullptr), m_pDepthView(nullptr),m_p2DTarget(nullptr),
+	m_p2DFactory(nullptr)
 {
 	memset(m_fClearColor, 0, sizeof(float) * 4);
 	m_fClearColor[2] = 1.f;
@@ -12,6 +13,8 @@ CDevice::CDevice()
 
 CDevice::~CDevice()
 {
+	SAFE_RELEASE(m_p2DFactory);
+	SAFE_RELEASE(m_p2DTarget);
 	SAFE_RELEASE(m_pSwapChain);
 	SAFE_RELEASE(m_pTargetView);
 	SAFE_RELEASE(m_pDepthView);
@@ -36,6 +39,16 @@ Vector2 CDevice::GetWindowRatio() const
 	int iHeight = rc.bottom - rc.top;
 
 	return Vector2(m_tRS.iWidth / (float)iWidth, m_tRS.iHeight / (float)iHeight);
+}
+
+ID2D1RenderTarget* CDevice::Get2DRenderTarget() const
+{
+	return m_p2DTarget;
+}
+
+ID2D1Factory* CDevice::Get2DFactory() const
+{
+	return m_p2DFactory;
 }
 
 bool CDevice::Init(HWND hWnd, int iWidth, int iHeight, bool bWindowMode)
@@ -186,6 +199,7 @@ bool CDevice::Init(HWND hWnd, int iWidth, int iHeight, bool bWindowMode)
 	// 뷰포트는 화면에 출력되는 2D 영역을 의미한다.
 	// 3D도 결국 화면에 출력될때는 2D 이다.
 	// Viewport를 설정해서 DirectX11을 이용해서 출력되는 영역을 지정한다.
+	//------------------------------------------------------
 	D3D11_VIEWPORT  tVP = {};
 
 	tVP.Width = (float)iWidth;
@@ -193,6 +207,32 @@ bool CDevice::Init(HWND hWnd, int iWidth, int iHeight, bool bWindowMode)
 	tVP.MaxDepth = 1.f;
 
 	m_pContext->RSSetViewports(1, &tVP);
+	//------------------------------------------------------
+
+	//2D Factory 생성
+	//------------------------------------------------------
+	if (FAILED(D2D1CreateFactory(D2D1_FACTORY_TYPE_MULTI_THREADED, &m_p2DFactory)))
+		return false;
+	//------------------------------------------------------
+
+	//2D,3D가 같은 Surface를 사용할 수 있도록 BackBuffer의
+	//Surface를 받아온다.
+	//------------------------------------------------------
+	IDXGISurface* pBackSurface = nullptr;
+
+	m_pSwapChain->GetBuffer(0, IID_PPV_ARGS(&pBackSurface));
+	//------------------------------------------------------
+
+	//2D용 RenderTarget Setting
+	//------------------------------------------------------
+	D2D1_RENDER_TARGET_PROPERTIES	props = D2D1::RenderTargetProperties(D2D1_RENDER_TARGET_TYPE_HARDWARE,
+		D2D1::PixelFormat(DXGI_FORMAT_UNKNOWN, D2D1_ALPHA_MODE_PREMULTIPLIED));
+
+	if (FAILED(m_p2DFactory->CreateDxgiSurfaceRenderTarget(pBackSurface, props, &m_p2DTarget)))
+		return false;
+
+	SAFE_RELEASE(pBackSurface);
+	//------------------------------------------------------
 
 	return true;
 }

@@ -345,6 +345,9 @@
     <ClInclude Include="UI\UISlider.h">
       <Filter>07. UI\01. Control</Filter>
     </ClInclude>
+    <ClInclude Include="UI\UIText.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -547,6 +550,9 @@
     </ClCompile>
     <ClCompile Include="UI\UISlider.cpp">
       <Filter>07. UI\01. Control</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UIText.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

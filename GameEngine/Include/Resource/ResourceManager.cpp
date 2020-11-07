@@ -754,6 +754,134 @@ bool CResourceManager::SoundResume(const string& strName)
 	return true;
 }
 
+bool CResourceManager::CreateTextFormat(const string& strName, const TCHAR* pFontName, int iWeight, int iStyle, int iStretch, float fSize, const TCHAR* pLocalName)
+{
+	IDWriteTextFormat* pFormat = FindFont(strName);
+
+	if (pFormat)
+		return false;
+
+	/*
+	텍스트 레이아웃에 사용되는 텍스트 생성방식
+
+	HRESULT CreateTextFormat(1, 2, 3, 4, 5, 6, 7, 8)
+	1. WCHAR const* fontFamilyName	-	폰트의 이름.
+	2. IDWriteFontCollection* fontCollection	- 안 쓰면 nullptr, ex) Arial 폰트는 Arial Baclk 같은 컬렉션을 가지고 있다.
+	3. DWRITE_FONT_WEIGHT fontWeight	- 폰트의 굵기, DWRITE_FONT_WEIGHT 열거체의 값 중 적절한 크기로 가져다 쓰면 된다.
+	4. DWRITE_FONT_STYLE fontStyle	-	폰트 스타일, DWRITE_FONT_STYLE 열거체 / 보통, 경사, 기울임 스타일들이 있다.
+	5. DWRITE_FONT_STRETCH fontStretch	-	원래 글자크기에서 늘어짐의 정도
+	6. FLOAT fontSize	-	글자 크기
+	7. WCHAR const* localeName	- 언어의 지역 이름. 미국은 en-us 이고 한국은 ko-KR 일본은 ja-JP 이며 영국은 en-uk 이다.
+	8. IDWriteTextFormat** textFormat	-	결과가 저장될 IDWriteTextFormat 포인터
+	*/
+
+	if (FAILED(m_pWriteFactory->CreateTextFormat(pFontName, nullptr, (DWRITE_FONT_WEIGHT)iWeight,
+		(DWRITE_FONT_STYLE)iStyle, (DWRITE_FONT_STRETCH)iStretch, fSize, pLocalName, &pFormat)))
+		return false;
+
+	m_mapTextFormat.insert(make_pair(strName, pFormat));
+
+	return true;
+}
+
+ID2D1SolidColorBrush* CResourceManager::CreateColor(float r, float g, float b, float a)
+{
+	ID2D1SolidColorBrush* pBrush = FindBrush(r, g, b, a);
+
+	if (pBrush)
+		return pBrush;
+
+	// 지정된 색과 기본 불투명도가 1.f인 새 브러쉬를 만든다.
+	// HRESULT ID2D1RenderTarget::CreateSolidColorBrush(1, 2)
+	// 1. const D2D1_COLOR_F &color		- D2D1::ColorF 구조체, 단순 r,g,b,a 를 채워주는 구조체이다.
+	// 2. ID2D1SolidColorBrush **solidColorBrush	-	반환 받을 브러쉬의 포인터
+	if (FAILED(RENDERTARGET2D->CreateSolidColorBrush(D2D1::ColorF(r, g, b, a), &pBrush)))
+		return nullptr;
+
+	m_mapBrush.insert(make_pair(CreateColorKey(r, g, b, a), pBrush));
+
+	return pBrush;
+}
+
+ID2D1SolidColorBrush* CResourceManager::CreateColor(BYTE r, BYTE g, BYTE b, BYTE a)
+{
+	ID2D1SolidColorBrush* pBrush = FindBrush(r, g, b, a);
+
+	if (pBrush)
+		return pBrush;
+
+	// 지정된 색과 기본 불투명도가 1.f인 새 브러쉬를 만든다.
+	// HRESULT ID2D1RenderTarget::CreateSolidColorBrush(1, 2)
+	// 1. const D2D1_COLOR_F &color		- D2D1::ColorF 구조체, 단순 r,g,b,a 를 채워주는 구조체이다.
+	// 2. ID2D1SolidColorBrush **solidColorBrush	-	반환 받을 브러쉬의 포인터
+	if (FAILED(RENDERTARGET2D->CreateSolidColorBrush(D2D1::ColorF(r / 255.f, g / 255.f, b / 255.f, a / 255.f), &pBrush)))
+		return nullptr;
+
+	m_mapBrush.insert(make_pair(CreateColorKey(r, g, b, a), pBrush));
+
+	return pBrush;
+}
+
+ID2D1SolidColorBrush* CResourceManager::CreateColor(const Vector4& vColor)
+{
+	return nullptr;
+}
+
+ID2D1SolidColorBrush* CResourceManager::CreateColor(UINT iColor)
+{
+	return nullptr;
+}
+
+ID2D1SolidColorBrush* CResourceManager::FindBrush(float r, float g, float b, float a)
+{
+	return nullptr;
+}
+
+ID2D1SolidColorBrush* CResourceManager::FindBrush(BYTE r, BYTE g, BYTE b, BYTE a)
+{
+	return nullptr;
+}
+
+ID2D1SolidColorBrush* CResourceManager::FindBrush(const Vector4& vColor)
+{
+	return nullptr;
+}
+
+ID2D1SolidColorBrush* CResourceManager::FindBrush(UINT iColor)
+{
+	return nullptr;
+}
+
+UINT CResourceManager::CreateColorKey(float r, float g, float b, float a)
+{
+	return 0;
+}
+
+UINT CResourceManager::CreateColorKey(BYTE r, BYTE g, BYTE b, BYTE a)
+{
+	return 0;
+}
+
+UINT CResourceManager::CreateColorKey(const Vector4& vColor)
+{
+	return 0;
+}
+
+IDWriteTextLayout* CResourceManager::CreateTextLayout(const TCHAR* pText, IDWriteTextFormat* pFormat, float fWidth, float fHeight)
+{
+	return nullptr;
+}
+
+IDWriteTextLayout* CResourceManager::CreateTextLayout(const TCHAR* pText, const string& strFormat, float fWidth, float fHeight)
+{
+	return nullptr;
+}
+
+IDWriteTextFormat* CResourceManager::FindFont(const string& strName)
+{
+	return nullptr;
+}
+
 void CResourceManager::InitFMOD()
 {
 	//FMOD System을 생성

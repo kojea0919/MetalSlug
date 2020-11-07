@@ -32,6 +32,10 @@ private:
 	//기본 바탕 색
 	float m_fClearColor[4];
 
+private:
+	ID2D1RenderTarget*	m_p2DTarget;
+	ID2D1Factory*		m_p2DFactory;
+
 
 public:
 	//Get,Set함수

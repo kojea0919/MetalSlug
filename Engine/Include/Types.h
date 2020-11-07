@@ -14,6 +14,8 @@
 #include <typeinfo>
 #include <dinput.h>
 #include <algorithm>
+#include <dwrite.h>
+#include <d2d1.h.>
 #include "Resource/DirectXTex.h"
 
 #include "Macro.h"
@@ -30,6 +32,8 @@ using namespace FMOD;
 #pragma comment(lib, "dxguid.lib")
 #pragma comment(lib, "d3dcompiler.lib")
 #pragma comment(lib, "dinput8.lib")
+#pragma comment(lib, "dwrite.lib")
+#pragma comment(lib, "d2d1.lib")
 
 #ifdef _WIN64
 
