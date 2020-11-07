@@ -10,9 +10,7 @@ public:
 	~CCheckBox();
 
 private:
-	class CUICheckBox* m_pButton;
-
-	bool			m_bIsCheck;
+	class CUICheckBox* m_pCheckBox;
 
 public:
 	virtual bool Init();

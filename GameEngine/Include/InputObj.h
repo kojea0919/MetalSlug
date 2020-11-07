@@ -94,11 +94,15 @@ public:
 
 			GET_SINGLE(CInput)->AddBindAction<CInputObj>(strName, eType, this, &CInputObj::CallActionFunction);
 		}
+		else
+		{
+			GET_SINGLE(CInput)->AddBindAction<CInputObj>(strName, eType, this, &CInputObj::CallActionFunction);
+		}
 
 		strcpy_s(pNewAction->strName, pAction->strName);
 		pNewAction->pObj = pObj;
 
-		pNewAction->vecFunc[eType].push_back(bind(pFunc, pObj, placeholders::_1, placeholders::_2));
+		pNewAction->vecFunc[eType].push_back(bind(pFunc, pObj, placeholders::_1));
 	}
 	//----------------------------------------------
 

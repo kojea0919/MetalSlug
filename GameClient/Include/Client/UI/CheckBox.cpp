@@ -4,7 +4,6 @@
 #include "Scene/SceneResource.h"
 
 CCheckBox::CCheckBox()
-	: m_bIsCheck(false)
 {
 }
 
@@ -15,7 +14,7 @@ CCheckBox::CCheckBox(const CCheckBox& ui)
 
 CCheckBox::~CCheckBox()
 {
-	SAFE_RELEASE(m_pButton);
+	SAFE_RELEASE(m_pCheckBox);
 }
 
 bool CCheckBox::Init()
@@ -23,19 +22,24 @@ bool CCheckBox::Init()
 	if (!CUIObject::Init())
 		return false;
 
-	m_pButton = CreateControl<CUICheckBox>("Button");
+	m_pCheckBox = CreateControl<CUICheckBox>("Button");
 
-	m_pButton->SetButtonStateTexture(Button_State::Normal, "UIEmptyCheckBox");
-	m_pButton->SetButtonStateTexture(Button_State::MouseOn, "UIEmptyCheckBox");
-	m_pButton->SetButtonStateTexture(Button_State::Disable, "UIEmptyCheckBox");
-	m_pButton->SetButtonStateTexture(Button_State::Click, "UISelectCheckBox");
+	m_pCheckBox->SetButtonStateTexture(Button_State::Normal, "UICheckBack");
+	m_pCheckBox->SetButtonStateTexture(Button_State::MouseOn, "UICheckBack");
+	m_pCheckBox->SetButtonStateTexture(Button_State::Click, "UICheckBack");
+	m_pCheckBox->SetButtonStateTexture(Button_State::Disable, "UICheckBack");
 
-	m_pButton->SetRelativePos(900.f, 600.f, 0.f);
+	m_pCheckBox->SetButtonStateColor(Button_State::Normal, Vector4(0.8f, 0.8f, 0.8f, 1.f));
+	m_pCheckBox->SetButtonStateColor(Button_State::MouseOn, Vector4(1.f, 1.f, 1.f, 1.f));
+	m_pCheckBox->SetButtonStateColor(Button_State::Click, Vector4(0.6f, 0.6f, 0.6f, 1.f));
+	m_pCheckBox->SetButtonStateColor(Button_State::Disable, Vector4(0.2f, 0.2f, 0.2f, 1.f));
 
-	SetRoot(m_pButton);
+	m_pCheckBox->SetCheckTexture("UICheck");
 
-	m_pButton->SetClickCallback<CCheckBox>(this, &CCheckBox::ButtonCallback);
+	m_pCheckBox->SetRelativePos(1000.f, 400.f, 0.f);
+	m_pCheckBox->SetRelativeScale(40.f, 40.f, 1.f);
 
+	SetRoot(m_pCheckBox);
 	return true;
 }
 

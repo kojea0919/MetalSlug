@@ -15,6 +15,16 @@ protected:
 protected:
 	bool		m_bIsCheck;
 
+	//Check¿ÃπÃ¡ˆ
+	class CTexture* m_pCheckTexture;
+
+public:
+	void SetCheck(bool bCheck)
+	{
+		m_bIsCheck = bCheck;
+	}
+
+	void SetCheckTexture(const string& strName);
 public:
 	virtual bool Init();
 	virtual void Start();
@@ -24,9 +34,5 @@ public:
 	virtual void Render();
 	virtual void PostRender();
 	virtual CUICheckBox* Clone();
-
-public:
-	virtual void CollisionMouse(const Vector2& vMousePos, float fTime);
-	virtual void CollisionReleaseMouse(const Vector2& vMousePos, float fTime);
 };
 

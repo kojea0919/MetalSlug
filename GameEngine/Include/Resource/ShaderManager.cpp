@@ -217,6 +217,37 @@ bool CShaderManager::Init()
 	SAFE_RELEASE(pShader);
 	//-------------------------------------
 
+	//CheckBox Shader
+	//-------------------------------------
+	pShader = CreateShader<CGraphicShader>("CheckBoxShader");
+
+	if (!LoadVertexShader("CheckBoxShader", "UITexVS",
+		TEXT("UI.fx")))
+		return false;
+
+	if (!LoadPixelShader("CheckBoxShader", "UICheckPS",
+		TEXT("UI.fx")))
+		return false;
+
+	pShader->AddInputLayoutDesc("POSITION", 0,
+		DXGI_FORMAT_R32G32B32_FLOAT, 0, 12,
+		D3D11_INPUT_PER_VERTEX_DATA, 0);
+	pShader->AddInputLayoutDesc("TEXCOORD", 0,
+		DXGI_FORMAT_R32G32_FLOAT, 0, 8,
+		D3D11_INPUT_PER_VERTEX_DATA, 0);
+	pShader->AddInputLayoutDesc("COLOR", 0,
+		DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 16,
+		D3D11_INPUT_PER_VERTEX_DATA, 0);
+
+	if (!pShader->CreateInputLayout())
+	{
+		SAFE_RELEASE(pShader);
+		return false;
+	}
+
+	SAFE_RELEASE(pShader);
+	//-------------------------------------
+
 	//test
 	//-------------------------------------
 	pShader = CreateShader<CGraphicShader>("RandomColorShader");
@@ -270,6 +301,11 @@ bool CShaderManager::Init()
 	//ProgressBar관련 상수버퍼 생성
 	//-------------------------------------
 	CreateCBuffer("Bar", sizeof(BarCBuffer), 10);
+	//-------------------------------------
+
+	//Button 상수버퍼 생성
+	//-------------------------------------
+	CreateCBuffer("Button", sizeof(ButtonCBuffer), 11);
 	//-------------------------------------
 
 	return true;

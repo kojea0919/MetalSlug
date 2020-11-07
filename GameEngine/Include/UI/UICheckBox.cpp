@@ -1,4 +1,12 @@
 #include "UICheckBox.h"
+#include "../Resource/Mesh2D.h"
+#include "../Resource/Texture.h"
+#include "../Resource/Material.h"
+#include "../Resource/Sound.h"
+#include "../Scene/Scene.h"
+#include "../Scene/SceneResource.h"
+#include "../Input.h"
+#include "../Resource/ShaderManager.h"
 
 CUICheckBox::CUICheckBox()
 	: m_bIsCheck(false)
@@ -12,12 +20,22 @@ CUICheckBox::CUICheckBox(const CUICheckBox& control)
 
 CUICheckBox::~CUICheckBox()
 {
+	SAFE_RELEASE(m_pCheckTexture);
+}
+
+void CUICheckBox::SetCheckTexture(const string& strName)
+{
+	SAFE_RELEASE(m_pCheckTexture);
+
+	m_pCheckTexture = m_pScene->GetResourceManager()->FindTexture(strName);
 }
 
 bool CUICheckBox::Init()
 {
 	if (!CUIButton::Init())
 		return false;
+
+	m_pMaterial->SetShader("CheckBoxShader");
 
 	return true;
 }
@@ -34,52 +52,10 @@ void CUICheckBox::Update(float fTime)
 
 void CUICheckBox::PostUpdate(float fTime)
 {
-	CUIControl::PostUpdate(fTime);
+	CUIButton::PostUpdate(fTime);
 
-	//마우스 입력에 따른 버튼 상태 update
-	//-------------------------------
-	if (GetAsyncKeyState(VK_LBUTTON) & 0x8000)
-	{
-		//처음 눌리는 경우
-		//-----------------------
-		if (!m_bDown && !m_bPush)
-			m_bDown = true;
-		//-----------------------
-
-		//처음 이후 누르고 있느 경우
-		//-----------------------
-		else if (!m_bPush)
-		{
-			m_bDown = false;
-			m_bPush = true;
-		}
-		//-----------------------
-	}
-
-	//처음 키를 뗀 경우
-	//--------------------------
-	else if (m_bPush || m_bDown)
-	{
-		m_bUp = true;
-		m_bPush = false;
-		m_bDown = false;
-	}
-	//--------------------------
-
-	//키를 뗀 이후 입력이 없는 경우
-	else if (m_bUp)
-		m_bUp = false;
-
-	if (m_eState == Button_State::Click)
-	{
-		if (m_bDown)
-			m_eState = Button_State::Normal;
-	}
-	else if (m_eState == Button_State::Normal)
-	{
-		if (m_bDown)
-			m_eState = Button_State::Click;
-	}
+	if (m_bClick)
+		m_bIsCheck = !m_bIsCheck;
 }
 
 void CUICheckBox::PrevRender()
@@ -94,18 +70,18 @@ void CUICheckBox::Render()
 
 void CUICheckBox::PostRender()
 {
+	ButtonCBuffer	tCBuffer = {};
+	tCBuffer.iCheck = m_bIsCheck ? 1 : 0;
+
+	GET_SINGLE(CShaderManager)->UpdateCBuffer("Button", &tCBuffer);
+
+	if (m_pCheckTexture)
+		m_pCheckTexture->SetShader(10, (int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL);
+
 	CUIButton::PostRender();
 }
 
 CUICheckBox* CUICheckBox::Clone()
 {
 	return new CUICheckBox(*this);
-}
-
-void CUICheckBox::CollisionMouse(const Vector2& vMousePos, float fTime)
-{
-}
-
-void CUICheckBox::CollisionReleaseMouse(const Vector2& vMousePos, float fTime)
-{
 }

@@ -10,6 +10,7 @@
 #include "../UI/TestButton.h"
 #include "../UI/TestBar.h"
 #include "../UI/CheckBox.h"
+#include "../UI/Slider.h"
 
 CTestGameMode::CTestGameMode()
 {
@@ -51,9 +52,13 @@ bool CTestGameMode::Init()
 
 	SAFE_RELEASE(pTestBar);
 
-	/*CCheckBox* pCheckBox = m_pScene->CreateUIObject<CCheckBox>("CheckBox");
+	/*CCheckBox* pTestCheckBox = m_pScene->CreateUIObject<CCheckBox>("TestCheckBox");
 
-	SAFE_RELEASE(pCheckBox);*/
+	SAFE_RELEASE(pTestCheckBox);*/
+
+	CSlider* pSlider = m_pScene->CreateUIObject<CSlider>("Slider");
+
+	SAFE_RELEASE(pSlider);
 
 	return true;
 }
@@ -83,6 +88,10 @@ bool CTestGameMode::LoadTexture()
 	pManager->LoadTexture("UIBarBack", TEXT("BarBack1.png"));
 	pManager->LoadTexture("UIEmptyCheckBox", TEXT("EmptyCheckBox.png"));
 	pManager->LoadTexture("UISelectCheckBox", TEXT("SelectCheckBox.png"));
+	pManager->LoadTexture("UICheckBack", TEXT("CheckBoxBack.png"));
+	pManager->LoadTexture("UICheck", TEXT("CheckBoxCheck.png"));
+	pManager->LoadTexture("UISliderBar", TEXT("SliderBar.png"));
+	pManager->LoadTexture("UISliderRect", TEXT("SliderRect.png"));
 
 	return true;
 }

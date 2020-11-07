@@ -227,6 +227,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UI\MouseObj.h" />
+    <ClInclude Include="UI\UISlider.h" />
     <ClInclude Include="UI\UIButton.h" />
     <ClInclude Include="UI\UICheckBox.h" />
     <ClInclude Include="UI\UIControl.h" />
@@ -295,6 +296,7 @@
     <ClCompile Include="Scene\UIViewport.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UI\MouseObj.cpp" />
+    <ClCompile Include="UI\UISlider.cpp" />
     <ClCompile Include="UI\UIButton.cpp" />
     <ClCompile Include="UI\UICheckBox.cpp" />
     <ClCompile Include="UI\UIControl.cpp" />

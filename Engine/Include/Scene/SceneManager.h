@@ -37,11 +37,6 @@ public:
 	{
 		return m_pScene;
 	}
-	
-	class CScene* GetNextScene() const
-	{
-		return m_pSceneNext;
-	}
 
 public:
 	bool Init();

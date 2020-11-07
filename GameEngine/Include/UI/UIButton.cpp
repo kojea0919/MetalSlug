@@ -7,7 +7,8 @@
 #include "../Scene/SceneResource.h"
 
 CUIButton::CUIButton()
-	: m_bDown(false), m_bPush(false) ,m_bUp(false)
+	: m_bDown(false), m_bPush(false), m_bUp(false),
+	m_bClick(false)
 {
 	m_vecButtonState.resize((size_t)Button_State::End);
 
@@ -115,6 +116,8 @@ void CUIButton::PostUpdate(float fTime)
 	else if (m_bUp)
 		m_bUp = false;
 
+	m_bClick = false;
+
 	if (m_eState == Button_State::MouseOn)
 	{
 		if (m_bDown)
@@ -125,11 +128,15 @@ void CUIButton::PostUpdate(float fTime)
 
 	else if (m_eState == Button_State::Click)
 	{
-		if (m_bUp && m_ClickCallback)
+		if (m_bUp)
 		{
 			if (m_vecSound[SOUND_CLICK])
 				m_vecSound[SOUND_CLICK]->Play();
-			m_ClickCallback();
+
+			if(m_ClickCallback)
+				m_ClickCallback();
+
+			m_bClick = true;
 			m_eState = Button_State::MouseOn;
 		}
 	}

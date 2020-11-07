@@ -112,6 +112,12 @@ typedef struct _tagBarCBuffer
 	Vector2		vEmpty;
 }BarCBuffer, * PBarCBuffer;
 
+typedef struct _tagButtonCBuffer
+{
+	int			iCheck;
+	Vector3		vEmpty;
+}ButtonCBuffer, *PButtonCBuffer;
+
 typedef struct _tagRectInfo
 {
 	float	fL;

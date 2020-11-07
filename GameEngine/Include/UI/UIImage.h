@@ -5,7 +5,7 @@
 class CUIImage : public CUIControl
 {
 	friend class CUIObject;
-
+	
 protected:
 	CUIImage();
 	CUIImage(const CUIImage& control);

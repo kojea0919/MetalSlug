@@ -159,6 +159,9 @@
     <ClInclude Include="Client\UI\CheckBox.h">
       <Filter>09. UI</Filter>
     </ClInclude>
+    <ClInclude Include="Client\UI\Slider.h">
+      <Filter>09. UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEditor.cpp">
@@ -255,6 +258,9 @@
       <Filter>09. UI</Filter>
     </ClCompile>
     <ClCompile Include="Client\UI\CheckBox.cpp">
+      <Filter>09. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\UI\Slider.cpp">
       <Filter>09. UI</Filter>
     </ClCompile>
   </ItemGroup>

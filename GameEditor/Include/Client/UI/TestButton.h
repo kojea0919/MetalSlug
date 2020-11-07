@@ -22,7 +22,6 @@ public:
 	virtual void PostRender();
 	virtual CTestButton* Clone();
 
-
 private:
 	void ButtonCallback();
 };

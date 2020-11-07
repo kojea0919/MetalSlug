@@ -48,6 +48,9 @@ protected:
 
 	vector<class CSound*>	m_vecSound;
 
+	//버튼이 눌린 경우에 true
+	bool				m_bClick;
+
 public:
 	//Texture Set함수
 	void SetButtonStateTexture(Button_State eState, const string& strName);

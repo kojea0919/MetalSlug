@@ -342,6 +342,9 @@
     <ClInclude Include="UI\UICheckBox.h">
       <Filter>07. UI\01. Control</Filter>
     </ClInclude>
+    <ClInclude Include="UI\UISlider.h">
+      <Filter>07. UI\01. Control</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -540,6 +543,9 @@
       <Filter>07. UI\01. Control</Filter>
     </ClCompile>
     <ClCompile Include="UI\UICheckBox.cpp">
+      <Filter>07. UI\01. Control</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UISlider.cpp">
       <Filter>07. UI\01. Control</Filter>
     </ClCompile>
   </ItemGroup>

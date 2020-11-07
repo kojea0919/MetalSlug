@@ -109,3 +109,31 @@ PS_OUTPUT_SINGLE UIBarPS(VS_OUTPUT_UI input)
 
     return output;
 }
+
+cbuffer Button : register(b11)
+{
+    int     g_iCheck;
+    float3  g_vButtonEmpty;
+}
+
+Texture2D g_CheckTexture :register(t10);
+
+PS_OUTPUT_SINGLE UICheckPS(VS_OUTPUT_UI input)
+{
+    PS_OUTPUT_SINGLE output = (PS_OUTPUT_SINGLE)0;
+
+    //체크가 된 경우 Check이미지 Setting
+    if (g_iCheck == 0)
+        output.vColor = g_DiffuseTex.Sample(g_Anisotropic, input.vUV) * g_vMtrlDif;
+
+    else
+    {
+        float4 vCheckColor = g_CheckTexture.Sample(g_Anisotropic, input.vUV);
+        float4 vColor = g_DiffuseTex.Sample(g_Anisotropic, input.vUV);
+
+        output.vColor.rgb = (vCheckColor.rgb * vCheckColor.a + vColor.rgb * (1.f - vCheckColor.a)) * g_vMtrlDif.rgb;
+        output.vColor.a = vColor.a * g_vMtrlDif.a;
+    }
+
+    return output;
+}
