@@ -61,7 +61,8 @@ void CSceneCollision::SetCenter(const Vector3& vCenter)
 
 		//(m_pSection2D->iCountX % 2) = Section의 X축 개수가 홀수면 반만큼 추가
 		//(m_pSection2D->vSectionSize.x / 2.f) = Section크기의 반
-		//?이상함
+		//중심을 월점으로 기준으로한 Section들의 Min,Max를 Setting
+		//나중에 사용할 때 Check
 		vMin.x = (m_pSection2D->iCountX % 2) * (m_pSection2D->vSectionSize.x / 2.f) -
 			((m_pSection2D->iCountX / 2) - m_pSection2D->vecSection[iCnt]->GetIndexX()) * m_pSection2D->vSectionSize.x;
 

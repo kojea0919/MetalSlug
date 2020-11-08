@@ -29,7 +29,7 @@ CGraphicShader::~CGraphicShader()
 bool CGraphicShader::LoadVertexShader(const string& strName, const char* pEntryName, const TCHAR* pFileName, const string& strPathName)
 {
 	//Àü¿¡ LoadÇÑ Shader Release
-		//-------------------------
+	//-------------------------
 	SAFE_RELEASE(m_pVS);
 	SAFE_RELEASE(m_pVSBlob);
 	//-------------------------

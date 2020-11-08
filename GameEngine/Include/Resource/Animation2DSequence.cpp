@@ -227,6 +227,8 @@ void CAnimation2DSequence::Update(int iFrame)
 
 	for (; iter != iterEnd; ++iter)
 	{
+		//해당 프레임에 호출해야할 Notify가 존재하면 Call
+		//--------------------------------------------------
 		if ((*iter)->m_iFrame == iFrame)
 		{
 			auto	iter1 = m_SpriteList.begin();
@@ -237,6 +239,7 @@ void CAnimation2DSequence::Update(int iFrame)
 				(*iter1)->CallNotify((*iter)->m_strName);
 			}
 		}
+		//--------------------------------------------------
 	}
 }
 
