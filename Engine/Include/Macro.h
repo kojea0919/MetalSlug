@@ -97,3 +97,4 @@ private:\
 #define	CONTEXT		GET_SINGLE(CDevice)->GetContext()
 #define	SWAPCHAIN	GET_SINGLE(CDevice)->GetSwapChain()
 #define	RESOLUTION	GET_SINGLE(CDevice)->GetResolution()
+#define RENDERTARGET2D		GET_SINGLE(CDevice)->Get2DRenderTarget()

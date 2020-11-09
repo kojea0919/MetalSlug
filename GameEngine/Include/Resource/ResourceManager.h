@@ -13,6 +13,9 @@ private:
 	ChannelGroup* m_pMasterGroup;
 
 private:
+	IDWriteFactory* m_pWriteFactory;
+
+private:
 	//2D 기본 사각형
 	class CMesh2D* m_pDefault2DMesh;
 

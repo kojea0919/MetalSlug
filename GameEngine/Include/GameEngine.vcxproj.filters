@@ -346,7 +346,7 @@
       <Filter>07. UI\01. Control</Filter>
     </ClInclude>
     <ClInclude Include="UI\UIText.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>07. UI</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -552,7 +552,7 @@
       <Filter>07. UI\01. Control</Filter>
     </ClCompile>
     <ClCompile Include="UI\UIText.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>07. UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

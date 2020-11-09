@@ -1,4 +1,4 @@
-28
+30
 PlayerRightUpperIdle.ani
 PlayerRightLowerIdle.ani
 PlayerRightUpperMoveStart.ani
@@ -25,5 +25,7 @@ PlayerLeftAimUpIdle.ani
 PlayerLeftAimDown.ani
 PlayerRightNormalUpShot.ani
 PlayerRightNormalUpShotEnd.ani
+PlayerLeftNormalUpShot.ani
+PlayerLeftNormalUpShotEnd.ani
 PlayerLeftNormalUpShot.ani
 PlayerLeftNormalUpShotEnd.ani

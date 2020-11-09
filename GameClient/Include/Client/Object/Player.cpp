@@ -14,6 +14,12 @@
 #include "Component/ColliderSphere2D.h"
 #include "PathManager.h"
 
+
+
+
+
+
+
 CPlayer::CPlayer()
 	:m_pLowerMesh(nullptr), m_pUpperMesh(nullptr),
 	m_pCamera(nullptr), m_pBody(nullptr), m_fColorChangeTime(1.f),
@@ -600,7 +606,8 @@ void CPlayer::SetMoveState()
 	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_MOVE;
 
 	if (m_eUpperAnimState == PLAYER_ANIMSTATE::PS_MOVESTART ||
-		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_AIMDOWN)
+		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_AIMDOWN ||
+		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_NORMALSHOTEND)
 		m_eUpperAnimState = PLAYER_ANIMSTATE::PS_MOVE;
 }
 

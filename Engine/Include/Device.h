@@ -33,7 +33,10 @@ private:
 	float m_fClearColor[4];
 
 private:
+	//2D RenderTarget
 	ID2D1RenderTarget*	m_p2DTarget;
+
+	//Direct2D 府家胶 积己
 	ID2D1Factory*		m_p2DFactory;
 
 
@@ -57,6 +60,8 @@ public:
 		return m_tRS;
 	}
 	Vector2 GetWindowRatio() const;
+	ID2D1RenderTarget* Get2DRenderTarget() const;
+	ID2D1Factory* Get2DFactory() const;
 	//--------------------------
 
 public:

@@ -312,6 +312,21 @@ void CSpriteComponent::Update(float fTime)
     // 애니메이션의 총 실행 시간 / 애니메이션의 프레임 수 = 1프레임당 실행 시간
     float fFrameTime = m_pCurrent->pAnimation->m_fPlayTimeMax / m_pCurrent->pAnimation->m_iFrameMax;
 
+    //자식 Component는 위치 Setting
+    //-------------------------------------------------------------------------------------
+    if (m_pParent && m_pParent->GetSceneComponentClassType() == SCENECOMPONENT_CLASS_TYPE::SPRITE)
+    {
+        CSpriteComponent* pParent = static_cast<CSpriteComponent*>(m_pParent);
+        PSpriteInfo ParentCurrent = pParent->m_pCurrent;
+        if (ParentCurrent->pAnimation->UseRelativePos())
+        {
+            Vector2 CurPos;
+            if (ParentCurrent->pAnimation->GetTargetFramePosInfo(m_pCurrent->pAnimation->GetName(), ParentCurrent->iFrame, m_pCurrent->iFrame, CurPos))
+                SetRelativePos(Vector3(CurPos.x * m_fScale, CurPos.y * m_fScale, 0.f));
+        }
+    }
+    //-------------------------------------------------------------------------------------
+
     //시간이 지나서 다음 프레임으로 넘어가는 경우 처리
     //-----------------------------------------------
     if (m_pCurrent->fPlayTime >= fFrameTime)
@@ -342,27 +357,12 @@ void CSpriteComponent::Update(float fTime)
 
         SetWorldScale((tCurFrame.vEnd.x - tCurFrame.vStart.x) * m_fScale, (tCurFrame.vEnd.y - tCurFrame.vStart.y) * m_fScale, 1.f);
 
-        if (m_pCurrent->pAnimation->m_vecAnimPivot.size() > m_pCurrent->iFrame)
+        /*if (m_pCurrent->pAnimation->m_vecAnimPivot.size() > m_pCurrent->iFrame)
         {
             const Vector2 & vPivot = m_pCurrent->pAnimation->GetPivot(m_pCurrent->iFrame);
 
             SetPivot(vPivot.x, vPivot.y, 0.f);
-        }
-
-        //자식 Component는 위치 Setting
-        //-------------------------------------------------------------------------------------
-        if (m_pParent && m_pParent->GetSceneComponentClassType() == SCENECOMPONENT_CLASS_TYPE::SPRITE)
-        {
-            CSpriteComponent* pParent = static_cast<CSpriteComponent*>(m_pParent);
-            PSpriteInfo ParentCurrent = pParent->m_pCurrent;
-            if (ParentCurrent->pAnimation->UseRelativePos())
-            {
-                Vector2 CurPos;
-                if (ParentCurrent->pAnimation->GetTargetFramePosInfo(m_pCurrent->pAnimation->GetName(), ParentCurrent->iFrame, m_pCurrent->iFrame, CurPos))
-                    SetRelativePos(Vector3(CurPos.x * m_fScale, CurPos.y * m_fScale, 0.f));
-            }
-        }
-        //-------------------------------------------------------------------------------------
+        }*/
 
     }
 
