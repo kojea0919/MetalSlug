@@ -13,7 +13,10 @@ enum class PLAYER_ANIMSTATE
 	PS_ANIMUPIDLE,
 	PS_AIMDOWN,
 	PS_NORMALUPSHOT,
-	PS_NORMALUPSHOTEND
+	PS_NORMALUPSHOTEND,
+	PS_SITSTART,
+	PS_SITIDLE,
+	PS_UP
 };
 
 class CPlayer :
@@ -105,6 +108,8 @@ protected:
 	void AimDown(float fTime);
 	void Fire(float fTime);
 	void AttackEnd();
+
+	void Down(float fTime);
 
 protected:
 	//Animation Notify Proc

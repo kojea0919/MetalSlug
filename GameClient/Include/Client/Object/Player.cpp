@@ -15,11 +15,6 @@
 #include "PathManager.h"
 
 
-
-
-
-
-
 CPlayer::CPlayer()
 	:m_pLowerMesh(nullptr), m_pUpperMesh(nullptr),
 	m_pCamera(nullptr), m_pBody(nullptr), m_fColorChangeTime(1.f),
@@ -174,6 +169,9 @@ void CPlayer::UpdateAnimation(float fTime)
 		case PLAYER_ANIMSTATE::PS_MOVE:
 			m_pLowerMesh->ChangeSprite("PlayerRightLowerMove");
 			break;
+		case PLAYER_ANIMSTATE::PS_SITSTART:
+			m_pLowerMesh->ChangeSprite("PlayerRightSitStart");
+			break;
 		default:
 			break;
 		}
@@ -209,6 +207,9 @@ void CPlayer::UpdateAnimation(float fTime)
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALUPSHOTEND:
 			m_pUpperMesh->ChangeSprite("PlayerRightNormalUpShotEnd");
+			break;
+		case PLAYER_ANIMSTATE::PS_SITSTART:
+			m_pUpperMesh->Enable(false);
 			break;
 		default:
 			break;
@@ -303,12 +304,12 @@ bool CPlayer::Init()
 	m_pLowerMesh->SetScale(2.f);
 	m_pLowerMesh->SetRelativePos(500.f, 300.f, 0.f);
 	m_pLowerMesh->InitVelocity();
-	m_pLowerMesh->SetPivot(0.5f, 0.5f, 0.f);
+	m_pLowerMesh->SetPivot(0.5f, 1.0f, 0.f);
 	m_pLowerMesh->ChangeSprite("PlayerRightLowerIdle");
 
 	m_pUpperMesh->SetInheritScale(false);
 	m_pUpperMesh->SetScale(2.f);
-	m_pUpperMesh->SetPivot(0.5f, 0.5f, 0.f);
+	m_pUpperMesh->SetPivot(0.5f, 1.0f, 0.f);
 	m_pUpperMesh->SetRender_Priority(Render_Priority::RP_MID);
 	m_pUpperMesh->ChangeSprite("PlayerRightUpperIdle");
 
@@ -332,6 +333,7 @@ bool CPlayer::Init()
 	AddBindAction("Fire", KT_DOWN, this, &CPlayer::Fire);
 	AddBindAction("AimUp",KT_DOWN, this, &CPlayer::AimUp);
 	AddBindAction("AimUp", KT_UP, this, &CPlayer::AimDown);
+	AddBindAction("Down", KT_DOWN, this, &CPlayer::Down);
 
 	return true;
 }
@@ -481,6 +483,16 @@ void CPlayer::Fire(float fTime)
 void CPlayer::AttackEnd()
 {
 	
+}
+
+void CPlayer::Down(float fTime)
+{
+	//현재 동작중인 애니메이션이 Jump인 경우에는 aim을 아래쪽으로
+	//-----------------------------------------------
+	//-----------------------------------------------
+
+	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITSTART;
+	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_SITSTART;
 }
 
 void CPlayer::MoveStartEndProc()
@@ -737,7 +749,8 @@ void CPlayer::Load(FILE* pFile)
 	AddBindAxis("RotationZ", this, &CPlayer::RotationZ);
 	AddBindAction("Fire", KT_DOWN, this, &CPlayer::Fire);
 	AddBindAction("AimUp", KT_DOWN, this, &CPlayer::AimUp);
-	AddBindAction("AimUp",KT_UP, this, &CPlayer::AimDown);
+	AddBindAction("AimUp", KT_UP, this, &CPlayer::AimDown);
+	AddBindAction("Down",KT_DOWN, this, &CPlayer::Down);
 }
 
 void CPlayer::CollisionBegin(CCollider* pSrc, CCollider* pDest, float fTime)

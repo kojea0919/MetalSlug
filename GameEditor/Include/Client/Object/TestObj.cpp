@@ -4,6 +4,7 @@
 #include "Scene/SceneResource.h"
 #include "Resource/Material.h"
 #include "Component/ColliderPixel.h"
+#include "Component/ColliderRect.h"
 
 CTestObj::CTestObj()
 	: m_pMesh(nullptr),m_pBody(nullptr)
@@ -24,33 +25,37 @@ CTestObj::~CTestObj()
 bool CTestObj::Init()
 {
 	m_pMesh = CreateComponent<CMesh2DComponent>("Mesh");
-	m_pBody = CreateComponent<CColliderPixel>("Body");
+	m_pBody = CreateComponent<CColliderRect>("Body");
 
-	SetRootComponent(m_pMesh);
+	SetRootComponent(m_pBody);
 
-	m_pMesh->SetRelativeScale(200.f, 200.f, 1.f);
+	/*m_pMesh->SetRelativeScale(200.f, 200.f, 1.f);
 	m_pMesh->SetRelativePos(300.f, 200.f, 0.f);
-	m_pMesh->SetPivot(0.5f, 0.5f, 0.f);
+	m_pMesh->SetPivot(0.5f, 0.5f, 0.f);*/
 
 	//m_pBody->SetExtent(200.f, 100.f);
 	//m_pBody->SetRadius(60.f);
-	m_pBody->SetPixel(TEXT("PixelCollision.png"));
-	m_pBody->SetIgnoreColor(255, 0, 255);
-	m_pBody->SetCollisionProfile("Monster");
+	//m_pBody->SetPixel(TEXT("PixelCollision.png"));
+	//m_pBody->SetIgnoreColor(255, 0, 255);
+	//m_pBody->SetCollisionProfile("Monster");
 
-	m_pBody->SetCallback<CTestObj>(Collision_State::Begin, this,
+	/*m_pBody->SetCallback<CTestObj>(Collision_State::Begin, this,
 		&CTestObj::CollisionBegin);
 	m_pBody->SetCallback<CTestObj>(Collision_State::End, this,
-		&CTestObj::CollisionEnd);
+		&CTestObj::CollisionEnd);*/
 
-	m_pMesh->AddChild(m_pBody);
+	//m_pMesh->AddChild(m_pBody);
 
-	CMaterial* pMaterial = m_pMesh->GetMaterial();
+	//CMaterial* pMaterial = m_pMesh->GetMaterial();
 
-	pMaterial->SetShader("NormalShader");
-	pMaterial->SetTexture(TEXTURE_LINK::DIFFUSE, "PixelTest",
-		(int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL);
-	SAFE_RELEASE(pMaterial);
+	//pMaterial->SetShader("NormalShader");
+	//pMaterial->SetTexture(TEXTURE_LINK::DIFFUSE, "PixelTest",
+	//	(int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL);
+	//SAFE_RELEASE(pMaterial);
+
+	m_pBody->SetPivot(1.0f, 0.f,0.f);
+	m_pBody->SetWorldPos(500.f, 250.f, 0.f);
+
 
 	return true;
 }

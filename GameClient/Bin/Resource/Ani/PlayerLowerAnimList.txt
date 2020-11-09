@@ -1,7 +1,10 @@
-6
+9
 PlayerRightLowerIdle
 PlayerRightLowerMove
 PlayerRightLowerMoveStart
 PlayerLeftLowerIdle
 PlayerLeftLowerMoveStart
 PlayerLeftLowerMove
+PlayerRightSitStart
+PlayerRightUpStart
+PlayerRightSitIdle
