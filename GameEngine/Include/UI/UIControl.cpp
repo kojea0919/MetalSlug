@@ -258,7 +258,7 @@ void CUIControl::Update(float fTime)
 
 void CUIControl::PostUpdate(float fTime)
 {
-	if (m_pScene)
+	if (m_pScene && m_pOwner->IsEnable())
 		m_pScene->GetCollisionManager()->AddUI(this);
 
 	auto	iter = m_vecChild.begin();

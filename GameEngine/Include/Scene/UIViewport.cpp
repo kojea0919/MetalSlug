@@ -86,6 +86,8 @@ void CUIViewport::Render(float fTime)
 
 	for (; iter != iterEnd; ++iter)
 	{
+		if (!(*iter)->IsEnable())
+			continue;
 		(*iter)->Render();
 	}
 

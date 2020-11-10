@@ -1,6 +1,89 @@
-﻿  Scene.cpp
-  GameEngine.vcxproj -> C:\Users\AssortRock\Documents\새 폴더\MetalSlug\GameEngine\Include\../Bin/GameEngine_Debug.lib
-  0개 파일이 복사되었습니다.
+﻿  CollisionManager.cpp
+  Camera.cpp
+  Collider.cpp
+  ColliderOBB2D.cpp
+  ColliderPixel.cpp
+  ColliderRect.cpp
+  ColliderSphere2D.cpp
+  Collision.cpp
+  Component.cpp
+  Mesh2DComponent.cpp
+  MeshComponent.cpp
+  ObjectComponent.cpp
+  PrimitiveComponent.cpp
+  SceneComponent.cpp
+  SpriteComponent.cpp
+  StaticMeshComponent.cpp
+  TestCamera.cpp
+  Tile.cpp
+  TileMap.cpp
+  Transform.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  Device.cpp
+  Engine.cpp
+  GameInstance.cpp
+  GameObject.cpp
+  Input.cpp
+  InputObj.cpp
+  Matrix.cpp
+  PathManager.cpp
+  Ref.cpp
+  BlendState.cpp
+  DepthStencilState.cpp
+  RenderManager.cpp
+  RenderState.cpp
+  Animation2DNotify.cpp
+  Animation2DSequence.cpp
+  ComputeShader.cpp
+  GraphicShader.cpp
+  Material.cpp
+  Mesh.cpp
+  Mesh2D.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  ResourceManager.cpp
+  Shader.cpp
+  ShaderManager.cpp
+  Sound.cpp
+  StaticMesh.cpp
+  Texture.cpp
+  CameraManager.cpp
+  CollisionSection.cpp
+  GameMode.cpp
+  Scene.cpp
+  SceneCollision.cpp
+  SceneManager.cpp
+  SceneResource.cpp
+  UIViewport.cpp
+  Timer.cpp
+  MouseObj.cpp
+  UISlider.cpp
+C:\Users\KJH\Desktop\가마우지\Metal\GameEngine\Include\UI\UISlider.cpp(62,24): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+C:\Users\KJH\Desktop\가마우지\Metal\GameEngine\Include\UI\UISlider.cpp(67,24): warning C4244: '인수': 'int'에서 'float'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  UIButton.cpp
+  UICheckBox.cpp
+  UIControl.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  UIImage.cpp
+  UIManager.cpp
+  UIObject.cpp
+  UIProgressBar.cpp
+  UISprite.cpp
+  UIText.cpp
+  UITitleBar.cpp
+  UITransform.cpp
+  Vector2.cpp
+  Vector3.cpp
+  Vector4.cpp
+  코드를 생성하고 있습니다...
+C:\Users\KJH\Desktop\가마우지\Metal\GameEngine\Include\Vector2.cpp(98): warning C4715: '_tagVector2::operator[]': 모든 제어 경로에서 값을 반환하지는 않습니다.
+  GameEngine.vcxproj -> C:\Users\KJH\Desktop\가마우지\Metal\GameEngine\Include\../Bin/GameEngine_Debug.lib
+  .\GameEngine\Include\Flag.h
+  .\GameEngine\Include\Component\Tile.h
+  .\GameEngine\Include\Component\TileMap.h
+  3개 파일이 복사되었습니다.
   파일을 찾을 수 없습니다-*.inl
   0개 파일이 복사되었습니다.
   0개 파일이 복사되었습니다.

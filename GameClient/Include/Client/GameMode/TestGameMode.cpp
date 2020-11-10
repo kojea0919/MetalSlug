@@ -11,6 +11,7 @@
 #include "../UI/TestBar.h"
 #include "../UI/CheckBox.h"
 #include "../UI/Slider.h"
+#include "../UI/Inventory.h"
 
 CTestGameMode::CTestGameMode()
 {
@@ -60,6 +61,10 @@ bool CTestGameMode::Init()
 
 	SAFE_RELEASE(pSlider);
 
+	CInventory* pInventory = m_pScene->CreateUIObject<CInventory>("Inventory");
+
+	SAFE_RELEASE(pInventory);
+
 	return true;
 }
 
@@ -92,6 +97,7 @@ bool CTestGameMode::LoadTexture()
 	pManager->LoadTexture("UICheck", TEXT("CheckBoxCheck.png"));
 	pManager->LoadTexture("UISliderBar", TEXT("SliderBar.png"));
 	pManager->LoadTexture("UISliderRect", TEXT("SliderRect.png"));
+	pManager->LoadTexture("CloseButton", TEXT("ExitButton.png"));
 
 	return true;
 }

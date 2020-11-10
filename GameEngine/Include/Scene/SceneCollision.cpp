@@ -323,6 +323,8 @@ void CSceneCollision::Collision(float fTime)
 	{
 		m_pSection3D->vecSection[i]->Clear();
 	}
+
+	m_vecUI.clear();
 }
 
 bool CSceneCollision::SortUI(CUIControl* pSrc, CUIControl* pDest)

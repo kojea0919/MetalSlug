@@ -47,7 +47,8 @@ enum class SCENECOMPONENT_CLASS_TYPE
 	COLLIDERRECT,
 	COLLIDERSPHERE2D,
 	COLLIDEROBB2D,
-	COLLIDERPIXEL
+	COLLIDERPIXEL,
+	TILEMAP
 };
 
 enum class CAMERA_TYPE
@@ -151,4 +152,10 @@ enum class Button_State
 	Click,
 	Disable,
 	End
+};
+
+enum class TILE_SHAPE
+{
+	Rect,
+	Rhombus
 };

@@ -121,6 +121,9 @@
     <Filter Include="03. Resource\06. Sound">
       <UniqueIdentifier>{ce980982-b57a-4d4c-9d2f-cb2a9d6f76fb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="06. Component\01. Scene\05. TileMap">
+      <UniqueIdentifier>{a69211ad-584e-4b76-843b-9da4fac5dfb2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -348,6 +351,15 @@
     <ClInclude Include="UI\UIText.h">
       <Filter>07. UI\01. Control</Filter>
     </ClInclude>
+    <ClInclude Include="UI\UITitleBar.h">
+      <Filter>07. UI\01. Control</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\TileMap.h">
+      <Filter>06. Component\01. Scene\05. TileMap</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\Tile.h">
+      <Filter>06. Component\01. Scene\05. TileMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -553,6 +565,15 @@
     </ClCompile>
     <ClCompile Include="UI\UIText.cpp">
       <Filter>07. UI\01. Control</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UITitleBar.cpp">
+      <Filter>07. UI\01. Control</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\Tile.cpp">
+      <Filter>06. Component\01. Scene\05. TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\TileMap.cpp">
+      <Filter>06. Component\01. Scene\05. TileMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

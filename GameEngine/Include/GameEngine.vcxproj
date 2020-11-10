@@ -183,6 +183,8 @@
     <ClInclude Include="Component\SpriteComponent.h" />
     <ClInclude Include="Component\StaticMeshComponent.h" />
     <ClInclude Include="Component\TestCamera.h" />
+    <ClInclude Include="Component\Tile.h" />
+    <ClInclude Include="Component\TileMap.h" />
     <ClInclude Include="Component\Transform.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Engine.h" />
@@ -237,6 +239,7 @@
     <ClInclude Include="UI\UIProgressBar.h" />
     <ClInclude Include="UI\UISprite.h" />
     <ClInclude Include="UI\UIText.h" />
+    <ClInclude Include="UI\UITitleBar.h" />
     <ClInclude Include="UI\UITransform.h" />
     <ClInclude Include="Vector2.h" />
     <ClInclude Include="Vector3.h" />
@@ -260,6 +263,8 @@
     <ClCompile Include="Component\SpriteComponent.cpp" />
     <ClCompile Include="Component\StaticMeshComponent.cpp" />
     <ClCompile Include="Component\TestCamera.cpp" />
+    <ClCompile Include="Component\Tile.cpp" />
+    <ClCompile Include="Component\TileMap.cpp" />
     <ClCompile Include="Component\Transform.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -307,6 +312,7 @@
     <ClCompile Include="UI\UIProgressBar.cpp" />
     <ClCompile Include="UI\UISprite.cpp" />
     <ClCompile Include="UI\UIText.cpp" />
+    <ClCompile Include="UI\UITitleBar.cpp" />
     <ClCompile Include="UI\UITransform.cpp" />
     <ClCompile Include="Vector2.cpp" />
     <ClCompile Include="Vector3.cpp" />

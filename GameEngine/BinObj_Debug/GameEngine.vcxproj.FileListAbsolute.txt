@@ -11,3 +11,6 @@ C:\Users\KJH\Desktop\가마우지\GameEngine(2) (2)\GameEngine\Bin\UI.cso
 C:\Users\KJH\Desktop\가마우지\GameEngine(2) (2) - 복사본\GameEngine\Bin\Collider.cso
 C:\Users\KJH\Desktop\가마우지\GameEngine(2) (2) - 복사본\GameEngine\Bin\Standard2D.cso
 C:\Users\KJH\Desktop\가마우지\GameEngine(2) (2) - 복사본\GameEngine\Bin\UI.cso
+C:\Users\KJH\Desktop\가마우지\Metal\GameEngine\Bin\Collider.cso
+C:\Users\KJH\Desktop\가마우지\Metal\GameEngine\Bin\Standard2D.cso
+C:\Users\KJH\Desktop\가마우지\Metal\GameEngine\Bin\UI.cso
