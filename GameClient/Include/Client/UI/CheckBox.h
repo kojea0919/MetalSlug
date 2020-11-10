@@ -21,9 +21,5 @@ public:
 	virtual void Render();
 	virtual void PostRender();
 	virtual CCheckBox* Clone();
-
-
-private:
-	void ButtonCallback();
 };
 

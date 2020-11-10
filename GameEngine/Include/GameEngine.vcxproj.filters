@@ -346,7 +346,7 @@
       <Filter>07. UI\01. Control</Filter>
     </ClInclude>
     <ClInclude Include="UI\UIText.h">
-      <Filter>07. UI</Filter>
+      <Filter>07. UI\01. Control</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -552,7 +552,7 @@
       <Filter>07. UI\01. Control</Filter>
     </ClCompile>
     <ClCompile Include="UI\UIText.cpp">
-      <Filter>07. UI</Filter>
+      <Filter>07. UI\01. Control</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

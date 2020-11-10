@@ -52,9 +52,9 @@ bool CTestGameMode::Init()
 
 	SAFE_RELEASE(pTestBar);
 
-	/*CCheckBox* pTestCheckBox = m_pScene->CreateUIObject<CCheckBox>("TestCheckBox");
+	CCheckBox* pTestCheckBox = m_pScene->CreateUIObject<CCheckBox>("TestCheckBox");
 
-	SAFE_RELEASE(pTestCheckBox);*/
+	SAFE_RELEASE(pTestCheckBox);
 
 	CSlider* pSlider = m_pScene->CreateUIObject<CSlider>("Slider");
 

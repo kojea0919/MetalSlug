@@ -18,6 +18,9 @@ protected:
 	//Check¿ÃπÃ¡ˆ
 	class CTexture* m_pCheckTexture;
 
+	//Text
+	class CUIText* m_pText;
+
 public:
 	void SetCheck(bool bCheck)
 	{
@@ -25,6 +28,7 @@ public:
 	}
 
 	void SetCheckTexture(const string& strName);
+	void SetText(const TCHAR* pText);
 public:
 	virtual bool Init();
 	virtual void Start();

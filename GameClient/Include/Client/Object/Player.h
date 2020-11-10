@@ -16,7 +16,10 @@ enum class PLAYER_ANIMSTATE
 	PS_NORMALUPSHOTEND,
 	PS_SITSTART,
 	PS_SITIDLE,
-	PS_UP
+	PS_UP,
+	PS_SITMOVE,
+	PS_SITSHOT,
+	PS_SITSHOTEND
 };
 
 class CPlayer :
@@ -73,6 +76,11 @@ protected:
 	PLAYER_ANIMSTATE	m_eLowerAnimState;
 	//-------------------------------
 
+	//플레이어가 서있는 상태인지
+	bool			m_bIsStand;
+
+	//플레이어가 공격이 가능한 상태인지(앉는 애니메이션, 일어서는 애니메이션 중간에는 불가능)
+	bool			m_bIsCanFire;
 
 
 protected:
@@ -110,6 +118,7 @@ protected:
 	void AttackEnd();
 
 	void Down(float fTime);
+	void Up(float fTime);
 
 protected:
 	//Animation Notify Proc
@@ -144,6 +153,10 @@ protected:
 	void SetAimDownState();
 	void SetNormalUpShotState();
 	void SetNormalUpShotEndState();
+	void SetSitIdleState();
+	void SetSitMoveState();
+	void SetSitShotState();
+	void SetSitShotEndState();
 	//---------------------------------
 public:
 	virtual void Save(FILE* pFile);

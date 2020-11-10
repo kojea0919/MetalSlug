@@ -357,12 +357,12 @@ void CSpriteComponent::Update(float fTime)
 
         SetWorldScale((tCurFrame.vEnd.x - tCurFrame.vStart.x) * m_fScale, (tCurFrame.vEnd.y - tCurFrame.vStart.y) * m_fScale, 1.f);
 
-        /*if (m_pCurrent->pAnimation->m_vecAnimPivot.size() > m_pCurrent->iFrame)
+        if (m_pCurrent->pAnimation->m_vecAnimPivot.size() > m_pCurrent->iFrame)
         {
             const Vector2 & vPivot = m_pCurrent->pAnimation->GetPivot(m_pCurrent->iFrame);
 
             SetPivot(vPivot.x, vPivot.y, 0.f);
-        }*/
+        }
 
     }
 

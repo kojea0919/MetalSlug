@@ -22,7 +22,8 @@ CPlayer::CPlayer()
 	m_bIsRightDir(true), m_bPrevRightDir(true),
 	m_bIsShooting(false), m_bRecvFireInput(false),
 	m_bIsAimUp(false),m_eUpperAnimState(PLAYER_ANIMSTATE::PS_IDLE),
-	m_eLowerAnimState(PLAYER_ANIMSTATE::PS_IDLE)
+	m_eLowerAnimState(PLAYER_ANIMSTATE::PS_IDLE),
+	m_bIsStand(true),m_bIsCanFire(true)
 {
 }
 
@@ -127,7 +128,13 @@ void CPlayer::UpdateMoveState(float fTime)
 	//---------------------------------	
 	if (m_fPrevVelocity == 0 && fCurVelocity > 0)
 	{
-		SetMoveStartState();
+		//서있는 경우는 기본 움직임
+		if(m_bIsStand)
+			SetMoveStartState();
+		//앉아있는 경우는 앉은 움직임
+		else
+			SetSitMoveState();
+
 	}
 	//---------------------------------
 
@@ -135,7 +142,12 @@ void CPlayer::UpdateMoveState(float fTime)
 	//---------------------------------
 	else if (m_fPrevVelocity > 0 && fCurVelocity == 0)
 	{
-		SetIdleState();
+		//서있는 경우
+		if (m_bIsStand)
+			SetIdleState();
+		//앉아있는 경우
+		else
+			SetSitIdleState();
 	}
 	//---------------------------------
 }
@@ -146,8 +158,10 @@ void CPlayer::UpdateAttackState(float fTime)
 	//---------------------------------
 	if (m_bIsShooting)
 	{
-		if(m_bIsAimUp)
+		if (m_bIsAimUp)
 			SetNormalUpShotState();
+		else if (!m_bIsStand)
+			SetSitShotState();
 		else
 			SetNormalMidShotState();
 	}
@@ -172,6 +186,21 @@ void CPlayer::UpdateAnimation(float fTime)
 		case PLAYER_ANIMSTATE::PS_SITSTART:
 			m_pLowerMesh->ChangeSprite("PlayerRightSitStart");
 			break;
+		case PLAYER_ANIMSTATE::PS_SITIDLE:
+			m_pLowerMesh->ChangeSprite("PlayerRightSitIdle");
+			break;
+		case PLAYER_ANIMSTATE::PS_UP:
+			m_pLowerMesh->ChangeSprite("PlayerRightUpStart");
+			break;
+		case PLAYER_ANIMSTATE::PS_SITMOVE:
+			m_pLowerMesh->ChangeSprite("PlayerRightSitMove");
+			break;
+		case PLAYER_ANIMSTATE::PS_SITSHOT:
+			m_pLowerMesh->ChangeSprite("PlayerRightSitShot");
+			break;
+		case PLAYER_ANIMSTATE::PS_SITSHOTEND:
+			m_pLowerMesh->ChangeSprite("PlayerRightSitShotEnd");
+			break;
 		default:
 			break;
 		}
@@ -179,36 +208,50 @@ void CPlayer::UpdateAnimation(float fTime)
 		switch (m_eUpperAnimState)
 		{
 		case PLAYER_ANIMSTATE::PS_IDLE:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerRightUpperIdle");
 			break;
 		case PLAYER_ANIMSTATE::PS_MOVESTART:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerRightUpperMoveStart");
 			break;
 		case PLAYER_ANIMSTATE::PS_MOVE:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerRightUpperMove");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALSHOT:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerRightNormalMidShot");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALSHOTEND:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerRightNormalMidShotEnd");
 			break;
 		case PLAYER_ANIMSTATE::PS_AIMUPSTART:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerRightAimUpStart");
 			break;
 		case PLAYER_ANIMSTATE::PS_ANIMUPIDLE:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerRightAimUpIdle");
 			break;
 		case PLAYER_ANIMSTATE::PS_AIMDOWN:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerRightAimDown");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALUPSHOT:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerRightNormalUpShot");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALUPSHOTEND:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerRightNormalUpShotEnd");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSTART:
+		case PLAYER_ANIMSTATE::PS_SITIDLE:
+		case PLAYER_ANIMSTATE::PS_UP:
+		case PLAYER_ANIMSTATE::PS_SITSHOT:
+		case PLAYER_ANIMSTATE::PS_SITSHOTEND:
 			m_pUpperMesh->Enable(false);
 			break;
 		default:
@@ -228,6 +271,24 @@ void CPlayer::UpdateAnimation(float fTime)
 		case PLAYER_ANIMSTATE::PS_MOVE:
 			m_pLowerMesh->ChangeSprite("PlayerLeftLowerMove");
 			break;
+		case PLAYER_ANIMSTATE::PS_SITSTART:
+			m_pLowerMesh->ChangeSprite("PlayerLeftSitStart");
+			break;
+		case PLAYER_ANIMSTATE::PS_SITIDLE:
+			m_pLowerMesh->ChangeSprite("PlayerLeftSitIdle");
+			break;
+		case PLAYER_ANIMSTATE::PS_UP:
+			m_pLowerMesh->ChangeSprite("PlayerLeftUpStart");
+			break;
+		case PLAYER_ANIMSTATE::PS_SITMOVE:
+			m_pLowerMesh->ChangeSprite("PlayerLeftSitMove");
+			break;
+		case PLAYER_ANIMSTATE::PS_SITSHOT:
+			m_pLowerMesh->ChangeSprite("PlayerLeftSitShot");
+			break;
+		case PLAYER_ANIMSTATE::PS_SITSHOTEND:
+			m_pLowerMesh->ChangeSprite("PlayerLeftSitShotEnd");
+			break;
 		default:
 			break;
 		}
@@ -235,34 +296,50 @@ void CPlayer::UpdateAnimation(float fTime)
 		switch (m_eUpperAnimState)
 		{
 		case PLAYER_ANIMSTATE::PS_IDLE:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerLeftUpperIdle");
 			break;
 		case PLAYER_ANIMSTATE::PS_MOVESTART:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerLeftUpperMoveStart");
 			break;
 		case PLAYER_ANIMSTATE::PS_MOVE:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerLeftUpperMove");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALSHOT:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerLeftNormalMidShot");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALSHOTEND:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerLeftNormalMidShotEnd");
 			break;
 		case PLAYER_ANIMSTATE::PS_AIMUPSTART:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerLeftAimUpStart");
 			break;
 		case PLAYER_ANIMSTATE::PS_ANIMUPIDLE:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerLeftAimUpIdle");
 			break;
 		case PLAYER_ANIMSTATE::PS_AIMDOWN:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerLeftAimDown");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALUPSHOT:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerLeftNormalUpShot");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALUPSHOTEND:
+			m_pUpperMesh->Enable(true);
 			m_pUpperMesh->ChangeSprite("PlayerLeftNormalUpShotEnd");
+			break;
+		case PLAYER_ANIMSTATE::PS_SITSTART:
+		case PLAYER_ANIMSTATE::PS_SITIDLE:
+		case PLAYER_ANIMSTATE::PS_UP:
+		case PLAYER_ANIMSTATE::PS_SITSHOT:
+			m_pUpperMesh->Enable(false);
 			break;
 		default:
 			break;
@@ -304,12 +381,12 @@ bool CPlayer::Init()
 	m_pLowerMesh->SetScale(2.f);
 	m_pLowerMesh->SetRelativePos(500.f, 300.f, 0.f);
 	m_pLowerMesh->InitVelocity();
-	m_pLowerMesh->SetPivot(0.5f, 1.0f, 0.f);
+	m_pLowerMesh->SetPivot(0.5f, 0.5f, 0.f);
 	m_pLowerMesh->ChangeSprite("PlayerRightLowerIdle");
 
 	m_pUpperMesh->SetInheritScale(false);
 	m_pUpperMesh->SetScale(2.f);
-	m_pUpperMesh->SetPivot(0.5f, 1.0f, 0.f);
+	m_pUpperMesh->SetPivot(0.5f, 0.5f, 0.f);
 	m_pUpperMesh->SetRender_Priority(Render_Priority::RP_MID);
 	m_pUpperMesh->ChangeSprite("PlayerRightUpperIdle");
 
@@ -323,7 +400,7 @@ bool CPlayer::Init()
 	m_pBody->SetInheritScale(false);
 	//---------------------------------
 
-	//Sprite정보 Settingㅈ
+	//Sprite정보 Setting
 	if (!LoadPlayerAnimList())
 		return false;
 
@@ -334,6 +411,7 @@ bool CPlayer::Init()
 	AddBindAction("AimUp",KT_DOWN, this, &CPlayer::AimUp);
 	AddBindAction("AimUp", KT_UP, this, &CPlayer::AimDown);
 	AddBindAction("Down", KT_DOWN, this, &CPlayer::Down);
+	AddBindAction("Down", KT_UP, this, &CPlayer::Up);
 
 	return true;
 }
@@ -476,8 +554,11 @@ void CPlayer::RotationZ(float fScale, float fTime)
 
 void CPlayer::Fire(float fTime)
 {
-	m_bIsShooting = true;
-	m_bRecvFireInput = true;
+	if (m_bIsCanFire)
+	{
+		m_bIsShooting = true;
+		m_bRecvFireInput = true;
+	}
 }
 
 void CPlayer::AttackEnd()
@@ -490,9 +571,20 @@ void CPlayer::Down(float fTime)
 	//현재 동작중인 애니메이션이 Jump인 경우에는 aim을 아래쪽으로
 	//-----------------------------------------------
 	//-----------------------------------------------
-
 	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITSTART;
 	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_SITSTART;
+
+	m_bIsStand = false;
+	m_bIsCanFire = false;
+}
+
+void CPlayer::Up(float fTime)
+{
+	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_UP;
+	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_UP;
+
+	m_bIsStand = true;
+	m_bIsCanFire = false;
 }
 
 void CPlayer::MoveStartEndProc()
@@ -550,8 +642,10 @@ void CPlayer::AttackEndProc()
 	if(!m_bRecvFireInput)
 	{
 		m_bIsShooting = false;
-		if(m_bIsAimUp)
+		if (m_bIsAimUp)
 			SetNormalUpShotEndState();
+		else if (!m_bIsStand)
+			SetSitShotEndState();
 		else
 			SetNormalMidShotEndState();
 	}
@@ -560,16 +654,27 @@ void CPlayer::AttackEndProc()
 
 void CPlayer::GotoIdleProc()
 {
+	m_bIsCanFire = true;
+
 	if (m_pLowerMesh->GetCurrentVelocity() > 0)
 	{
-		SetMoveState();
+		if(m_bIsStand)
+			SetMoveState();
+		else
+			SetSitMoveState();
 	}
 	else
 	{
 		if (m_bIsAimUp)
 			SetAimUpIdleState();
+		else if (m_eLowerAnimState == PLAYER_ANIMSTATE::PS_SITSTART)
+		{
+			SetSitIdleState();
+		}
 		else
+		{
 			SetIdleState();
+		}
 	}
 }
 
@@ -595,7 +700,8 @@ void CPlayer::SetIdleState()
 	//상체는 MOVE상태인 경우에만 IDLE로(다른 상태인 경우는 그냥 유지)
 	if (m_eUpperAnimState == PLAYER_ANIMSTATE::PS_MOVE ||
 		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_AIMDOWN ||
-		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_NORMALSHOTEND)
+		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_NORMALSHOTEND ||
+		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_UP)
 	{
 		m_eUpperAnimState = PLAYER_ANIMSTATE::PS_IDLE;
 	}
@@ -607,7 +713,8 @@ void CPlayer::SetMoveStartState()
 
 	if (m_eUpperAnimState == PLAYER_ANIMSTATE::PS_IDLE ||
 		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_MOVE ||
-		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_NORMALSHOTEND)
+		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_NORMALSHOTEND ||
+		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_UP)
 	{
 		m_eUpperAnimState = PLAYER_ANIMSTATE::PS_MOVESTART;
 	}
@@ -617,9 +724,11 @@ void CPlayer::SetMoveState()
 {
 	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_MOVE;
 
+	//총을 쏘던 폭탄을 던지던 중 다시 움직이느 상태로 돌아가야하는 경우 호출
 	if (m_eUpperAnimState == PLAYER_ANIMSTATE::PS_MOVESTART ||
 		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_AIMDOWN ||
-		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_NORMALSHOTEND)
+		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_NORMALSHOTEND||
+		m_eUpperAnimState == PLAYER_ANIMSTATE::PS_UP)
 		m_eUpperAnimState = PLAYER_ANIMSTATE::PS_MOVE;
 }
 
@@ -656,6 +765,27 @@ void CPlayer::SetNormalUpShotState()
 void CPlayer::SetNormalUpShotEndState()
 {
 	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_NORMALUPSHOTEND;
+}
+
+void CPlayer::SetSitIdleState()
+{
+	//하체 상태는 바로 IDLE
+	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITIDLE;
+}
+
+void CPlayer::SetSitMoveState()
+{
+	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITMOVE;
+}
+
+void CPlayer::SetSitShotState()
+{
+	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITSHOT;
+}
+
+void CPlayer::SetSitShotEndState()
+{
+	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITSHOTEND;
 }
 
 void CPlayer::Save(FILE* pFile)
@@ -751,6 +881,7 @@ void CPlayer::Load(FILE* pFile)
 	AddBindAction("AimUp", KT_DOWN, this, &CPlayer::AimUp);
 	AddBindAction("AimUp", KT_UP, this, &CPlayer::AimDown);
 	AddBindAction("Down",KT_DOWN, this, &CPlayer::Down);
+	AddBindAction("Down", KT_UP, this, &CPlayer::Up);
 }
 
 void CPlayer::CollisionBegin(CCollider* pSrc, CCollider* pDest, float fTime)

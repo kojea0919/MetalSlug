@@ -11,7 +11,7 @@ CUITransform::CUITransform() :
 	m_pParent(nullptr),
 	m_pOwner(nullptr),
 	m_pViewport(nullptr),
-	m_bInheritScale(true),
+	m_bInheritScale(false),
 	m_bInheritRotX(true),
 	m_bInheritRotY(true),
 	m_bInheritRotZ(true),

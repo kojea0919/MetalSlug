@@ -180,23 +180,23 @@ void CEngine::Logic()
 
 int CEngine::Update(float fTime)
 {
-	GET_SINGLE(CSceneManager)->Update(fTime);
+	int iRet = GET_SINGLE(CSceneManager)->Update(fTime);
 
-	return 0;
+	return iRet;
 }
 
 int CEngine::PostUpdate(float fTime)
 {
-	GET_SINGLE(CSceneManager)->PostUpdate(fTime);
+	int iRet = GET_SINGLE(CSceneManager)->PostUpdate(fTime);
 
-	return 0;
+	return iRet;
 }
 
 int CEngine::Collision(float fTime)
 {
-	GET_SINGLE(CSceneManager)->Collision(fTime);
+	int iRet = GET_SINGLE(CSceneManager)->Collision(fTime);
 
-	return 0;
+	return iRet;
 }
 
 int CEngine::PrevRender(float fTime)

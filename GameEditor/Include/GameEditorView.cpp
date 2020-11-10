@@ -20,6 +20,7 @@
 #include "Client/ClientCreateSystem.h"
 #include "Client/Client.h"
 #include "Client/GameMode/TestGameMode.h"
+#include "Client/GameMode/StartGameMode.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW

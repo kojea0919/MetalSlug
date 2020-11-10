@@ -162,6 +162,12 @@
     <ClInclude Include="Client\UI\Slider.h">
       <Filter>09. UI</Filter>
     </ClInclude>
+    <ClInclude Include="Client\GameMode\StartGameMode.h">
+      <Filter>01. GameMode</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\UI\StartBackObj.h">
+      <Filter>09. UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEditor.cpp">
@@ -261,6 +267,12 @@
       <Filter>09. UI</Filter>
     </ClCompile>
     <ClCompile Include="Client\UI\Slider.cpp">
+      <Filter>09. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\GameMode\StartGameMode.cpp">
+      <Filter>01. GameMode</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\UI\StartBackObj.cpp">
       <Filter>09. UI</Filter>
     </ClCompile>
   </ItemGroup>

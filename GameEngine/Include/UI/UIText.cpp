@@ -34,6 +34,11 @@ CUIText::CUIText()
 	m_pTextLayout = GET_SINGLE(CResourceManager)->CreateTextLayout(m_pText, m_pTextFormat, 100.f, 100.f);
 	m_pColor = GET_SINGLE(CResourceManager)->CreateColor(m_vColor);
 	m_pShadowColor = GET_SINGLE(CResourceManager)->CreateColor(m_vShadowColor);
+
+	m_tRenderArea.left = 0.f;
+	m_tRenderArea.right = 100.f;
+	m_tRenderArea.top = 0.f;
+	m_tRenderArea.bottom = 100.f;
 }
 
 CUIText::CUIText(const CUIText& control)

@@ -2,6 +2,7 @@
 #include "UI/UICheckBox.h"
 #include "Scene/Scene.h"
 #include "Scene/SceneResource.h"
+#include "UI/UIText.h"
 
 CCheckBox::CCheckBox()
 {
@@ -40,6 +41,8 @@ bool CCheckBox::Init()
 	m_pCheckBox->SetRelativeScale(40.f, 40.f, 1.f);
 
 	SetRoot(m_pCheckBox);
+	m_pCheckBox->SetText(TEXT("CheckBox"));
+
 	return true;
 }
 
@@ -76,8 +79,4 @@ void CCheckBox::PostRender()
 CCheckBox* CCheckBox::Clone()
 {
 	return new CCheckBox(*this);
-}
-
-void CCheckBox::ButtonCallback()
-{
 }

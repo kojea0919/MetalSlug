@@ -19,6 +19,7 @@ enum TEXT_ALIGH_V
 class CUIText : public CUIControl
 {
 	friend class CUIObject;
+	friend class CUICheckBox;
 
 protected:
 	CUIText();
@@ -50,6 +51,17 @@ private:
 
 	TEXT_ALIGH_H			m_eAlignH;
 	TEXT_ALIGH_V			m_eAlignV;
+
+public:
+	const TCHAR* GetText() const
+	{
+		return m_pText;
+	}
+
+	int GetTextCount() const
+	{
+		return (int)lstrlen(m_pText);
+	}
 
 public:
 	void SetTextCount(int iMaxCount);
