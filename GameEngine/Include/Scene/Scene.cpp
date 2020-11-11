@@ -74,6 +74,11 @@ void CScene::AddSequenceResource(const char* pFileName)
 	}
 }
 
+const vector<class CUIControl*>& CScene::GetUIVec() const
+{
+	return m_pCollisionManager->GetUIVec();
+}
+
 CGameObject* CScene::FindObject(const string& strName)
 {
 	auto	iter = m_ObjList.begin();

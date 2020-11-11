@@ -57,6 +57,12 @@ private:
 	class CUIControl*			m_pPrevMouseUI;
 
 public:
+	const vector<class CUIControl*>& GetUIVec() const
+	{
+		return m_vecUI;
+	}
+
+public:
 	//SetÇÔ¼ö
 	//------------------------------------------
 	void SetWorldSize(const Vector3& vWorldSize)

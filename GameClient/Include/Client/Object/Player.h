@@ -92,7 +92,7 @@ protected:
 	void UpdateMoveState(float fTime);
 
 	//공격 State Update
-	void UpdateAttackState(float fTime);
+	//void UpdateAttackState(float fTime);
 
 	//State에 따른 Animation Update
 	void UpdateAnimation(float fTime);
@@ -153,6 +153,8 @@ protected:
 	void SetAimDownState();
 	void SetNormalUpShotState();
 	void SetNormalUpShotEndState();
+	void SetSitStartState();
+	void SetUpStartState();
 	void SetSitIdleState();
 	void SetSitMoveState();
 	void SetSitShotState();

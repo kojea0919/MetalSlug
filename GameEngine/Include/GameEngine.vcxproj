@@ -229,6 +229,7 @@
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="UI\MouseObj.h" />
+    <ClInclude Include="UI\UIIcon.h" />
     <ClInclude Include="UI\UISlider.h" />
     <ClInclude Include="UI\UIButton.h" />
     <ClInclude Include="UI\UICheckBox.h" />
@@ -237,6 +238,7 @@
     <ClInclude Include="UI\UIManager.h" />
     <ClInclude Include="UI\UIObject.h" />
     <ClInclude Include="UI\UIProgressBar.h" />
+    <ClInclude Include="UI\UISlot.h" />
     <ClInclude Include="UI\UISprite.h" />
     <ClInclude Include="UI\UIText.h" />
     <ClInclude Include="UI\UITitleBar.h" />
@@ -302,6 +304,7 @@
     <ClCompile Include="Scene\UIViewport.cpp" />
     <ClCompile Include="Timer.cpp" />
     <ClCompile Include="UI\MouseObj.cpp" />
+    <ClCompile Include="UI\UIIcon.cpp" />
     <ClCompile Include="UI\UISlider.cpp" />
     <ClCompile Include="UI\UIButton.cpp" />
     <ClCompile Include="UI\UICheckBox.cpp" />
@@ -310,6 +313,7 @@
     <ClCompile Include="UI\UIManager.cpp" />
     <ClCompile Include="UI\UIObject.cpp" />
     <ClCompile Include="UI\UIProgressBar.cpp" />
+    <ClCompile Include="UI\UISlot.cpp" />
     <ClCompile Include="UI\UISprite.cpp" />
     <ClCompile Include="UI\UIText.cpp" />
     <ClCompile Include="UI\UITitleBar.cpp" />

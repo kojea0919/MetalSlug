@@ -72,6 +72,8 @@ public:
 	{
 		return m_strAnimSequenceFileName;
 	}
+
+	const vector<class CUIControl*>& GetUIVec() const;
 	//------------------------------------
 private:
 	//Scene¿¡ ¼ÓÇÑ Object List

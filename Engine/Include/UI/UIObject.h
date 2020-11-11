@@ -32,6 +32,9 @@ public:
 		m_iZOrder = iZOrder;
 	}
 
+	//해당 위치와 UIContorl이 충돌하는지 Check하는 함수
+	class CUIControl * UIInMouse(const Vector2& vMousePos);
+
 public:
 	virtual bool Init();
 	virtual void Start();

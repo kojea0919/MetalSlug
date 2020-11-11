@@ -82,6 +82,7 @@ protected:
 	//플레이어가 공격이 가능한 상태인지(앉는 애니메이션, 일어서는 애니메이션 중간에는 불가능)
 	bool			m_bIsCanFire;
 
+	bool			m_bRecvDownInput;
 
 protected:
 	//PlayerAnimList파일을 읽어서 플레이어에서 사용하는 애니메이션 Setting
@@ -92,7 +93,7 @@ protected:
 	void UpdateMoveState(float fTime);
 
 	//공격 State Update
-	void UpdateAttackState(float fTime);
+	//void UpdateAttackState(float fTime);
 
 	//State에 따른 Animation Update
 	void UpdateAnimation(float fTime);
@@ -153,6 +154,8 @@ protected:
 	void SetAimDownState();
 	void SetNormalUpShotState();
 	void SetNormalUpShotEndState();
+	void SetSitStartState();
+	void SetUpStartState();
 	void SetSitIdleState();
 	void SetSitMoveState();
 	void SetSitShotState();

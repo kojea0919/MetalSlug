@@ -171,6 +171,12 @@
     <ClInclude Include="Client\UI\Inventory.h">
       <Filter>09. UI</Filter>
     </ClInclude>
+    <ClInclude Include="Client\UI\TestSlot.h">
+      <Filter>09. UI</Filter>
+    </ClInclude>
+    <ClInclude Include="Client\UI\TestIcon.h">
+      <Filter>09. UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEditor.cpp">
@@ -279,6 +285,12 @@
       <Filter>09. UI</Filter>
     </ClCompile>
     <ClCompile Include="Client\UI\Inventory.cpp">
+      <Filter>09. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\UI\TestSlot.cpp">
+      <Filter>09. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\UI\TestIcon.cpp">
       <Filter>09. UI</Filter>
     </ClCompile>
   </ItemGroup>

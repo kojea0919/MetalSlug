@@ -15,6 +15,12 @@ protected:
 	list<class CUIObject*> m_UIList;
 
 public:
+	const list<class CUIObject*>& GetUIList() const
+	{
+		return m_UIList;
+	}
+
+public:
 	void AddUI(class CUIObject* pUI);
 
 public:

@@ -138,7 +138,7 @@ void CPlayer::UpdateMoveState(float fTime)
 	}
 	//---------------------------------
 
-	//움직이는 상태 -> 멈춤 상태
+	//멈춤 상태
 	//---------------------------------
 	else if (m_fPrevVelocity > 0 && fCurVelocity == 0)
 	{
@@ -152,21 +152,21 @@ void CPlayer::UpdateMoveState(float fTime)
 	//---------------------------------
 }
 
-void CPlayer::UpdateAttackState(float fTime)
-{
-	//현재 기본 공격중인 경우 기본공격 Setting
-	//---------------------------------
-	if (m_bIsShooting)
-	{
-		if (m_bIsAimUp)
-			SetNormalUpShotState();
-		else if (!m_bIsStand)
-			SetSitShotState();
-		else
-			SetNormalMidShotState();
-	}
-	//---------------------------------
-}
+//void CPlayer::UpdateAttackState(float fTime)
+//{
+//	//현재 기본 공격중인 경우 기본공격 Setting
+//	//---------------------------------
+//	if (m_bRecvFireInput)
+//	{
+//		if (m_bIsAimUp)
+//			SetNormalUpShotState();
+//		else if (!m_bIsStand)
+//			SetSitShotState();
+//		else
+//			SetNormalMidShotState();
+//	}
+//	//---------------------------------
+//}
 
 void CPlayer::UpdateAnimation(float fTime)
 {
@@ -427,7 +427,7 @@ void CPlayer::Update(float fTime)
 
 	UpdateMoveState(fTime);
 
-	UpdateAttackState(fTime);
+	//UpdateAttackState(fTime);
 
 	UpdateAnimation(fTime);
 }
@@ -438,9 +438,6 @@ void CPlayer::PostUpdate(float fTime)
 
 	//현재 속도 저장
 	m_fPrevVelocity = m_pLowerMesh->GetCurrentVelocity();
-
-	//fire버튼 입력 여부 초기화
-	m_bRecvFireInput = false;
 }
 
 void CPlayer::Collision(float fTime)
@@ -508,26 +505,36 @@ void CPlayer::CallAnimation2DNotify(const string& strName)
 }
 void CPlayer::AimUp(float fTime)
 {
-	if (!m_bIsAimUp)
+	//aimup상태가 아니고 서있는 경우 aimup 상태로 Setting
+	//-------------------------------------------------
+	if (!m_bIsAimUp && m_bIsStand)
 	{
 		m_bIsAimUp = true;
 		SetAimUpState();
 	}
+	//-------------------------------------------------
 }
 
 void CPlayer::AimDown(float fTime)
 {
-	if (m_bIsAimUp)
+	//aimup상태이고 서있는 경우 aimdown 상태로 Setting
+	//-------------------------------------------------
+	if (m_bIsAimUp && m_bIsStand)
 	{
 		m_bIsAimUp = false;
 		SetAimDownState();
 	}
+	//-------------------------------------------------
 }
 
 void CPlayer::MoveSide(float fScale, float fTime)
 {
 	if (fScale != 0)
 	{
+		//앉아서 총쏘는 경우는 이동 불가능
+		if (!m_bIsStand && m_bIsShooting)
+			return;
+
 		//왼쪽 오른쪽 Check
 		//---------------------------------------
 		if (fScale < 0)
@@ -554,11 +561,31 @@ void CPlayer::RotationZ(float fScale, float fTime)
 
 void CPlayer::Fire(float fTime)
 {
-	if (m_bIsCanFire)
+	/*if (m_bIsCanFire)
+	{*/
+	
+	//이미 공격 중인 경우는 pass
+	if (m_bIsShooting)
 	{
-		m_bIsShooting = true;
 		m_bRecvFireInput = true;
+		return;
 	}
+
+	m_bRecvFireInput = false;
+	m_bIsShooting = true;
+	
+	//현재 기본 공격중인 경우 기본공격 Setting
+	//---------------------------------
+	if (m_bIsAimUp)
+		SetNormalUpShotState();
+	else if (!m_bIsStand)
+		SetSitShotState();
+	else
+		SetNormalMidShotState();
+	//---------------------------------
+
+
+	//}	
 }
 
 void CPlayer::AttackEnd()
@@ -571,20 +598,68 @@ void CPlayer::Down(float fTime)
 	//현재 동작중인 애니메이션이 Jump인 경우에는 aim을 아래쪽으로
 	//-----------------------------------------------
 	//-----------------------------------------------
-	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITSTART;
-	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_SITSTART;
 
-	m_bIsStand = false;
-	m_bIsCanFire = false;
+	if(!m_bIsStand)
+		return;
+
+	//1. 현재 서서 공격중인 경우 
+	if (m_eUpperAnimState == PLAYER_ANIMSTATE::PS_NORMALSHOT)
+	{
+		//1-1 공격키가 눌린 경우 앉아서 공격으로 전환
+		if (m_bRecvFireInput)
+		{
+			m_bIsStand = false;
+			m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITSHOT;
+			m_eUpperAnimState = PLAYER_ANIMSTATE::PS_SITSHOT;
+		}
+		//1-2 공격키가 안눌린 경우 서서 공격이 끝나면 앉는 상태로 전환
+		//AttackEnd에서 처리
+		else
+		{
+			return;
+		}
+	}
+
+	else
+	{
+		m_bIsStand = false;
+		m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITSTART;
+		m_eUpperAnimState = PLAYER_ANIMSTATE::PS_SITSTART;
+	}
 }
 
 void CPlayer::Up(float fTime)
 {
-	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_UP;
-	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_UP;
+	if (m_bIsStand)
+		return;
 
 	m_bIsStand = true;
-	m_bIsCanFire = false;
+
+	//1. 앉아서 공격중인 경우
+	if (m_eLowerAnimState == PLAYER_ANIMSTATE::PS_SITSHOT)
+	{
+		//1-1 공격키가 눌린 경우 서서 공격으로 전환
+		/*if (m_bRecvFireInput && m_eLowerAnimState == PLAYER_ANIMSTATE::PS_SITSHOTEND)
+		{
+			m_eUpperAnimState = PLAYER_ANIMSTATE::PS_NORMALSHOT;
+			m_eLowerAnimState = PLAYER_ANIMSTATE::PS_IDLE;
+		}*/
+
+		//1-2 공격키가 안눌린 경우 앉아서 공격이 끝나면 서있는 상태로 전환
+		//AttackEnd에서 처리
+		/*else
+		{
+			return;
+		}*/
+		return;
+	}
+
+	else
+	{
+		m_eLowerAnimState = PLAYER_ANIMSTATE::PS_UP;
+		m_eUpperAnimState = PLAYER_ANIMSTATE::PS_UP;
+	}
+
 }
 
 void CPlayer::MoveStartEndProc()
@@ -637,19 +712,57 @@ void CPlayer::MoveStartEndProc()
 
 void CPlayer::AttackEndProc()
 {
+	m_bIsShooting = false;
+
 	//공격키를 안눌렀으면 공격 끝
 	//-----------------------------------------------
-	if(!m_bRecvFireInput)
+	if (!m_bRecvFireInput)
 	{
-		m_bIsShooting = false;
 		if (m_bIsAimUp)
 			SetNormalUpShotEndState();
 		else if (!m_bIsStand)
-			SetSitShotEndState();
+		{
+			//서있는 상태에서 앉는 상태로 바뀐경우 
+			if (m_eUpperAnimState == PLAYER_ANIMSTATE::PS_NORMALSHOT)
+				SetSitStartState();
+			//앉아있던 상태에서 공격이 끝난 경우
+			else
+				SetSitShotEndState();
+		}
+		else if (m_bIsStand)
+		{
+			//앉아있는 상태에서 서있는 상태로 바뀐경우
+			if (m_eUpperAnimState == PLAYER_ANIMSTATE::PS_SITSHOT)
+				SetUpStartState();
+			//서있던 상태에서 공격이 끝난 경우
+			else
+				SetNormalMidShotEndState();
+		}
 		else
 			SetNormalMidShotEndState();
 	}
 	//-----------------------------------------------
+
+	//공격키를 눌렀으면 계속 공격
+	//-----------------------------------------------
+	else
+	{
+		if (m_bIsAimUp)
+			SetNormalUpShotState();
+		else if (!m_bIsStand)
+		{
+			SetSitShotState();
+		}
+		else if (m_bIsStand)
+		{
+			SetNormalMidShotState();
+		}
+		else
+			SetNormalMidShotEndState();
+	}
+	//-----------------------------------------------
+
+	m_bRecvFireInput = false;
 }
 
 void CPlayer::GotoIdleProc()
@@ -735,6 +848,24 @@ void CPlayer::SetMoveState()
 void CPlayer::SetNormalMidShotState()
 {
 	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_NORMALSHOT;
+
+	float fCurVelocity = m_pLowerMesh->GetCurrentVelocity();
+
+	//멈춤 상태 -> 움직이는 상태
+	//---------------------------------	
+	if (m_fPrevVelocity == 0 && fCurVelocity > 0)
+	{
+		m_eLowerAnimState = PLAYER_ANIMSTATE::PS_MOVESTART;
+	}
+	//---------------------------------
+
+	//멈춤 상태
+	//---------------------------------
+	else if (fCurVelocity == 0)
+	{
+		m_eLowerAnimState = PLAYER_ANIMSTATE::PS_IDLE;
+	}
+	//---------------------------------
 }
 
 void CPlayer::SetNormalMidShotEndState()
@@ -767,20 +898,35 @@ void CPlayer::SetNormalUpShotEndState()
 	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_NORMALUPSHOTEND;
 }
 
+void CPlayer::SetSitStartState()
+{
+	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_SITSTART;
+	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITSTART;
+}
+
+void CPlayer::SetUpStartState()
+{
+	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_UP;
+	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_UP;
+}
+
 void CPlayer::SetSitIdleState()
 {
 	//하체 상태는 바로 IDLE
 	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITIDLE;
+	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_SITIDLE;
 }
 
 void CPlayer::SetSitMoveState()
 {
 	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITMOVE;
+	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_SITMOVE;
 }
 
 void CPlayer::SetSitShotState()
 {
 	m_eLowerAnimState = PLAYER_ANIMSTATE::PS_SITSHOT;
+	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_SITSHOT;
 }
 
 void CPlayer::SetSitShotEndState()

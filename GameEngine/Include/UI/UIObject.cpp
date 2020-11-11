@@ -17,6 +17,19 @@ CUIObject::~CUIObject()
 	SAFE_RELEASE(m_pRoot);
 }
 
+CUIControl* CUIObject::UIInMouse(const Vector2& vMousePos)
+{
+	size_t	iSize = m_vecControl.size();
+
+	for (size_t i = 0; i < iSize; ++i)
+	{
+		if (m_vecControl[i]->UIInMouse(vMousePos))
+			return m_vecControl[i];
+	}
+
+	return nullptr;
+}
+
 bool CUIObject::Init()
 {
 	return true;

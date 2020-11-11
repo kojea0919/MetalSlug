@@ -12,6 +12,8 @@
 #include "../UI/CheckBox.h"
 #include "../UI/Slider.h"
 #include "../UI/Inventory.h"
+#include "../UI/TestSlot.h"
+#include "../UI/TestIcon.h"
 
 CTestGameMode::CTestGameMode()
 {
@@ -53,7 +55,7 @@ bool CTestGameMode::Init()
 
 	SAFE_RELEASE(pTestBar);
 
-	CCheckBox* pTestCheckBox = m_pScene->CreateUIObject<CCheckBox>("TestCheckBox");
+	/*CCheckBox* pTestCheckBox = m_pScene->CreateUIObject<CCheckBox>("TestCheckBox");
 
 	SAFE_RELEASE(pTestCheckBox);
 
@@ -63,7 +65,20 @@ bool CTestGameMode::Init()
 
 	CInventory* pInventory = m_pScene->CreateUIObject<CInventory>("Inventory");
 
-	SAFE_RELEASE(pInventory);
+	SAFE_RELEASE(pInventory);*/
+
+	CTestIcon* pTestIcon = m_pScene->CreateUIObject<CTestIcon>("TestIcon");
+
+	CTestSlot* pTestSlot = m_pScene->CreateUIObject<CTestSlot>("TestSlot");
+
+	pTestSlot->AddIcon(pTestIcon);
+	
+	CTestSlot* pTestSlot2 = m_pScene->CreateUIObject<CTestSlot>("TestSlot");
+	pTestSlot2->SetWorldPos(pTestSlot->GetWorldPos() + Vector3(80.f, 0.f, 0.f));
+	
+	SAFE_RELEASE(pTestSlot2);
+	SAFE_RELEASE(pTestIcon);
+	SAFE_RELEASE(pTestSlot);
 
 	return true;
 }
@@ -98,6 +113,8 @@ bool CTestGameMode::LoadTexture()
 	pManager->LoadTexture("UISliderBar", TEXT("SliderBar.png"));
 	pManager->LoadTexture("UISliderRect", TEXT("SliderRect.png"));
 	pManager->LoadTexture("CloseButton", TEXT("ExitButton.png"));
+	pManager->LoadTexture("WeaponSlot", TEXT("WeaponSlot.png"));
+	pManager->LoadTexture("WeaponIcon", TEXT("WeaponIcon.png"));
 
 	return true;
 }

@@ -360,6 +360,12 @@
     <ClInclude Include="Component\Tile.h">
       <Filter>06. Component\01. Scene\05. TileMap</Filter>
     </ClInclude>
+    <ClInclude Include="UI\UIIcon.h">
+      <Filter>07. UI\01. Control</Filter>
+    </ClInclude>
+    <ClInclude Include="UI\UISlot.h">
+      <Filter>07. UI\01. Control</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -574,6 +580,12 @@
     </ClCompile>
     <ClCompile Include="Component\TileMap.cpp">
       <Filter>06. Component\01. Scene\05. TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UIIcon.cpp">
+      <Filter>07. UI\01. Control</Filter>
+    </ClCompile>
+    <ClCompile Include="UI\UISlot.cpp">
+      <Filter>07. UI\01. Control</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
