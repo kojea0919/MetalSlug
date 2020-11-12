@@ -23,6 +23,8 @@ public:
 
 	//입력 Layout크기 Setting
 	UINT m_iInputLayoutSize;
+	UINT m_iInstanceInputLayoutSize;
+
 
 public:
 	//ShaderType Get함수

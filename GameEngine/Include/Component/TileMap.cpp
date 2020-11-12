@@ -4,6 +4,10 @@
 #include "../Scene/SceneResource.h"
 #include "../Resource/Mesh2D.h"
 #include "Transform.h"
+#include "../Scene/CameraManager.h"
+#include "Camera.h"
+#include "../Device.h"
+#include "Tile.h"
 
 CTileMap::CTileMap()
     : m_pMaterial(nullptr),m_pMesh(nullptr)
@@ -104,11 +108,61 @@ void CTileMap::Start()
 void CTileMap::Update(float fTime)
 {
     CPrimitiveComponent::Update(fTime);
+
+    //화면 영역을 TileMap 좌하단을 원점으로 표현
+    //--------------------------------------------------------------
+    CCamera* pCamera = m_pScene->GetCameraManager()->GetMainCamera();
+
+    //화면 영역 Setting
+    Vector3	vLB = pCamera->GetWorldPos() - Vector3(RESOLUTION.iWidth / 2.f, RESOLUTION.iHeight / 2.f, 0.f);
+    Vector3	vRT = vLB + Vector3((float)RESOLUTION.iWidth, (float)RESOLUTION.iHeight, 0.f);
+
+    Vector3	vPos = GetWorldPos();
+
+    vLB -= vPos;
+    vRT -= vPos;
+    //--------------------------------------------------------------
+
+    vPos.z = 1000.f;
+
+    SetWorldPos(vPos);
+
+    //화면에 출력중인 Tile만 Update
+    //--------------------------------------------------------------
+    m_iStartX = (int)(vLB.x / m_vTileSize.x);
+    m_iStartY = (int)(vLB.y / m_vTileSize.y);
+
+    m_iEndX = (int)(vRT.x / m_vTileSize.x);
+    m_iEndY = (int)(vRT.y / m_vTileSize.y);
+
+    m_iStartX = m_iStartX < 0 ? 0 : m_iStartX;
+    m_iStartY = m_iStartY < 0 ? 0 : m_iStartY;
+    m_iEndX = m_iEndX >= m_iCountX ? m_iCountX - 1 : m_iEndX;
+    m_iEndY = m_iEndY >= m_iCountY ? m_iCountY - 1 : m_iEndY;
+
+    for (int iHeightCnt = m_iStartY; iHeightCnt <= m_iEndY; ++iHeightCnt)
+    {
+        for (int iWidthCnt = m_iStartX; iWidthCnt <= m_iEndX; ++iWidthCnt)
+        {
+            int	iIndex = iHeightCnt * m_iCountX + iWidthCnt;
+            m_vecTile[iIndex]->Update(fTime);
+        }
+    }
+    //--------------------------------------------------------------
 }
 
 void CTileMap::PostUpdate(float fTime)
 {
     CPrimitiveComponent::PostUpdate(fTime);
+
+    for (int iHeightCnt = m_iStartY; iHeightCnt <= m_iEndY; ++iHeightCnt)
+    {
+        for (int iWidthCnt = m_iStartX; iWidthCnt <= m_iEndX; ++iWidthCnt)
+        {
+            int	iIndex = iHeightCnt * m_iCountX + iWidthCnt;
+            m_vecTile[iIndex]->PostUpdate(fTime);
+        }
+    }
 }
 
 void CTileMap::Collision(float fTime)
@@ -127,6 +181,18 @@ void CTileMap::Render(float fTime)
 
     if (m_pMaterial)
         m_pMaterial->SetMaterial();
+
+    if (m_pMesh)
+        m_pMesh->Render(fTime);
+
+    for (int iHeightCnt = m_iStartY; iHeightCnt <= m_iEndY; ++iHeightCnt)
+    {
+        for (int iWidthCnt = m_iStartX; iWidthCnt <= m_iEndX; ++iWidthCnt)
+        {
+            int	iIndex = iHeightCnt * m_iCountX + iWidthCnt;
+            m_vecTile[iIndex]->Render(fTime);
+        }
+    }
 }
 
 void CTileMap::PostRender(float fTime)

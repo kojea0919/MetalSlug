@@ -15,7 +15,8 @@ CTransform::CTransform()
     m_bInheritRotZ(true),
     m_bUpdateScale(true),
     m_bUpdateRot(true),
-    m_bUpdatePos(true)
+    m_bUpdatePos(true),
+    m_b2D(false)
 {
     for (size_t iCnt = 0; iCnt < AXIS_END; ++iCnt)
     {
@@ -1504,6 +1505,13 @@ void CTransform::PostUpdate(float fTime)
 
     if (m_bUpdateRot)
         m_matRot.Rotation(m_vWorldRot);
+
+    // 2D 객체일 경우 z를 y로 대체해준다.
+    if (m_b2D)
+    {
+        //check
+        m_vWorldPos.z = m_vWorldPos.y / (3000.f / m_pScene->GetWorldSize().y);
+    }
 
     m_matTranslation.Translation(m_vWorldPos);
 

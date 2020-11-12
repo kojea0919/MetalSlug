@@ -610,6 +610,9 @@
     <FxCompile Include="..\Bin\Resource\Shader\Standard2D.fx">
       <Filter>03. Resource\02. Shader\01. HLSL</Filter>
     </FxCompile>
+    <FxCompile Include="TileMap.fx">
+      <Filter>03. Resource\02. Shader\01. HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="GameEngine.rc">

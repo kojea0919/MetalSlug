@@ -1,7 +1,8 @@
 #include "Shader.h"
 
 CShader::CShader()
-	: m_pInputLayout(nullptr),m_iInputLayoutSize(0)
+	: m_pInputLayout(nullptr),m_iInputLayoutSize(0),
+	m_iInstanceInputLayoutSize(0)
 {
 }
 
@@ -42,7 +43,18 @@ bool CShader::AddInputLayoutDesc(const char* pSemanticName, UINT iSemanticIndex,
 	tDesc.InputSlot = iInputSlot;
 
 	//GPU에 메모리 덩어리를 넘길 때 시작 지점을 알려준다.
-	tDesc.AlignedByteOffset = m_iInputLayoutSize;
+	if (eSlotClass == D3D11_INPUT_PER_INSTANCE_DATA)
+	{
+		tDesc.AlignedByteOffset = m_iInstanceInputLayoutSize;
+		m_iInstanceInputLayoutSize += iSize;
+	}
+
+	else
+	{
+		tDesc.AlignedByteOffset = m_iInputLayoutSize;
+		m_iInputLayoutSize += iSize;
+	}
+
 	tDesc.InputSlotClass = eSlotClass;
 	tDesc.InstanceDataStepRate = iInstanceDataStepRate;
 

@@ -22,6 +22,14 @@ protected:
 	Vector3			m_vTileSize;
 	vector<class CTile*>	m_vecTile;
 
+	//현재 화면에서 타일 범위
+	//------------------------
+	int				m_iStartX;
+	int				m_iStartY;
+	int				m_iEndX;
+	int				m_iEndY;
+	//------------------------
+
 public:
 	void SetMaterial(class CMaterial* pMaterial);
 	class CMaterial* GetMaterial()	const;
@@ -48,20 +56,24 @@ public:
 	void CreateTile(TILE_SHAPE eShape, int iCountX, int iCountY,
 		float fTileSizeX, float fTileSizeY)
 	{
+		//모양, 개수, 크기 Setting
+		//---------------------------
 		m_eShape = eShape;
 		m_iCountX = iCountX;
 		m_iCountY = iCountY;
 		m_vTileSize.x = fTileSizeX;
 		m_vTileSize.y = fTileSizeY;
+		//---------------------------
 
 		if (eShape == TILE_SHAPE::Rect)
 		{
-			Vector3	vPos = Vector3(0.f, fTileSizeY * iCountY, 0.f);
+			//좌하단을 위치로 Setting
+			Vector3	vPos = Vector3(0.f, -fTileSizeY, 0.f);
 
 			for (int i = 0; i < m_iCountY; ++i)
 			{
 				vPos.x = 0.f;
-				vPos.y -= fTileSizeY;
+				vPos.y += fTileSizeY;
 
 				for (int j = 0; j < m_iCountX; ++j)
 				{
@@ -84,6 +96,13 @@ public:
 		else if (eShape == TILE_SHAPE::Rhombus)
 		{
 
+		}
+
+		size_t	iSize = m_vecTile.size();
+
+		for (size_t i = 0; i < iSize; ++i)
+		{
+			m_vecTile[i]->Start();
 		}
 	}
 };

@@ -29,10 +29,10 @@ void CTile::Update(float fTime)
 {
 }
 
-void CTile::PostUpdata(float fTime)
+void CTile::PostUpdate(float fTime)
 {
 }
 
-void CTile::Render()
+void CTile::Render(float fTime)
 {
 }

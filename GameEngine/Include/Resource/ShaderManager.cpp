@@ -248,6 +248,50 @@ bool CShaderManager::Init()
 	SAFE_RELEASE(pShader);
 	//-------------------------------------
 
+	//TileMap Shader
+	//-------------------------------------
+	pShader = CreateShader<CGraphicShader>("TileMapShader");
+
+	if (!LoadVertexShader("TileMapShader", "TileMapVS",
+		TEXT("TileMap.fx")))
+		return false;
+
+	if (!LoadPixelShader("NormalShader", "TileMapPS",
+		TEXT("TileMap.fx")))
+		return false;
+
+	pShader->AddInputLayoutDesc("POSITION", 0,
+		DXGI_FORMAT_R32G32B32_FLOAT, 0, 12,
+		D3D11_INPUT_PER_VERTEX_DATA, 0);
+	pShader->AddInputLayoutDesc("TEXCOORD", 0,
+		DXGI_FORMAT_R32G32_FLOAT, 0, 8,
+		D3D11_INPUT_PER_VERTEX_DATA, 0);
+	pShader->AddInputLayoutDesc("COLOR", 0,
+		DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 16,
+		D3D11_INPUT_PER_VERTEX_DATA, 0);
+
+	pShader->AddInputLayoutDesc("WORLD", 0,
+		DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 16,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("WORLD", 1,
+		DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 16,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("WORLD", 2,
+		DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 16,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("WORLD", 3,
+		DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 16,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+
+	if (!pShader->CreateInputLayout())
+	{
+		SAFE_RELEASE(pShader);
+		return false;
+	}
+
+	SAFE_RELEASE(pShader);
+	//-------------------------------------
+
 	//test
 	//-------------------------------------
 	pShader = CreateShader<CGraphicShader>("RandomColorShader");

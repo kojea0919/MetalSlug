@@ -49,6 +49,9 @@
     <Filter Include="09. UI">
       <UniqueIdentifier>{13932a36-8d69-434b-917f-1948358c3194}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Object\04. TileMap">
+      <UniqueIdentifier>{7265a8ea-a5cb-4255-bd66-c2546757d762}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEditor.h">
@@ -177,6 +180,9 @@
     <ClInclude Include="Client\UI\TestIcon.h">
       <Filter>09. UI</Filter>
     </ClInclude>
+    <ClInclude Include="Client\Object\TileMapObj.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEditor.cpp">
@@ -292,6 +298,9 @@
     </ClCompile>
     <ClCompile Include="Client\UI\TestIcon.cpp">
       <Filter>09. UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\Object\TileMapObj.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

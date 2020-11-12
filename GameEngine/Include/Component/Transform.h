@@ -21,6 +21,14 @@ private:
 	vector<CTransform*> m_vecChild;
 	TransformCBuffer	m_tCBuffer;
 
+	bool				m_b2D;
+
+public:
+	void SetTransformSpace(bool b2D)
+	{
+		m_b2D = b2D;
+	}
+
 private:
 	Vector3		m_vVelocityScale;//Scale 속도
 	Vector3		m_vVelocityRot;//Rotation 속도

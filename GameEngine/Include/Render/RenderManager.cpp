@@ -48,11 +48,11 @@ void CRenderManager::Render(float fTime)
 {
 	Render3D(fTime);
 
-	SetState("DepthDisable");
+	//SetState("DepthDisable");
 
 	Render2D(fTime);
 
-	ResetState("DepthDisable");
+	//ResetState("DepthDisable");
 }
 
 void CRenderManager::Render3D(float fTime)
