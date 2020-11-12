@@ -388,6 +388,10 @@ void CScene::SetAnimNotify()
 	m_pResource->AddAnimation2DNotify("PlayerRightSitShotEnd", "GotoIdle", 7);
 	m_pResource->AddAnimation2DNotify("PlayerLeftSitShot", "ShotEnd", 3);
 	m_pResource->AddAnimation2DNotify("PlayerLeftSitShotEnd", "GotoIdle", 7);
+	m_pResource->AddAnimation2DNotify("PlayerRightThrowBomb", "GotoIdle", 6);
+	m_pResource->AddAnimation2DNotify("PlayerRightSitThrowBomb", "GotoIdle", 8);
+	m_pResource->AddAnimation2DNotify("PlayerLeftThrowBomb", "GotoIdle", 6);
+	m_pResource->AddAnimation2DNotify("PlayerLeftSitThrowBomb", "GotoIdle", 8);
 }
 
 void CScene::SaveScene(const char* pFileName, const string& strPathName)

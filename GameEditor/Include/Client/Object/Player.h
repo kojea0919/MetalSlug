@@ -19,7 +19,15 @@ enum class PLAYER_ANIMSTATE
 	PS_UP,
 	PS_SITMOVE,
 	PS_SITSHOT,
-	PS_SITSHOTEND
+	PS_SITSHOTEND,
+	PS_THROWBOMB,
+	PS_SITTHROWBOMB
+};
+
+enum class WEAPON_STATE
+{
+	WS_NORMAL,
+	WS_HEAVY
 };
 
 class CPlayer :
@@ -82,7 +90,11 @@ protected:
 	//플레이어가 공격이 가능한 상태인지(앉는 애니메이션, 일어서는 애니메이션 중간에는 불가능)
 	bool			m_bIsCanFire;
 
+	//Down 버튼이 눌렸는지 나타내는 bool 변수
 	bool			m_bRecvDownInput;
+
+	//플레이어의 현재 무기 상태(normal, heavy gun)
+	WEAPON_STATE	m_eCurWeaponState;
 
 protected:
 	//PlayerAnimList파일을 읽어서 플레이어에서 사용하는 애니메이션 Setting
@@ -120,6 +132,11 @@ protected:
 
 	void Down(float fTime);
 	void Up(float fTime);
+
+	void ThrowBomb(float fTime);
+
+	//test
+	void TEST(float fTime);
 
 protected:
 	//Animation Notify Proc

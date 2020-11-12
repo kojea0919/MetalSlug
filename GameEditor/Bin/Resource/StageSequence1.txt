@@ -1,4 +1,4 @@
-42
+52
 PlayerRightUpperIdle.ani
 PlayerRightLowerIdle.ani
 PlayerRightUpperMoveStart.ani
@@ -41,3 +41,13 @@ PlayerRightSitShot.ani
 PlayerRightSitShotEnd.ani
 PlayerLeftSitShot.ani
 PlayerLeftSitShotEnd.ani
+PlayerRightThrowBomb.ani
+PlayerLeftThrowBomb.ani
+PlayerRightSitThrowBomb.ani
+PlayerLeftSitThrowBomb.ani
+PlayerRightUpperIdle_H.ani
+PlayerLeftUpperIdle_H.ani
+PlayerRightUpperMoveStart_H.ani
+PlayerRightUpperMove_H.ani
+PlayerLeftUpperMoveStart_H.ani
+PlayerLeftUpperMove_H.ani

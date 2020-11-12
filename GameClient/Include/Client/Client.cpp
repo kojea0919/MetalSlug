@@ -14,6 +14,10 @@ bool GlobalSetting()
 	GET_SINGLE(CInput)->AddActionKey("Fire", 'J');
 	GET_SINGLE(CInput)->AddActionKey("AimUp", 'W');
 	GET_SINGLE(CInput)->AddActionKey("Down", 'S');
+	GET_SINGLE(CInput)->AddActionKey("Bomb", 'L');
+
+	//test
+	GET_SINGLE(CInput)->AddActionKey("Test", 'T');
 
 	//Collision Channel, Profile Setting
 	//-----------------------------------

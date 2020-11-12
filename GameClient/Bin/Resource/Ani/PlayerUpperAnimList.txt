@@ -1,4 +1,4 @@
-22
+30
 PlayerRightUpperIdle
 PlayerRightUpperMove
 PlayerRightUpperMoveStart
@@ -21,3 +21,11 @@ PlayerRightNormalUpShot
 PlayerRightNormalUpShotEnd
 PlayerLeftNormalUpShot
 PlayerLeftNormalUpShotEnd
+PlayerRightThrowBomb
+PlayerLeftThrowBomb
+PlayerRightUpperIdle_H
+PlayerLeftUpperIdle_H
+PlayerRightUpperMoveStart_H
+PlayerRightUpperMove_H
+PlayerLeftUpperMoveStart_H
+PlayerLeftUpperMove_H
