@@ -55,15 +55,12 @@ protected:
 	//Mesh타입
 	MESH_TYPE	m_eMeshType;
 
-	//Instancing용 버퍼
-	PVertexBuffer	m_pInstanceBuffer;
-
 public:
 	//Material Set함수
 	void SetMaterial(class CMaterial* pMaterial);
 
 	//Instancing Buffer 생성함수
-	bool CreateInstancingBuffer(int iSize, int iCount);
+	//bool CreateInstancingBuffer(int iSize, int iCount);
 
 	//Material Get함수
 	class CMaterial* GetMaterial() const;

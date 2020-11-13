@@ -384,6 +384,10 @@ void CScene::SetAnimNotify()
 	m_pResource->AddAnimation2DNotify("PlayerLeftSitStart", "GotoIdle", 3);
 	m_pResource->AddAnimation2DNotify("PlayerRightUpStart", "GotoIdle", 3);
 	m_pResource->AddAnimation2DNotify("PlayerLeftUpStart", "GotoIdle", 3);
+	m_pResource->AddAnimation2DNotify("PlayerRightSitStart_H", "GotoIdle", 3);
+	m_pResource->AddAnimation2DNotify("PlayerLeftSitStart_H", "GotoIdle", 3);
+	m_pResource->AddAnimation2DNotify("PlayerRightUpStart_H", "GotoIdle", 3);
+	m_pResource->AddAnimation2DNotify("PlayerLeftUpStart_H", "GotoIdle", 3);
 	m_pResource->AddAnimation2DNotify("PlayerRightSitShot", "ShotEnd", 3);
 	m_pResource->AddAnimation2DNotify("PlayerRightSitShotEnd", "GotoIdle", 7);
 	m_pResource->AddAnimation2DNotify("PlayerLeftSitShot", "ShotEnd", 3);

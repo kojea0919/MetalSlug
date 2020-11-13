@@ -92,7 +92,30 @@ private:
 	function<class CGameMode* (int)>	m_CreateGameModeFunction;
 	//-----------------------------------------------------------
 
+	Vector3			m_vWorldStart;
+	Vector3			m_vWorldSize;
+
 public:
+	Vector3 GetWorldSize() const
+	{
+		return m_vWorldSize;
+	}
+
+	Vector3 GetWorldStart() const
+	{
+		return m_vWorldStart;
+	}
+
+	void SetWorldStart(float x, float y, float z)
+	{
+		m_vWorldStart = Vector3(x, y, z);
+	}
+
+	void SetWorldSize(float x, float y, float z)
+	{
+		m_vWorldSize = Vector3(x, y, z);
+	}
+
 	const list<class CGameObject*>* GetObjList()	const
 	{
 		return &m_ObjList;

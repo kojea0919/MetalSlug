@@ -60,8 +60,6 @@ bool CShader::AddInputLayoutDesc(const char* pSemanticName, UINT iSemanticIndex,
 
 	m_vecInputLayoutDesc.push_back(tDesc);
 
-	m_iInputLayoutSize += iSize;
-
 	return true;
 }
 

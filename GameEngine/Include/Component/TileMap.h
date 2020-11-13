@@ -1,6 +1,7 @@
 #pragma once
 
 #include "PrimitiveComponent.h"
+#include "Tile.h"
 
 class CTileMap : public CPrimitiveComponent
 {
@@ -30,12 +31,15 @@ protected:
 	int				m_iEndY;
 	//------------------------
 
+	bool			m_bTileMapRender;
+
 public:
 	void SetMaterial(class CMaterial* pMaterial);
 	class CMaterial* GetMaterial()	const;
 	void SetMesh(class CMesh2D* pMesh);
 	void SetMesh(const string& strMeshName);
-
+	void SetTexture(const string& strName);
+	void SetTexture(class CTexture* pTexture);
 public:
 	virtual bool Init();
 	virtual void Start();
@@ -104,6 +108,11 @@ public:
 		{
 			m_vecTile[i]->Start();
 		}
+
+		//World의 시작 위치, 크기 Setting
+		SetWorldInfo();
 	}
+
+	void SetWorldInfo();
 };
 

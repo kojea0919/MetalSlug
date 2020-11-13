@@ -256,7 +256,7 @@ bool CShaderManager::Init()
 		TEXT("TileMap.fx")))
 		return false;
 
-	if (!LoadPixelShader("NormalShader", "TileMapPS",
+	if (!LoadPixelShader("TileMapShader", "TileMapPS",
 		TEXT("TileMap.fx")))
 		return false;
 

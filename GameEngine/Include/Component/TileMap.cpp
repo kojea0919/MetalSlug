@@ -7,10 +7,10 @@
 #include "../Scene/CameraManager.h"
 #include "Camera.h"
 #include "../Device.h"
-#include "Tile.h"
 
 CTileMap::CTileMap()
-    : m_pMaterial(nullptr),m_pMesh(nullptr)
+    : m_pMaterial(nullptr),m_pMesh(nullptr),
+    m_bTileMapRender(false)
 {
     m_eSceneComponentType = SCENECOMPONENT_TYPE::ST_2D;
     m_eSceneClassType = SCENECOMPONENT_CLASS_TYPE::TILEMAP;
@@ -20,6 +20,8 @@ CTileMap::CTileMap()
 CTileMap::CTileMap(const CTileMap& com)
     :CPrimitiveComponent(com)
 {
+    m_bTileMapRender = com.m_bTileMapRender;
+
     m_pMaterial = com.m_pMaterial;
 
     if (m_pMaterial)
@@ -35,6 +37,7 @@ CTileMap::CTileMap(const CTileMap& com)
 
 CTileMap::~CTileMap()
 {
+    SAFE_DELETE_VECLIST(m_vecTile);
     SAFE_RELEASE(m_pMesh);
     SAFE_RELEASE(m_pMaterial);
 }
@@ -92,10 +95,29 @@ void CTileMap::SetMesh(const string& strMeshName)
     }
 }
 
+void CTileMap::SetTexture(const string& strName)
+{
+    m_pMaterial->SetTexture(TEXTURE_LINK::DIFFUSE, strName);
+    m_bTileMapRender = true;
+}
+
+void CTileMap::SetTexture(CTexture* pTexture)
+{
+    m_pMaterial->SetTexture(TEXTURE_LINK::DIFFUSE, pTexture);
+    m_bTileMapRender = true;
+}
+
 bool CTileMap::Init()
 {
     if (!CPrimitiveComponent::Init())
         return false;
+
+    CMesh* pMesh = m_pScene->GetResourceManager()->GetDefault2DMesh();
+    SetMesh((CMesh2D*)pMesh);
+
+    SAFE_RELEASE(pMesh);
+
+    m_pTransform->SetTransformSpace(true);
 
     return true;
 }
@@ -103,6 +125,8 @@ bool CTileMap::Init()
 void CTileMap::Start()
 {
     CPrimitiveComponent::Start();
+
+    m_pScene->SetWorldStart(GetWorldPos().x, GetWorldPos().y, GetWorldPos().z);
 }
 
 void CTileMap::Update(float fTime)
@@ -248,4 +272,11 @@ void CTileMap::Load(FILE* pFile)
 
         SAFE_RELEASE(pMaterial);
     }
+}
+
+void CTileMap::SetWorldInfo()
+{
+    SetWorldScale(m_vTileSize.x * m_iCountX, m_vTileSize.y * m_iCountY, 1.f);
+
+    m_pScene->SetWorldSize(GetWorldScale().x, GetWorldScale().y, 0.f);
 }

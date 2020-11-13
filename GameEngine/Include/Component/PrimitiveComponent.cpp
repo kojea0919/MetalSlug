@@ -2,6 +2,7 @@
 #include "../Render/RenderManager.h"
 
 CPrimitiveComponent::CPrimitiveComponent()
+	: m_strLayer("Default")
 {
 }
 

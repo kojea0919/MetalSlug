@@ -68,7 +68,12 @@ PS_OUTPUT_SINGLE Standard2DTexPS(VS_OUTPUT_2D input)
 {
 	PS_OUTPUT_SINGLE	output = (PS_OUTPUT_SINGLE)0;
 
-	output.vColor = g_DiffuseTex.Sample(g_Anisotropic, input.vUV) * g_vMtrlDif;
+	float4 vColor = g_DiffuseTex.Sample(g_Anisotropic, input.vUV);
+
+	if (vColor.a <= 0.03f)
+		clip(-1);
+
+	output.vColor = vColor * g_vMtrlDif;
 
 	return output;
 }
@@ -90,7 +95,13 @@ VS_OUTPUT_2D Standard2DSpriteVS(VS_INPUT_2D input)
 PS_OUTPUT_SINGLE Standard2DSpritePS(VS_OUTPUT_2D input)
 {
 	PS_OUTPUT_SINGLE	output = (PS_OUTPUT_SINGLE)0;
-	output.vColor = g_DiffuseTex.Sample(g_Anisotropic, input.vUV) * g_vMtrlDif;
+
+	float4 vColor = g_DiffuseTex.Sample(g_Anisotropic, input.vUV);
+
+	if (vColor.a <= 0.03f)
+		clip(-1);
+
+	output.vColor = vColor * g_vMtrlDif;
 
 	return output;
 }

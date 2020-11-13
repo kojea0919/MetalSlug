@@ -37,7 +37,7 @@ public:
 	virtual bool Init();
 	virtual void Start();
 	virtual void Update(float fTime);
-	virtual void PostUpdata(float fTime);
-	virtual void Render();
+	virtual void PostUpdate(float fTime);
+	virtual void Render(float fTime);
 };
 

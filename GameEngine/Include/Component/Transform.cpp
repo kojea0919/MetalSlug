@@ -1507,11 +1507,15 @@ void CTransform::PostUpdate(float fTime)
         m_matRot.Rotation(m_vWorldRot);
 
     // 2D 객체일 경우 z를 y로 대체해준다.
+    //범위 0~3000사이로 Setting
+    //------------------------------------------
     if (m_b2D)
     {
-        //check
-        m_vWorldPos.z = m_vWorldPos.y / (3000.f / m_pScene->GetWorldSize().y);
+        Vector3 vWorldStart = m_pScene->GetWorldStart();
+        Vector3 vWorldSize = m_pScene->GetWorldSize();
+        m_vWorldPos.z = (m_vWorldPos.y - vWorldStart.y) * (3000.f / vWorldSize.y);
     }
+    //------------------------------------------
 
     m_matTranslation.Translation(m_vWorldPos);
 

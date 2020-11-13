@@ -181,7 +181,7 @@
       <Filter>09. UI</Filter>
     </ClInclude>
     <ClInclude Include="Client\Object\TileMapObj.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>02. Object\04. TileMap</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -300,7 +300,7 @@
       <Filter>09. UI</Filter>
     </ClCompile>
     <ClCompile Include="Client\Object\TileMapObj.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>02. Object\04. TileMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

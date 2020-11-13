@@ -1,20 +1,73 @@
 
 #include "RenderManager.h"
 #include "../Component/SceneComponent.h"
+#include "../Component/PrimitiveComponent.h"
 #include "BlendState.h"
 #include "DepthStencilState.h"
+#include "RenderLayer.h"
 
 DEFINITION_SINGLE(CRenderManager)
 
 CRenderManager::CRenderManager()
 {
-	m_vecRenderList.reserve(400);
-	m_vecRender2DList.reserve(400);
 }
 
 CRenderManager::~CRenderManager()
 {
+	SAFE_DELETE_VECLIST(m_vecRenderLayer);
+	SAFE_DELETE_VECLIST(m_vecRenderLayer2D);
 	SAFE_DELETE_MAP(m_mapRenderState);
+}
+
+bool CRenderManager::CreateLayer(const string& strName, int iSortOrder)
+{
+	size_t iSize = m_vecRenderLayer.size();
+
+	//해당 이름의 Layer가 있는 경우는 pass
+	//-------------------------------------------------
+	for (size_t iCnt = 0; iCnt < iSize; ++iCnt)
+	{
+		if (m_vecRenderLayer[iCnt]->GetName() == strName)
+			return false;
+	}
+	//-------------------------------------------------
+
+	//Layer생성
+	//-------------------------------------------------
+	CRenderLayer* pLayer = new CRenderLayer;
+
+	pLayer->SetName(strName);
+	pLayer->SetSortOrder(iSortOrder);
+
+	m_vecRenderLayer.push_back(pLayer);
+	//-------------------------------------------------
+
+	sort(m_vecRenderLayer.begin(), m_vecRenderLayer.end(), CRenderManager::SortLayer);
+
+	return true;
+}
+
+bool CRenderManager::CreateLayer2D(const string& strName, int iSortOrder)
+{
+	size_t	iSize = m_vecRenderLayer2D.size();
+
+	for (size_t i = 0; i < iSize; ++i)
+	{
+		if (m_vecRenderLayer2D[i]->GetName() == strName)
+			return false;
+	}
+
+	CRenderLayer* pLayer = new CRenderLayer;
+
+	pLayer->SetName(strName);
+	pLayer->SetSortOrder(iSortOrder);
+	pLayer->Set2D();
+
+	m_vecRenderLayer2D.push_back(pLayer);
+
+	sort(m_vecRenderLayer2D.begin(), m_vecRenderLayer2D.end(), CRenderManager::SortLayer);
+
+	return true;
 }
 
 bool CRenderManager::Init()
@@ -28,20 +81,43 @@ bool CRenderManager::Init()
 	// 깊어버퍼를 사용안하는 2D 용 상태를 만든다.
 	CreateDepthStencil("DepthDisable", false);
 
+	// Default Layer 생성
+	CreateLayer("Default", 1);
+	CreateLayer("Back");
+
+	CreateLayer2D("Default", 1);
+	CreateLayer2D("Back");
+
 	return true;
 }
 
-void CRenderManager::AddSceneComponent(CSceneComponent* pComponent)
+void CRenderManager::AddSceneComponent(CPrimitiveComponent* pComponent)
 {
-	switch (pComponent->GetSceneComponentType())
+	size_t iSize = m_vecRenderLayer.size();
+
+	//Component가 속한 layer를 찾아서 Add
+	//--------------------------------------------------
+	for (size_t iCnt = 0; iCnt < iSize; ++iCnt)
 	{
-	case SCENECOMPONENT_TYPE::ST_3D:
-		m_vecRenderList.push_back(pComponent);
-		break;
-	case SCENECOMPONENT_TYPE::ST_2D:
-		m_vecRender2DList.push_back(pComponent);
-		break;
+		switch (pComponent->GetSceneComponentType())
+		{
+		case SCENECOMPONENT_TYPE::ST_3D:
+			if (m_vecRenderLayer[iCnt]->GetName() == pComponent->GetLayerName())
+			{
+				m_vecRenderLayer[iCnt]->AddPrimitiveComponent(pComponent);
+				break;
+			}
+			break;
+		case SCENECOMPONENT_TYPE::ST_2D:
+			if (m_vecRenderLayer2D[iCnt]->GetName() == pComponent->GetLayerName())
+			{
+				m_vecRenderLayer2D[iCnt]->AddPrimitiveComponent(pComponent);
+				break;
+			}
+			break;
+		}
 	}
+	//--------------------------------------------------
 }
 
 void CRenderManager::Render(float fTime)
@@ -57,8 +133,8 @@ void CRenderManager::Render(float fTime)
 
 void CRenderManager::Render3D(float fTime)
 {
-	auto	iter = m_vecRenderList.begin();
-	auto	iterEnd = m_vecRenderList.end();
+	auto	iter = m_vecRenderLayer.begin();
+	auto	iterEnd = m_vecRenderLayer.end();
 
 	for (; iter != iterEnd; ++iter)
 	{
@@ -68,25 +144,41 @@ void CRenderManager::Render3D(float fTime)
 
 void CRenderManager::Render2D(float fTime)
 {
-	sort(m_vecRender2DList.begin(), m_vecRender2DList.end(), CRenderManager::SortY);
+	//SetState("AlphaBlend");
 
-	SetState("AlphaBlend");
-
-	auto	iter = m_vecRender2DList.begin();
-	auto	iterEnd = m_vecRender2DList.end();
+	auto	iter = m_vecRenderLayer2D.begin();
+	auto	iterEnd = m_vecRenderLayer2D.end();
 
 	for (; iter != iterEnd; ++iter)
 	{
 		(*iter)->Render(fTime);
 	}
 
-	ResetState("AlphaBlend");
+	//ResetState("AlphaBlend");
 }
 
 void CRenderManager::Clear()
 {
-	m_vecRenderList.clear();
-	m_vecRender2DList.clear();
+	{
+		auto	iter = m_vecRenderLayer2D.begin();
+		auto	iterEnd = m_vecRenderLayer2D.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			(*iter)->Clear();
+		}
+	}
+
+
+	{
+		auto	iter = m_vecRenderLayer.begin();
+		auto	iterEnd = m_vecRenderLayer.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			(*iter)->Clear();
+		}
+	}
 }
 
 bool CRenderManager::AddBlendInfo(const string& strName, bool bEnable, D3D11_BLEND eSrcBlend, D3D11_BLEND eDestBlend, D3D11_BLEND_OP eBlendOp, D3D11_BLEND eSrcBlendAlpha, D3D11_BLEND eDestBlendAlpha, D3D11_BLEND_OP eBlendAlphaOp, UINT8 iWriteMask)
@@ -180,13 +272,7 @@ CRenderState* CRenderManager::FindRenderState(const string& strName)
 	return iter->second;
 }
 
-bool CRenderManager::SortY(CSceneComponent* pSrc, CSceneComponent* pDest)
-{
-	Render_Priority eSrcPriority = pSrc->GetRender_Priority();
-	Render_Priority eDestPriority = pDest->GetRender_Priority();
-
-	if (eDestPriority > eSrcPriority)
-		return false;
-	
-	return pSrc->GetWorldPos().y > pDest->GetWorldPos().y;
+bool CRenderManager::SortLayer(CRenderLayer* pSrc, CRenderLayer* pDest)
+{	
+	return pSrc->GetSortOrder() > pDest->GetSortOrder();
 }

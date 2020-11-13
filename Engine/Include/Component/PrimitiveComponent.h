@@ -11,6 +11,20 @@ protected:
 	CPrimitiveComponent(const CPrimitiveComponent& com);
 	virtual ~CPrimitiveComponent();
 
+protected:
+	string		m_strLayer;
+
+public:
+	string GetLayerName() const
+	{
+		return m_strLayer;
+	}
+
+	void SetLayer(const string& strName)
+	{
+		m_strLayer = strName;
+	}
+
 public:
 	virtual bool Init();
 	virtual void Start();

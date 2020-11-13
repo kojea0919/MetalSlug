@@ -59,12 +59,12 @@ void CUISlider::PostUpdate(float fTime)
 		if (m_fCurRate > 1.f)
 		{
 			m_fCurRate = 1.f;
-			SetWorldPos(Vector3(m_iMaxX, GetWorldPos().y, 0.f));
+			SetWorldPos(Vector3((float)m_iMaxX, (float)GetWorldPos().y, 0.f));
 		}
 		else if (m_fCurRate < 0.f)
 		{
 			m_fCurRate = 0.f;
-			SetWorldPos(Vector3(m_iMinX, GetWorldPos().y, 0.f));
+			SetWorldPos(Vector3((float)m_iMinX, (float)GetWorldPos().y, 0.f));
 		}
 		else
 			AddWorldPos(Vector3(vDiff.x, 0.f, 0.f));

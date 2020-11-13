@@ -195,16 +195,28 @@ void CPlayer::UpdateAnimation(float fTime)
 			m_pLowerMesh->ChangeSprite("PlayerRightLowerMove");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSTART:
-			m_pLowerMesh->ChangeSprite("PlayerRightSitStart");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerRightSitStart");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerRightSitStart_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITIDLE:
-			m_pLowerMesh->ChangeSprite("PlayerRightSitIdle");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerRightSitIdle");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerRightSitIdle_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_UP:
-			m_pLowerMesh->ChangeSprite("PlayerRightUpStart");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerRightUpStart");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerRightUpStart_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITMOVE:
-			m_pLowerMesh->ChangeSprite("PlayerRightSitMove");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerRightSitMove");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerRightSitMove_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSHOT:
 			m_pLowerMesh->ChangeSprite("PlayerRightSitShot");
@@ -305,16 +317,28 @@ void CPlayer::UpdateAnimation(float fTime)
 			m_pLowerMesh->ChangeSprite("PlayerLeftLowerMove");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSTART:
-			m_pLowerMesh->ChangeSprite("PlayerLeftSitStart");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitStart");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitStart_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITIDLE:
-			m_pLowerMesh->ChangeSprite("PlayerLeftSitIdle");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitIdle");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitIdle_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_UP:
-			m_pLowerMesh->ChangeSprite("PlayerLeftUpStart");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerLeftUpStart");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerLeftUpStart_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITMOVE:
-			m_pLowerMesh->ChangeSprite("PlayerLeftSitMove");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitMove");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitMove_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSHOT:
 			m_pLowerMesh->ChangeSprite("PlayerLeftSitShot");
@@ -437,12 +461,12 @@ bool CPlayer::Init()
 	m_pLowerMesh->SetRelativePos(500.f, 300.f, 0.f);
 	m_pLowerMesh->InitVelocity();
 	m_pLowerMesh->SetPivot(0.5f, 0.5f, 0.f);
+	m_pLowerMesh->SetRender_Priority(Render_Priority::RP_MID);
 	m_pLowerMesh->ChangeSprite("PlayerRightLowerIdle");
 
 	m_pUpperMesh->SetInheritScale(false);
 	m_pUpperMesh->SetScale(2.f);
 	m_pUpperMesh->SetPivot(0.5f, 0.5f, 0.f);
-	m_pUpperMesh->SetRender_Priority(Render_Priority::RP_MID);
 	m_pUpperMesh->ChangeSprite("PlayerRightUpperIdle");
 
 	m_pCamera->SetCameraType(CAMERA_TYPE::CAM2D);
@@ -605,7 +629,7 @@ void CPlayer::MoveSide(float fScale, float fTime)
 		//¾É¾Æ¼­ ÃÑ½î´Â °æ¿ì & ÆøÅºÀ» ´øÁö´Â °æ¿ì ÀÌµ¿ ºÒ°¡´É
 		if (!m_bIsStand && (m_bIsShooting || m_eLowerAnimState == PLAYER_ANIMSTATE::PS_SITTHROWBOMB))
 			return;
-
+		
 		AddRelativePos(GetWorldAxis(AXIS_X) * 300.f * fScale * fTime);
 	}
 }

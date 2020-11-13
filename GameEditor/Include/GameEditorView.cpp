@@ -105,6 +105,7 @@ void CGameEditorView::OnInitialUpdate()
 
 	// MainGameMode 생성
 	GET_SINGLE(CSceneManager)->SetGameMode<CTestGameMode>();
+	//GET_SINGLE(CSceneManager)->SetGameMode<CStartGameMode>();
 	/*const char* pPath = GET_SINGLE(CPathManager)->FindPathMultibyte(DATA_PATH);
 	char	strFullPath[MAX_PATH] = {};
 	if (pPath)

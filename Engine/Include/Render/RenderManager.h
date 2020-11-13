@@ -5,15 +5,20 @@
 class CRenderManager
 {
 private:
-	vector<class CSceneComponent*>	m_vecRenderList;
-	vector<class CSceneComponent*>	m_vecRender2DList;
+	//Layer甫 包府
+	//--------------------------------------------
+	vector<class CRenderLayer*>	m_vecRenderLayer2D;
+	vector<class CRenderLayer*>	m_vecRenderLayer;
+	//--------------------------------------------
 
 	//RenderState 包府 Map
 	unordered_map<string, class CRenderState*>	m_mapRenderState;
 
 public:
+	bool CreateLayer(const string& strName, int iSortOrder = 0);
+	bool CreateLayer2D(const string& strName, int iSortOrder = 0);
 	bool Init();
-	void AddSceneComponent(class CSceneComponent* pComponent);
+	void AddSceneComponent(class CPrimitiveComponent* pComponent);
 	void Render(float fTime);
 
 private:
@@ -58,8 +63,8 @@ public:
 	class CRenderState* FindRenderState(const string& strName);
 
 private:
-	static bool SortY(class CSceneComponent* pSrc,
-		class CSceneComponent* pDest);
+	static bool SortLayer(class CRenderLayer* pSrc,
+		class CRenderLayer* pDest);
 
 	DECLARE_SINGLE(CRenderManager)
 };

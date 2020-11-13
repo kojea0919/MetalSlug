@@ -124,6 +124,9 @@
     <Filter Include="06. Component\01. Scene\05. TileMap">
       <UniqueIdentifier>{a69211ad-584e-4b76-843b-9da4fac5dfb2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Render\02. RenderLayer">
+      <UniqueIdentifier>{dc6ae68e-7ffc-4d37-b7c6-065653ffe804}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -366,6 +369,9 @@
     <ClInclude Include="UI\UISlot.h">
       <Filter>07. UI\01. Control</Filter>
     </ClInclude>
+    <ClInclude Include="Render\RenderLayer.h">
+      <Filter>04. Render\02. RenderLayer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -587,6 +593,9 @@
     <ClCompile Include="UI\UISlot.cpp">
       <Filter>07. UI\01. Control</Filter>
     </ClCompile>
+    <ClCompile Include="Render\RenderLayer.cpp">
+      <Filter>04. Render\02. RenderLayer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\EngineCopy.bat">
@@ -610,7 +619,7 @@
     <FxCompile Include="..\Bin\Resource\Shader\Standard2D.fx">
       <Filter>03. Resource\02. Shader\01. HLSL</Filter>
     </FxCompile>
-    <FxCompile Include="TileMap.fx">
+    <FxCompile Include="..\Bin\Resource\Shader\TileMap.fx">
       <Filter>03. Resource\02. Shader\01. HLSL</Filter>
     </FxCompile>
   </ItemGroup>

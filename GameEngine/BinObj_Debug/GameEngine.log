@@ -1,18 +1,20 @@
-﻿  Scene.cpp
+﻿FXC : warning X4717: Effects deprecated for D3DCompiler_47
+  
+  compilation object save succeeded; see C:\Users\AssortRock\Documents\새 폴더\MetalSlug\GameEngine\Bin\Standard2D.cso
   GameEngine.vcxproj -> C:\Users\AssortRock\Documents\새 폴더\MetalSlug\GameEngine\Include\../Bin/GameEngine_Debug.lib
   0개 파일이 복사되었습니다.
   파일을 찾을 수 없습니다-*.inl
   0개 파일이 복사되었습니다.
   0개 파일이 복사되었습니다.
-  .\GameEngine\Bin\GameEngine_Debug.lib
+  0개 파일이 복사되었습니다.
+  0개 파일이 복사되었습니다.
+  0개 파일이 복사되었습니다.
+  0개 파일이 복사되었습니다.
+  0개 파일이 복사되었습니다.
+  0개 파일이 복사되었습니다.
+  .\GameEngine\Bin\Resource\Shader\Standard2D.fx
   1개 파일이 복사되었습니다.
-  .\GameEngine\Bin\GameEngine_Debug.lib
+  .\GameEngine\Bin\Resource\Shader\Standard2D.fx
   1개 파일이 복사되었습니다.
-  .\GameEngine\Bin\GameEngine_Debug.lib
+  .\GameEngine\Bin\Resource\Shader\Standard2D.fx
   1개 파일이 복사되었습니다.
-  0개 파일이 복사되었습니다.
-  0개 파일이 복사되었습니다.
-  0개 파일이 복사되었습니다.
-  0개 파일이 복사되었습니다.
-  0개 파일이 복사되었습니다.
-  0개 파일이 복사되었습니다.

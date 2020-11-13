@@ -10,6 +10,16 @@ typedef struct _tagVertexBuffer
 	int				iSize;		//정점 1개의 크기
 	int				iCount;		//정점 수
 	D3D11_USAGE		eUsage;		
+
+	void* pData;
+
+	_tagVertexBuffer()
+	{
+		pBuffer = nullptr;
+		pData = nullptr;
+		iSize = 0;
+		iCount = 0;
+	}
 }VertexBuffer, *PVertexBuffer;
 //------------------------------
 
@@ -48,6 +58,9 @@ protected:
 public:
 	//Material Set함수
 	void SetMaterial(class CMaterial* pMaterial);
+
+	//Instancing Buffer 생성함수
+	//bool CreateInstancingBuffer(int iSize, int iCount);
 
 	//Material Get함수
 	class CMaterial* GetMaterial() const;

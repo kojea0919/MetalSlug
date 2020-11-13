@@ -1,4 +1,4 @@
-52
+60
 PlayerRightUpperIdle.ani
 PlayerRightLowerIdle.ani
 PlayerRightUpperMoveStart.ani
@@ -51,3 +51,11 @@ PlayerRightUpperMoveStart_H.ani
 PlayerRightUpperMove_H.ani
 PlayerLeftUpperMoveStart_H.ani
 PlayerLeftUpperMove_H.ani
+PlayerRightSitStart_H.ani
+PlayerRightSitIdle_H.ani
+PlayerRightUpStart_H.ani
+PlayerLeftSitStart_H.ani
+PlayerLeftUpStart_H.ani
+PlayerLeftSitIdle_H.ani
+PlayerRightSitMove_H.ani
+PlayerLeftSitMove_H.ani
