@@ -43,9 +43,9 @@ bool CTestGameMode::Init()
 
 	SAFE_RELEASE(pMonster);*/
 
-	CTestObj* pTestObj = m_pScene->CreateObject<CTestObj>("TestObj");
+	/*CTestObj* pTestObj = m_pScene->CreateObject<CTestObj>("TestObj");
 
-	SAFE_RELEASE(pTestObj);
+	SAFE_RELEASE(pTestObj);*/
 
 	CTestButton* pTestButton = m_pScene->CreateUIObject<CTestButton>("TestButton");
 

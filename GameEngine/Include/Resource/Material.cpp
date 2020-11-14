@@ -3,9 +3,11 @@
 #include "ShaderManager.h"
 #include "ResourceManager.h"
 #include "Texture.h"
+#include "MaterialInstance.h"
 
 CMaterial::CMaterial()
-	: m_pShader(nullptr)
+	: m_pShader(nullptr), m_bStart(false),
+	m_eMaterialType(Material_Type::Origin)
 {
 	memset(&m_tCBuffer, 0, sizeof(m_tCBuffer));
 	m_tCBuffer.vDif = Vector4::White;
@@ -14,7 +16,7 @@ CMaterial::CMaterial()
 }
 
 CMaterial::CMaterial(const CMaterial& mtrl)
-	: CRef(mtrl)
+	: CRef(mtrl), m_bStart(false)
 {
 	*this = mtrl;
 	m_iRefCount = 1;
@@ -35,6 +37,8 @@ CMaterial::CMaterial(const CMaterial& mtrl)
 
 		if (pInfo->pTexture)
 			pInfo->pTexture->AddRef();
+
+		m_vecTexture.push_back(pInfo);
 	}
 	//------------------------------------
 }
@@ -46,7 +50,7 @@ CMaterial::~CMaterial()
 	for (size_t iCnt = 0; iCnt < iSize; ++iCnt)
 	{
 		GET_SINGLE(CResourceManager)->ReleaseTexture(m_vecTexture[iCnt]->pTexture->GetName());
-		//SAFE_RELEASE(m_vecTexture[i]->pTexture);
+		SAFE_RELEASE(m_vecTexture[iCnt]->pTexture);
 		SAFE_DELETE(m_vecTexture[iCnt]);
 	}
 
@@ -55,6 +59,9 @@ CMaterial::~CMaterial()
 
 void CMaterial::SetTexture(TEXTURE_LINK eLink, CTexture* pTexture, int iShaderType, int iRegister)
 {
+	if (m_bStart)
+		return;
+
 	PMaterialTextureInfo	pInfo = new MaterialTextureInfo;
 
 	pInfo->eTextureLink = eLink;
@@ -84,6 +91,9 @@ void CMaterial::SetTexture(TEXTURE_LINK eLink, CTexture* pTexture, int iShaderTy
 
 void CMaterial::SetTexture(TEXTURE_LINK eLink, const string& strName, int iShaderType, int iRegister)
 {
+	if (m_bStart)
+		return;
+
 	CTexture* pTexture = GET_SINGLE(CResourceManager)->FindTexture(strName);
 
 	if (!pTexture)
@@ -117,6 +127,9 @@ void CMaterial::SetTexture(TEXTURE_LINK eLink, const string& strName, int iShade
 
 void CMaterial::SetTexture(TEXTURE_LINK eLink, const string& strName, const TCHAR* pFileName, const string& strPathName, int iShaderType, int iRegister)
 {
+	if (m_bStart)
+		return;
+
 	GET_SINGLE(CResourceManager)->LoadTexture(strName, pFileName, strPathName);
 	CTexture* pTexture = GET_SINGLE(CResourceManager)->FindTexture(strName);
 
@@ -151,6 +164,9 @@ void CMaterial::SetTexture(TEXTURE_LINK eLink, const string& strName, const TCHA
 
 void CMaterial::SetTexture(TEXTURE_LINK eLink, const string& strName, const TCHAR* pFullPath, int iShaderType, int iRegister)
 {
+	if (m_bStart)
+		return;
+
 	GET_SINGLE(CResourceManager)->LoadTextureFullPath(strName, pFullPath);
 	CTexture* pTexture = GET_SINGLE(CResourceManager)->FindTexture(strName);
 
@@ -185,31 +201,49 @@ void CMaterial::SetTexture(TEXTURE_LINK eLink, const string& strName, const TCHA
 
 void CMaterial::SetDiffuseColor(const Vector4& vColor)
 {
+	if (m_bStart)
+		return;
+
 	m_tCBuffer.vDif = vColor;
 }
 
 void CMaterial::SetDiffuseColor(float r, float g, float b, float a)
 {
+	if (m_bStart)
+		return;
+
 	m_tCBuffer.vDif = Vector4(r, g, b, a);
 }
 
 void CMaterial::SetAmbientColor(const Vector4& vColor)
 {
+	if (m_bStart)
+		return;
+
 	m_tCBuffer.vAmb = vColor;
 }
 
 void CMaterial::SetAmbientColor(float r, float g, float b, float a)
 {
+	if (m_bStart)
+		return;
+
 	m_tCBuffer.vAmb = Vector4(r, g, b, a);
 }
 
 void CMaterial::SetSpecularColor(const Vector4& vColor)
 {
+	if (m_bStart)
+		return;
+
 	m_tCBuffer.vSpc = vColor;
 }
 
 void CMaterial::SetSpecularColor(float r, float g, float b, float a)
 {
+	if (m_bStart)
+		return;
+
 	m_tCBuffer.vSpc = Vector4(r, g, b, a);
 }
 
@@ -234,6 +268,18 @@ void CMaterial::SetMaterial()
 CMaterial* CMaterial::Clone()
 {
 	return new CMaterial(*this);
+}
+
+CMaterialInstance* CMaterial::CreateMaterialInstance()
+{
+	CMaterialInstance* pInst = new CMaterialInstance;
+
+	pInst->m_pOriginMaterial = this;
+	AddRef();
+
+	pInst->CopyOriginData();
+
+	return pInst;
 }
 
 void CMaterial::Save(FILE* pFile)

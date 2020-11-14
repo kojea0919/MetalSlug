@@ -45,6 +45,11 @@ private:
 	bool		m_bUpdateRot;
 	bool		m_bUpdatePos;
 
+	//상하체 애니메이션일 경우 하체가 y값이 더 작아서 나중에 출력되는데
+	//이미지가 상체가 하체를 덮어야해서 상체를 나중에 출력해야하기 때문에
+	//이런 경우를 Check하기 위한 변수
+	bool		m_bIsUseParentZValue;
+
 public:
 	void InitVelocity()
 	{
@@ -75,6 +80,10 @@ public:
 public:
 	//Inherit
 	//----------------------------------
+	void SetUseParentZValue(bool bUse)
+	{
+		m_bIsUseParentZValue = bUse;
+	}
 
 	void SetInheritScale(bool bInherit)
 	{

@@ -225,7 +225,10 @@ void CPlayer::UpdateAnimation(float fTime)
 			m_pLowerMesh->ChangeSprite("PlayerRightSitShotEnd");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITTHROWBOMB:
-			m_pLowerMesh->ChangeSprite("PlayerRightSitThrowBomb");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerRightSitThrowBomb");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerRightSitThrowBomb_H");
 			break;
 		default:
 			break;
@@ -347,7 +350,10 @@ void CPlayer::UpdateAnimation(float fTime)
 			m_pLowerMesh->ChangeSprite("PlayerLeftSitShotEnd");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITTHROWBOMB:
-			m_pLowerMesh->ChangeSprite("PlayerLeftSitThrowBomb");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitThrowBomb");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitThrowBomb_H");
 			break;
 		default:
 			break;
@@ -458,16 +464,18 @@ bool CPlayer::Init()
 	//---------------------------------
 	m_pLowerMesh->SetWorldScale(1.f, 1.f, 1.f);
 	m_pLowerMesh->SetScale(2.f);
-	m_pLowerMesh->SetRelativePos(500.f, 300.f, 0.f);
+	m_pLowerMesh->SetRelativePos(500.f, 500.f, 0.f);
 	m_pLowerMesh->InitVelocity();
 	m_pLowerMesh->SetPivot(0.5f, 0.5f, 0.f);
-	m_pLowerMesh->SetRender_Priority(Render_Priority::RP_MID);
 	m_pLowerMesh->ChangeSprite("PlayerRightLowerIdle");
 
 	m_pUpperMesh->SetInheritScale(false);
 	m_pUpperMesh->SetScale(2.f);
 	m_pUpperMesh->SetPivot(0.5f, 0.5f, 0.f);
+	m_pUpperMesh->SetUseParentZValue(true);
+	m_pUpperMesh->SetRender_Priority(Render_Priority::RP_MID);
 	m_pUpperMesh->ChangeSprite("PlayerRightUpperIdle");
+
 
 	m_pCamera->SetCameraType(CAMERA_TYPE::CAM2D);
 	m_pCamera->SetInheritScale(false);
@@ -475,6 +483,7 @@ bool CPlayer::Init()
 	m_pCamera->SetInheritRotY(false);
 	m_pCamera->SetInheritRotZ(false);
 	m_pCamera->SetPivot(0.7f, 0.5f, 0.f);
+	m_pCamera->SetRelativePos(0.f,0.f, -50.f);
 
 	m_pBody->SetInheritScale(false);
 	//---------------------------------
@@ -627,7 +636,8 @@ void CPlayer::MoveSide(float fScale, float fTime)
 		//---------------------------------------
 
 		//¾É¾Æ¼­ ÃÑ½î´Â °æ¿ì & ÆøÅºÀ» ´øÁö´Â °æ¿ì ÀÌµ¿ ºÒ°¡´É
-		if (!m_bIsStand && (m_bIsShooting || m_eLowerAnimState == PLAYER_ANIMSTATE::PS_SITTHROWBOMB))
+		if (!m_bIsStand && (m_bIsShooting || m_eLowerAnimState == PLAYER_ANIMSTATE::PS_SITTHROWBOMB ||
+			m_eLowerAnimState == PLAYER_ANIMSTATE::PS_SITSHOTEND))
 			return;
 		
 		AddRelativePos(GetWorldAxis(AXIS_X) * 300.f * fScale * fTime);

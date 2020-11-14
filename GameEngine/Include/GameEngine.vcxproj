@@ -211,6 +211,7 @@
     <ClInclude Include="Resource\DirectXTex.h" />
     <ClInclude Include="Resource\GraphicShader.h" />
     <ClInclude Include="Resource\Material.h" />
+    <ClInclude Include="Resource\MaterialInstance.h" />
     <ClInclude Include="Resource\Mesh.h" />
     <ClInclude Include="Resource\Mesh2D.h" />
     <ClInclude Include="Resource\ResourceManager.h" />
@@ -288,6 +289,7 @@
     <ClCompile Include="Resource\ComputeShader.cpp" />
     <ClCompile Include="Resource\GraphicShader.cpp" />
     <ClCompile Include="Resource\Material.cpp" />
+    <ClCompile Include="Resource\MaterialInstance.cpp" />
     <ClCompile Include="Resource\Mesh.cpp" />
     <ClCompile Include="Resource\Mesh2D.cpp" />
     <ClCompile Include="Resource\ResourceManager.cpp" />

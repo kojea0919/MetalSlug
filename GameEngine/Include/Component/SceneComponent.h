@@ -117,6 +117,7 @@ public:
 	//------------------------------
 
 public:
+	void SetUseParentZValue(bool bUse);
 	void SetInheritScale(bool bInherit);
 	void SetInheritRotX(bool bInherit);
 	void SetInheritRotY(bool bInherit);

@@ -16,7 +16,8 @@ CTransform::CTransform()
     m_bUpdateScale(true),
     m_bUpdateRot(true),
     m_bUpdatePos(true),
-    m_b2D(false)
+    m_b2D(false),
+    m_bIsUseParentZValue(false)
 {
     for (size_t iCnt = 0; iCnt < AXIS_END; ++iCnt)
     {
@@ -1513,7 +1514,12 @@ void CTransform::PostUpdate(float fTime)
     {
         Vector3 vWorldStart = m_pScene->GetWorldStart();
         Vector3 vWorldSize = m_pScene->GetWorldSize();
-        m_vWorldPos.z = (m_vWorldPos.y - vWorldStart.y) * (3000.f / vWorldSize.y);
+
+        //부모의 z값을 사용하는 경우 따로 계산
+        if (m_bIsUseParentZValue)
+            m_vWorldPos.z = (m_pParent->m_vWorldPos.y - vWorldStart.y - (int)m_pOwner->GetRender_Priority()) * (3000.f / vWorldSize.y);
+        else
+            m_vWorldPos.z = (m_vWorldPos.y - vWorldStart.y) * (3000.f / vWorldSize.y);
     }
     //------------------------------------------
 

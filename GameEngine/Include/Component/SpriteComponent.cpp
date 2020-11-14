@@ -266,22 +266,13 @@ bool CSpriteComponent::Init()
     CPrimitiveComponent::Init();
 
     m_pMesh = m_pScene->GetResourceManager()->GetDefault2DMesh();
+    CMaterial* pMaterial = m_pScene->GetResourceManager()->FindMaterial("Sprite");
+    SetMaterial(pMaterial);
+    SAFE_RELEASE(pMaterial);
 
-    if (m_pMesh)
-    {
-        CMaterial* pMaterial = m_pMesh->GetMaterial();
-        CMaterial* pClone = pMaterial->Clone();
+    m_pTransform->SetMeshSize(m_pMesh->GetMax() - m_pMesh->GetMin());
 
-        SetMaterial(pClone);
-
-        //check
-        pClone->SetShader("SpriteShader");
-
-        SAFE_RELEASE(pMaterial);
-        SAFE_RELEASE(pClone);
-
-        m_pTransform->SetMeshSize(m_pMesh->GetMax() - m_pMesh->GetMin());
-    }
+    m_pTransform->SetTransformSpace(true);
 
     return true;
 }
@@ -382,7 +373,6 @@ void CSpriteComponent::Collision(float fTime)
 
 void CSpriteComponent::PrevRender(float fTime)
 {
-    GET_SINGLE(CRenderManager)->AddSceneComponent(this);
     CPrimitiveComponent::PrevRender(fTime);
 }
 
@@ -457,22 +447,22 @@ void CSpriteComponent::Load(FILE* pFile)
 
     //±âº» Mesh Setting
     //-----------------------------------------------------------------
-    m_pMesh = m_pScene->GetResourceManager()->GetDefault2DMesh();
+    //m_pMesh = m_pScene->GetResourceManager()->GetDefault2DMesh();
 
-    if (m_pMesh)
-    {
-        CMaterial* pMaterial = m_pMesh->GetMaterial();
-        CMaterial* pClone = pMaterial->Clone();
+    //if (m_pMesh)
+    //{
+    //    CMaterial* pMaterial = m_pMesh->GetMaterial();
+    //    CMaterial* pClone = pMaterial->Clone();
 
-        SetMaterial(pClone);
+    //    SetMaterial(pClone);
 
-        //check
-        pClone->SetShader("SpriteShader");
+    //    //check
+    //    pClone->SetShader("SpriteShader");
 
-        SAFE_RELEASE(pMaterial);
-        SAFE_RELEASE(pClone);
+    //    SAFE_RELEASE(pMaterial);
+    //    SAFE_RELEASE(pClone);
 
-        m_pTransform->SetMeshSize(m_pMesh->GetMax() - m_pMesh->GetMin());
-    }
+    //    m_pTransform->SetMeshSize(m_pMesh->GetMax() - m_pMesh->GetMin());
+    //}
     //-----------------------------------------------------------------
 }

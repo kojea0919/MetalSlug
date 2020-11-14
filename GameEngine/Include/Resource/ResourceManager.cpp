@@ -119,6 +119,10 @@ bool CResourceManager::Init()
 
 	m_pDefault2DMesh->SetMaterial(pDefaultcolorMtrl);
 	SAFE_RELEASE(pDefaultcolorMtrl);
+
+	pDefaultcolorMtrl = CreateMaterial("Sprite");
+	pDefaultcolorMtrl->SetShader("SpriteShader");
+	SAFE_RELEASE(pDefaultcolorMtrl);
 	//---------------------------------------------------
 
 	//--------------------------------------

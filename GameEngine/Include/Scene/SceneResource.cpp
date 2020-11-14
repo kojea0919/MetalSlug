@@ -75,6 +75,17 @@ CSceneResource::~CSceneResource()
 	}
 }
 
+void CSceneResource::Start()
+{
+	auto iter = m_mapMaterial.begin();
+	auto iterEnd = m_mapMaterial.end();
+
+	for (; iter != iterEnd; ++iter)
+	{
+		iter->second->Start();
+	}
+}
+
 bool CSceneResource::CreateMesh(MESH_TYPE eType, const string& strName, void* pVertices, int iVtxCount, int iVtxSize, D3D11_USAGE eVtxUsage, D3D11_PRIMITIVE_TOPOLOGY ePrimitive, void* pIndices, int iIdxCount, int iIdxSize, D3D11_USAGE eIdxUsage, DXGI_FORMAT eFmt)
 {
 	CMesh* pMesh = FindMesh(strName);

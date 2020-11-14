@@ -216,3 +216,14 @@ typedef struct _tagCollisionProfile
 	Collision_Channel	eChannel;
 	vector<CollisionChannel>	vecChannel;
 }CollisionProfile, * PCollisionProfile;
+
+//Texture정보 구조체
+//------------------------------------------
+typedef struct _tagMaterialTextureInfo
+{
+	TEXTURE_LINK	eTextureLink;	//텍스처 종류
+	class CTexture* pTexture;		//사용할 텍스처
+	int				iRegister;		//사용할 레지스터
+	int				iShaderType;	//적용할 셰이더 타입
+}MaterialTextureInfo, * PMaterialTextureInfo;
+//------------------------------------------

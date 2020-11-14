@@ -372,6 +372,9 @@
     <ClInclude Include="Render\RenderLayer.h">
       <Filter>04. Render\02. RenderLayer</Filter>
     </ClInclude>
+    <ClInclude Include="Resource\MaterialInstance.h">
+      <Filter>03. Resource\03. Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -595,6 +598,9 @@
     </ClCompile>
     <ClCompile Include="Render\RenderLayer.cpp">
       <Filter>04. Render\02. RenderLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="Resource\MaterialInstance.cpp">
+      <Filter>03. Resource\03. Material</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

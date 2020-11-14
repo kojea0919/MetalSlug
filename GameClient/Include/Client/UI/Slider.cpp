@@ -43,8 +43,8 @@ bool CSlider::Init()
 	m_pBar->SetRelativePos(200.f, 300.f, 1.f);
 	m_pBar->SetTexture("UISliderBar");
 
-	m_pSlider->SetMinX((m_pBar->GetWorldPos().x));
-	m_pSlider->SetMaxX((m_pBar->GetWorldPos().x) + m_pBar->GetWorldScale().x - 20.f);
+	m_pSlider->SetMinX((int)(m_pBar->GetWorldPos().x));
+	m_pSlider->SetMaxX((int)((m_pBar->GetWorldPos().x) + m_pBar->GetWorldScale().x - 20.f));
 
 	SetRoot(m_pBar);
 	m_pBar->AddChild(m_pSlider);

@@ -16,6 +16,9 @@ CScene::CScene()
 	m_pUIViewport = new CUIViewport;
 
 	memset(m_strAnimSequenceFileName, 0, sizeof(MAX_PATH));
+
+
+	m_vWorldSize = Vector3(10000.f, 10000.f, 10000.f);
 }
 
 CScene::~CScene()
@@ -118,6 +121,8 @@ void CScene::Start()
 	}
 
 	m_pUIViewport->Start();
+
+	m_pResource->Start();
 }
 
 void CScene::Update(float fTime)
@@ -389,13 +394,15 @@ void CScene::SetAnimNotify()
 	m_pResource->AddAnimation2DNotify("PlayerRightUpStart_H", "GotoIdle", 3);
 	m_pResource->AddAnimation2DNotify("PlayerLeftUpStart_H", "GotoIdle", 3);
 	m_pResource->AddAnimation2DNotify("PlayerRightSitShot", "ShotEnd", 3);
-	m_pResource->AddAnimation2DNotify("PlayerRightSitShotEnd", "GotoIdle", 7);
+	m_pResource->AddAnimation2DNotify("PlayerRightSitShotEnd", "GotoIdle", 6);
 	m_pResource->AddAnimation2DNotify("PlayerLeftSitShot", "ShotEnd", 3);
-	m_pResource->AddAnimation2DNotify("PlayerLeftSitShotEnd", "GotoIdle", 7);
+	m_pResource->AddAnimation2DNotify("PlayerLeftSitShotEnd", "GotoIdle", 6);
 	m_pResource->AddAnimation2DNotify("PlayerRightThrowBomb", "GotoIdle", 6);
 	m_pResource->AddAnimation2DNotify("PlayerRightSitThrowBomb", "GotoIdle", 8);
+	m_pResource->AddAnimation2DNotify("PlayerRightSitThrowBomb_H", "GotoIdle", 6);
 	m_pResource->AddAnimation2DNotify("PlayerLeftThrowBomb", "GotoIdle", 6);
 	m_pResource->AddAnimation2DNotify("PlayerLeftSitThrowBomb", "GotoIdle", 8);
+	m_pResource->AddAnimation2DNotify("PlayerLeftSitThrowBomb_H", "GotoIdle", 6);
 }
 
 void CScene::SaveScene(const char* pFileName, const string& strPathName)

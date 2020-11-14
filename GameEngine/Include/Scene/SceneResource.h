@@ -29,6 +29,9 @@ private:
 	unordered_map<string, class CSound*>	m_mapSound;
 
 public:
+	void Start();
+
+public:
 	bool CreateMesh(MESH_TYPE eType, const string& strName,
 		void* pVertices, int iVtxCount, int iVtxSize,
 		D3D11_USAGE eVtxUsage,

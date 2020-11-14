@@ -139,10 +139,10 @@ enum class GameMode_Type
 
 enum class Render_Priority
 {
-	RP_HIGH,
-	RP_MID,
+	RP_OTHER,
 	RP_LOW,
-	RP_OTHER
+	RP_MID,
+	RP_HIGH
 };
 
 enum class Button_State
@@ -158,4 +158,10 @@ enum class TILE_SHAPE
 {
 	Rect,
 	Rhombus
+};
+
+enum class Material_Type
+{
+	Origin,
+	Instance
 };

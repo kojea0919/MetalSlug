@@ -364,6 +364,11 @@ float CSceneComponent::GetCurrentVelocity() const
 	return m_pTransform->GetCurrentVelocity();
 }
 
+void CSceneComponent::SetUseParentZValue(bool bUse)
+{
+	m_pTransform->SetUseParentZValue(bUse);
+}
+
 void CSceneComponent::SetInheritScale(bool bInherit)
 {
 	m_pTransform->SetInheritScale(bInherit);

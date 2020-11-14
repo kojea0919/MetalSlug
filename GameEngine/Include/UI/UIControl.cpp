@@ -31,7 +31,7 @@ CUIControl::CUIControl(const CUIControl& control)
 	if (m_pUITexture)
 		m_pUITexture->AddRef();
 
-	m_pMaterial = control.m_pMaterial->Clone();
+	m_pMaterial = (CMaterial*)control.m_pMaterial->CreateMaterialInstance();
 
 	m_pViewport = nullptr;
 	m_bStart = false;
@@ -200,7 +200,7 @@ bool CUIControl::Init()
 
 	CMaterial* pMtrl = m_pBodyMesh->GetMaterial();
 
-	m_pMaterial = pMtrl->Clone();
+	m_pMaterial = (CMaterial*)pMtrl->CreateMaterialInstance();
 
 	SAFE_RELEASE(pMtrl);
 

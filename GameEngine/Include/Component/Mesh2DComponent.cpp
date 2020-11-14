@@ -48,18 +48,14 @@ void CMesh2DComponent::SetMesh(CMesh2D* pMesh)
 	{
 		pMesh->AddRef();
 
-		//Material บนป็
+		//Material Setting
 		//---------------------------------------------
 		CMaterial* pMaterial = m_pMesh->GetMaterial();
 		if (!pMaterial)
 			return;
 
-		CMaterial* pClone = pMaterial->Clone();
-
-		SetMaterial(pClone);
-
+		SetMaterial(pMaterial);
 		SAFE_RELEASE(pMaterial);
-		SAFE_RELEASE(pClone);
 		//---------------------------------------------
 
 		m_pTransform->SetMeshSize(m_pMesh->GetMax() - m_pMesh->GetMin());
@@ -82,12 +78,8 @@ void CMesh2DComponent::SetMesh(const string& strMeshName)
 		if (!pMaterial)
 			return;
 
-		CMaterial* pClone = pMaterial->Clone();
-
-		SetMaterial(pClone);
-
+		SetMaterial(pMaterial);
 		SAFE_RELEASE(pMaterial);
-		SAFE_RELEASE(pClone);
 		//---------------------------------------------
 
 		m_pTransform->SetMeshSize(m_pMesh->GetMax() - m_pMesh->GetMin());
@@ -106,6 +98,8 @@ bool CMesh2DComponent::Init()
 	//------------------------------------------
 
 	SAFE_RELEASE(pMesh);
+
+	m_pTransform->SetTransformSpace(true);
 
 	return true;
 }
