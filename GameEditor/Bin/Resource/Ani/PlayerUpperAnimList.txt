@@ -1,4 +1,4 @@
-30
+44
 PlayerRightUpperIdle
 PlayerRightUpperMove
 PlayerRightUpperMoveStart
@@ -29,3 +29,17 @@ PlayerRightUpperMoveStart_H
 PlayerRightUpperMove_H
 PlayerLeftUpperMoveStart_H
 PlayerLeftUpperMove_H
+PlayerRightThrowBomb_H
+PlayerLeftThrowBomb_H
+PlayerRightAimUpIdle_H
+PlayerRightAimUpStart_H
+PlayerRightAimDown_H
+PlayerLeftAimDown_H
+PlayerLeftAimUpIdle_H
+PlayerLeftAimUpStart_H
+PlayerRightHeavyMidShot
+PlayerRightHeavyMidShotEnd
+PlayerRightAimUpStartHeavyShot
+PlayerRightAimDownHeavyShot
+PlayerRightHeavyUpShot
+PlayerRightHeavyUpShotEnd

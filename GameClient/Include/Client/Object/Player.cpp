@@ -262,31 +262,69 @@ void CPlayer::UpdateAnimation(float fTime)
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALSHOT:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerRightNormalMidShot");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerRightNormalMidShot");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerRightHeavyMidShot");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALSHOTEND:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerRightNormalMidShotEnd");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerRightNormalMidShotEnd");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerRightHeavyMidShotEnd");
 			break;
 		case PLAYER_ANIMSTATE::PS_AIMUPSTART:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerRightAimUpStart");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerRightAimUpStart");
+			else
+			{
+				if(m_bIsShooting)
+					m_pUpperMesh->ChangeSprite("PlayerRightAimUpStartHeavyShot");
+				else
+					m_pUpperMesh->ChangeSprite("PlayerRightAimUpStart_H");
+			}
 			break;
 		case PLAYER_ANIMSTATE::PS_ANIMUPIDLE:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerRightAimUpIdle");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerRightAimUpIdle");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerRightAimUpIdle_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_AIMDOWN:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerRightAimDown");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerRightAimDown");
+			else
+			{
+				if(m_bIsShooting)
+					m_pUpperMesh->ChangeSprite("PlayerRightAimDownHeavyShot");
+				else
+					m_pUpperMesh->ChangeSprite("PlayerRightAimDown_H");
+			}
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALUPSHOT:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerRightNormalUpShot");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerRightNormalUpShot");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerRightHeavyUpShot");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALUPSHOTEND:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerRightNormalUpShotEnd");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerRightNormalUpShotEnd");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerRightHeavyUpShotEnd");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSTART:
 		case PLAYER_ANIMSTATE::PS_SITIDLE:
@@ -297,7 +335,11 @@ void CPlayer::UpdateAnimation(float fTime)
 			break;
 		case PLAYER_ANIMSTATE::PS_THROWBOMB:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerRightThrowBomb");
+			
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerRightThrowBomb");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerRightThrowBomb_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITTHROWBOMB:
 			m_pUpperMesh->Enable(false);
@@ -387,31 +429,69 @@ void CPlayer::UpdateAnimation(float fTime)
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALSHOT:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerLeftNormalMidShot");
+
+			if(bIsNormal)	
+				m_pUpperMesh->ChangeSprite("PlayerLeftNormalMidShot");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerLeftHeavyMidShot");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALSHOTEND:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerLeftNormalMidShotEnd");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerLeftNormalMidShotEnd");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerLeftHeavyMidShotEnd");
 			break;
 		case PLAYER_ANIMSTATE::PS_AIMUPSTART:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerLeftAimUpStart");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerLeftAimUpStart");
+			else
+			{
+				if(m_bIsShooting)
+					m_pUpperMesh->ChangeSprite("PlayerLeftAimUpStartHeavyShot");
+				else
+					m_pUpperMesh->ChangeSprite("PlayerLeftAimUpStart_H");
+			}
 			break;
 		case PLAYER_ANIMSTATE::PS_ANIMUPIDLE:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerLeftAimUpIdle");
+
+			if (bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerLeftAimUpIdle");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerLeftAimUpIdle_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_AIMDOWN:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerLeftAimDown");
+
+			if (bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerLeftAimDown");
+			else
+			{
+				if(m_bIsShooting)
+					m_pUpperMesh->ChangeSprite("PlayerLeftAimDownHeavyShot");
+				else
+					m_pUpperMesh->ChangeSprite("PlayerLeftAimDown_H");
+			}
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALUPSHOT:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerLeftNormalUpShot");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerLeftNormalUpShot");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerLeftHeavyUpShot");
 			break;
 		case PLAYER_ANIMSTATE::PS_NORMALUPSHOTEND:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerLeftNormalUpShotEnd");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerLeftNormalUpShotEnd");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerLeftHeavyUpShotEnd");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSTART:
 		case PLAYER_ANIMSTATE::PS_SITIDLE:
@@ -421,7 +501,11 @@ void CPlayer::UpdateAnimation(float fTime)
 			break;
 		case PLAYER_ANIMSTATE::PS_THROWBOMB:
 			m_pUpperMesh->Enable(true);
-			m_pUpperMesh->ChangeSprite("PlayerLeftThrowBomb");
+
+			if(bIsNormal)
+				m_pUpperMesh->ChangeSprite("PlayerLeftThrowBomb");
+			else
+				m_pUpperMesh->ChangeSprite("PlayerLeftThrowBomb_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITTHROWBOMB:
 			m_pUpperMesh->Enable(false);
@@ -1007,7 +1091,9 @@ void CPlayer::SetNormalMidShotEndState()
 
 void CPlayer::SetAimUpState()
 {
-	m_bIsShooting = false;
+	//일반 무기인 경우에는 공격을 멈춘다.
+	if (m_eCurWeaponState == WEAPON_STATE::WS_NORMAL)
+		m_bIsShooting = false;
 	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_AIMUPSTART;
 }
 
@@ -1019,7 +1105,9 @@ void CPlayer::SetAimUpIdleState()
 
 void CPlayer::SetAimDownState()
 {
-	m_bIsShooting = false;
+	//일반 무기인 경우에는 공격을 멈춘다.
+	if (m_eCurWeaponState == WEAPON_STATE::WS_NORMAL)
+		m_bIsShooting = false;
 	m_eUpperAnimState = PLAYER_ANIMSTATE::PS_AIMDOWN;
 }
 

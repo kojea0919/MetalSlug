@@ -86,3 +86,57 @@ PlayerRightUpperIdle_H
 7 12
 7 12
 7 12
+PlayerRightThrowBomb_H
+6 1
+7 12
+8 12
+7 12
+7 11
+7 11
+7 11
+PlayerRightAimUpStart_H
+2 1
+4 16
+4 17
+PlayerRightAimUpIdle_H
+6 1
+4 19
+5 19
+5 19
+5 19
+5 19
+5 19
+PlayerRightAimDown_H
+2 1
+4 18
+4 17
+PlayerRightHeavyMidShot
+4 1
+18 13
+18 13
+17 13
+16 12
+PlayerRightHeavyMidShotEnd
+3 1
+7 12
+5 13
+4 13
+PlayerRightAimUpStartHeavyShot
+2 1
+15 22
+14 32
+PlayerRightHeavyUpShot
+4 1
+-3 38
+-5 39
+-4 38
+-4 39
+PlayerRightHeavyUpShotEnd
+3 1
+3 20
+3 18
+4 17
+PlayerRightAimDownHeavyShot
+2 1
+8 33
+13 32

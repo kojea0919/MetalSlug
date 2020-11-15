@@ -96,6 +96,8 @@ protected:
 	//플레이어의 현재 무기 상태(normal, heavy gun)
 	WEAPON_STATE	m_eCurWeaponState;
 
+	
+
 protected:
 	//PlayerAnimList파일을 읽어서 플레이어에서 사용하는 애니메이션 Setting
 	bool LoadPlayerAnimList();

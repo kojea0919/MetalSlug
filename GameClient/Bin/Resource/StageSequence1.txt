@@ -1,4 +1,4 @@
-62
+77
 PlayerRightUpperIdle.ani
 PlayerRightLowerIdle.ani
 PlayerRightUpperMoveStart.ani
@@ -61,3 +61,18 @@ PlayerRightSitMove_H.ani
 PlayerLeftSitMove_H.ani
 PlayerRightSitThrowBomb_H.ani
 PlayerLeftSitThrowBomb_H.ani
+PlayerRightThrowBomb_H.ani
+PlayerLeftThrowBomb_H.ani
+PlayerRightAimUpStart_H.ani
+PlayerRightAimUpIdle_H.ani
+PlayerRightAimUpIdle_H.ani
+PlayerRightAimDown_H.ani
+PlayerLeftAimUpStart_H.ani
+PlayerLeftAimDown_H.ani
+PlayerLeftAimUpIdle_H.ani
+PlayerRightHeavyMidShot.ani
+PlayerRightHeavyMidShotEnd.ani
+PlayerRightAimUpStartHeavyShot.ani
+PlayerRightAimDownHeavyShot.ani
+PlayerRightHeavyUpShot.ani
+PlayerRightHeavyUpShotEnd.ani
