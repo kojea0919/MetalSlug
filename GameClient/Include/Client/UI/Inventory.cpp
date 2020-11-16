@@ -32,17 +32,17 @@ bool CInventory::Init()
 	m_pExitButton = CreateControl<CUIButton>("CloseButton");
 
 	m_pBack->SetRelativePos(50.f, 100.f, 0.f);
-	m_pBack->SetRelativeScale(300.f, 400.f, 1.f);
-	m_pBack->SetTexture("UIBarBack");
+	m_pBack->SetRelativeScale(165.f, 200.f, 1.f);
+	m_pBack->SetTexture("InventoryBackImage");
 
 	m_pTitleBar->SetInheritScale(false);
-	m_pTitleBar->SetRelativePos(0.f, 380.f, 0.f);
-	m_pTitleBar->SetRelativeScale(280.f, 20.f, 1.f);
-	m_pTitleBar->SetTexture("UIBar");
+	m_pTitleBar->SetRelativePos(4.f, 175.f, 0.f);
+	m_pTitleBar->SetRelativeScale(135.f, 22.f, 1.f);
+	m_pTitleBar->SetTexture("Inventorytitlebar");
 	m_pTitleBar->SetZOrder(1);
 
 	m_pExitButton->SetInheritScale(false);
-	m_pExitButton->SetRelativePos(280.f, 380.f, 0.f);
+	m_pExitButton->SetRelativePos(140.f, 175.f, 0.f);
 	m_pExitButton->SetRelativeScale(20.f, 20.f, 1.f);
 	m_pExitButton->SetZOrder(1);
 	m_pExitButton->SetClickCallback<CInventory>(this, &CInventory::ExitButtonCallback);

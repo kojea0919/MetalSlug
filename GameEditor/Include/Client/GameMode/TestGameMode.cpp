@@ -61,11 +61,11 @@ bool CTestGameMode::Init()
 
 	CSlider* pSlider = m_pScene->CreateUIObject<CSlider>("Slider");
 
-	SAFE_RELEASE(pSlider);
+	SAFE_RELEASE(pSlider);*/
 
 	CInventory* pInventory = m_pScene->CreateUIObject<CInventory>("Inventory");
 
-	SAFE_RELEASE(pInventory);*/
+	SAFE_RELEASE(pInventory);
 
 	CTestIcon* pTestIcon = m_pScene->CreateUIObject<CTestIcon>("TestIcon");
 
@@ -115,6 +115,10 @@ bool CTestGameMode::LoadTexture()
 	pManager->LoadTexture("CloseButton", TEXT("ExitButton.png"));
 	pManager->LoadTexture("WeaponSlot", TEXT("WeaponSlot.png"));
 	pManager->LoadTexture("WeaponIcon", TEXT("WeaponIcon.png"));
+	pManager->LoadTexture("InventoryBackImage", TEXT("InventoryBackImage.png"));
+	pManager->LoadTexture("Inventorytitlebar", TEXT("Inventorytitlebar.png"));
+	pManager->LoadTexture("SlotGrid", TEXT("SlotGrid.png"));
+	pManager->LoadTexture("InventoryScrollBar", TEXT("InventoryScrollBar.png"));
 
 	return true;
 }
