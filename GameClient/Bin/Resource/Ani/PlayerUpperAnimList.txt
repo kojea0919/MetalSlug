@@ -1,4 +1,4 @@
-44
+50
 PlayerRightUpperIdle
 PlayerRightUpperMove
 PlayerRightUpperMoveStart
@@ -43,3 +43,9 @@ PlayerRightAimUpStartHeavyShot
 PlayerRightAimDownHeavyShot
 PlayerRightHeavyUpShot
 PlayerRightHeavyUpShotEnd
+PlayerLeftHeavyMidShot
+PlayerLeftHeavyMidShotEnd
+PlayerLeftAimDownHeavyShot
+PlayerLeftAimUpStartHeavyShot
+PlayerLeftHeavyUpShot
+PlayerLeftHeavyUpShotEnd

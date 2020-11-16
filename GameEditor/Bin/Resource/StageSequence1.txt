@@ -1,4 +1,4 @@
-77
+87
 PlayerRightUpperIdle.ani
 PlayerRightLowerIdle.ani
 PlayerRightUpperMoveStart.ani
@@ -76,3 +76,13 @@ PlayerRightAimUpStartHeavyShot.ani
 PlayerRightAimDownHeavyShot.ani
 PlayerRightHeavyUpShot.ani
 PlayerRightHeavyUpShotEnd.ani
+PlayerLeftHeavyMidShot.ani
+PlayerLeftHeavyMidShotEnd.ani
+PlayerLeftAimUpStartHeavyShot.ani
+PlayerLeftAimDownHeavyShot.ani
+PlayerLeftHeavyUpShot.ani
+PlayerLeftHeavyUpShotEnd.ani
+PlayerRightSitShot_H.ani
+PlayerRightSitShotEnd_H.ani
+PlayerLeftSitShot_H.ani
+PlayerLeftSitShotEnd_H.ani

@@ -219,10 +219,16 @@ void CPlayer::UpdateAnimation(float fTime)
 				m_pLowerMesh->ChangeSprite("PlayerRightSitMove_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSHOT:
-			m_pLowerMesh->ChangeSprite("PlayerRightSitShot");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerRightSitShot");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerRightSitShot_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSHOTEND:
-			m_pLowerMesh->ChangeSprite("PlayerRightSitShotEnd");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerRightSitShotEnd");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerRightSitShotEnd_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITTHROWBOMB:
 			if(bIsNormal)
@@ -386,10 +392,16 @@ void CPlayer::UpdateAnimation(float fTime)
 				m_pLowerMesh->ChangeSprite("PlayerLeftSitMove_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSHOT:
-			m_pLowerMesh->ChangeSprite("PlayerLeftSitShot");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitShot");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitShot_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITSHOTEND:
-			m_pLowerMesh->ChangeSprite("PlayerLeftSitShotEnd");
+			if(bIsNormal)
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitShotEnd");
+			else
+				m_pLowerMesh->ChangeSprite("PlayerLeftSitShotEnd_H");
 			break;
 		case PLAYER_ANIMSTATE::PS_SITTHROWBOMB:
 			if(bIsNormal)

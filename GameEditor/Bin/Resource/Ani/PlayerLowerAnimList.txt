@@ -1,4 +1,4 @@
-30
+34
 PlayerRightLowerIdle
 PlayerRightLowerMove
 PlayerRightLowerMoveStart
@@ -29,3 +29,7 @@ PlayerRightSitMove_H
 PlayerLeftSitMove_H
 PlayerRightSitThrowBomb_H
 PlayerLeftSitThrowBomb_H
+PlayerRightSitShotEnd_H
+PlayerRightSitShot_H
+PlayerLeftSitShotEnd_H
+PlayerLeftSitShot_H
