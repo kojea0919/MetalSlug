@@ -25,21 +25,21 @@ CResourceManager::~CResourceManager()
 	DESTROY_SINGLE(CShaderManager);
 
 	SAFE_RELEASE(m_pDefaultUITexture);
-	SAFE_RELEASE(m_pPointSmp);
-	SAFE_RELEASE(m_pLinearSmp);
-	SAFE_RELEASE(m_pAnisotropicSmp);
-	SAFE_RELEASE(m_pDefault2DMesh);
-	SAFE_RELEASE(m_pDefaultUIMesh);
-
-	SAFE_RELEASE_MAP(m_mapTextFormat);
-	SAFE_RELEASE_MAP(m_mapBrush);
-	SAFE_RELEASE(m_pWriteFactory);
-
 	SAFE_RELEASE_MAP(m_mapAnim2D);
 	SAFE_RELEASE_MAP(m_mapMesh);
 	SAFE_RELEASE_MAP(m_mapMaterial);
 	SAFE_RELEASE_MAP(m_mapTexture);
 	SAFE_RELEASE_MAP(m_mapSound);
+
+	SAFE_RELEASE_MAP(m_mapTextFormat);
+	SAFE_RELEASE_MAP(m_mapBrush);
+	SAFE_RELEASE(m_pWriteFactory);
+
+	SAFE_RELEASE(m_pDefault2DMesh);
+	SAFE_RELEASE(m_pDefaultUIMesh);
+	SAFE_RELEASE(m_pPointSmp);
+	SAFE_RELEASE(m_pLinearSmp);
+	SAFE_RELEASE(m_pAnisotropicSmp);
 
 	{
 		auto	iter = m_mapChannelGroup.begin();
@@ -258,6 +258,21 @@ bool CResourceManager::Init()
 
 	SAFE_RELEASE(pTexture);
 
+	//----------------------------------------------------
+
+	//Material Setting
+	//----------------------------------------------------
+	pMaterial = CreateMaterial("CheckBoxMaterial");
+
+	pMaterial->SetShader("CheckBoxShader");
+
+	SAFE_RELEASE(pMaterial);
+
+	pMaterial = CreateMaterial("ProgressBarMaterial");
+
+	pMaterial->SetShader("BarShader");
+
+	SAFE_RELEASE(pMaterial);
 	//----------------------------------------------------
 
 	return true;
@@ -1091,4 +1106,42 @@ ID3D11SamplerState* CResourceManager::CreateSampler(D3D11_FILTER eFilter)
 	//--------------------------------------------------------
 
 	return pSampler;
+}
+
+void CResourceManager::Destroy()
+{
+	/*DESTROY_SINGLE(CShaderManager);
+
+	SAFE_RELEASE(m_pDefaultUITexture);
+	SAFE_RELEASE_MAP(m_mapAnim2D);
+	SAFE_RELEASE_MAP(m_mapMesh);
+	SAFE_RELEASE_MAP(m_mapMaterial);
+	SAFE_RELEASE_MAP(m_mapTexture);
+	SAFE_RELEASE_MAP(m_mapSound);
+
+	SAFE_RELEASE_MAP(m_mapTextFormat);
+	SAFE_RELEASE_MAP(m_mapBrush);
+	SAFE_RELEASE(m_pWriteFactory);
+
+	SAFE_RELEASE(m_pDefault2DMesh);
+	SAFE_RELEASE(m_pDefaultUIMesh);
+	SAFE_RELEASE(m_pPointSmp);
+	SAFE_RELEASE(m_pLinearSmp);
+	SAFE_RELEASE(m_pAnisotropicSmp);
+
+	{
+		auto	iter = m_mapChannelGroup.begin();
+		auto	iterEnd = m_mapChannelGroup.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			iter->second->release();
+		}
+	}
+
+	if (m_pSystem)
+	{
+		m_pSystem->close();
+		m_pSystem->release();
+	}*/
 }

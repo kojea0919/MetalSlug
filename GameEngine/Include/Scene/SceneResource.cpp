@@ -20,6 +20,7 @@ CSceneResource::~CSceneResource()
 
 		for (; iter != iterEnd; ++iter)
 		{
+			SAFE_RELEASE(iter->second);
 			GET_SINGLE(CResourceManager)->ReleaseMesh(iter->first);
 		}
 	}
@@ -30,6 +31,7 @@ CSceneResource::~CSceneResource()
 
 		for (; iter != iterEnd; ++iter)
 		{
+			SAFE_RELEASE(iter->second);
 			GET_SINGLE(CResourceManager)->ReleaseMaterial(iter->first);
 		}
 	}
@@ -50,6 +52,7 @@ CSceneResource::~CSceneResource()
 
 		for (; iter != iterEnd; ++iter)
 		{
+			SAFE_RELEASE(iter->second);
 			GET_SINGLE(CResourceManager)->ReleaseTexture(iter->first);
 		}
 	}
@@ -60,6 +63,7 @@ CSceneResource::~CSceneResource()
 		
 		for (; iter != iterEnd; ++iter)
 		{
+			SAFE_RELEASE(iter->second);
 			GET_SINGLE(CResourceManager)->ReleaseAnimation2DSequence(iter->first);
 		}
 	}
@@ -70,6 +74,7 @@ CSceneResource::~CSceneResource()
 
 		for (; iter != iterEnd; ++iter)
 		{
+			SAFE_RELEASE(iter->second);
 			GET_SINGLE(CResourceManager)->ReleaseSound(iter->first);
 		}
 	}
@@ -134,6 +139,23 @@ CMesh* CSceneResource::FindMesh(const string& strName)
 	iter->second->AddRef();
 
 	return iter->second;
+}
+
+bool CSceneResource::CreateMaterial(const string& strName)
+{
+	CMaterial* pMaterial = FindMaterial(strName);
+
+	if (pMaterial)
+	{
+		SAFE_RELEASE(pMaterial);
+		return true;
+	}
+
+	pMaterial = GET_SINGLE(CResourceManager)->CreateMaterial(strName);
+
+	m_mapMaterial.insert(make_pair(strName, pMaterial));
+
+	return true;
 }
 
 CMaterial* CSceneResource::FindMaterial(const string& strName)

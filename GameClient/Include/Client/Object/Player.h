@@ -96,7 +96,14 @@ protected:
 	//플레이어의 현재 무기 상태(normal, heavy gun)
 	WEAPON_STATE	m_eCurWeaponState;
 
-	
+	//인벤토리
+	class CInventory* m_pInventory;
+
+public:
+	void SetInventory(class CInventory* pInventory)
+	{
+		m_pInventory = pInventory;
+	}
 
 protected:
 	//PlayerAnimList파일을 읽어서 플레이어에서 사용하는 애니메이션 Setting
@@ -137,8 +144,7 @@ protected:
 
 	void ThrowBomb(float fTime);
 
-	//test
-	void TEST(float fTime);
+	void InventoryScroll(float fScale, float fTime);
 
 protected:
 	//Animation Notify Proc

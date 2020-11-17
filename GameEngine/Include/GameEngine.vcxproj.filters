@@ -127,6 +127,9 @@
     <Filter Include="04. Render\02. RenderLayer">
       <UniqueIdentifier>{dc6ae68e-7ffc-4d37-b7c6-065653ffe804}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. Render\03. Instancing">
+      <UniqueIdentifier>{53343511-e68b-4b78-b5fc-e67cc2063b05}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameEngine.h">
@@ -375,6 +378,9 @@
     <ClInclude Include="Resource\MaterialInstance.h">
       <Filter>03. Resource\03. Material</Filter>
     </ClInclude>
+    <ClInclude Include="Render\RenderInstancing.h">
+      <Filter>04. Render\03. Instancing</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Engine.cpp">
@@ -601,6 +607,9 @@
     </ClCompile>
     <ClCompile Include="Resource\MaterialInstance.cpp">
       <Filter>03. Resource\03. Material</Filter>
+    </ClCompile>
+    <ClCompile Include="Render\RenderInstancing.cpp">
+      <Filter>04. Render\03. Instancing</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -168,5 +168,8 @@ private:
 private:
 	ID3D11SamplerState* CreateSampler(D3D11_FILTER eFilter);
 
+public:
+	void Destroy();
+
 	DECLARE_SINGLE(CResourceManager)
 };

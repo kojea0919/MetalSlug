@@ -4,6 +4,7 @@
 #include "Scene/Scene.h"
 #include "Scene/SceneResource.h"
 #include "Resource/Texture.h"
+#include "Resource/Material.h"
 #include "UI/UIObject.h"
 #include "UI/UIButton.h"
 #include "Scene/UIViewport.h"
@@ -43,9 +44,9 @@ bool CTestGameMode::Init()
 
 	SAFE_RELEASE(pMonster);*/
 
-	/*CTestObj* pTestObj = m_pScene->CreateObject<CTestObj>("TestObj");
+	CTestObj* pTestObj = m_pScene->CreateObject<CTestObj>("TestObj");
 
-	SAFE_RELEASE(pTestObj);*/
+	SAFE_RELEASE(pTestObj);
 
 	CTestButton* pTestButton = m_pScene->CreateUIObject<CTestButton>("TestButton");
 
@@ -64,6 +65,8 @@ bool CTestGameMode::Init()
 	SAFE_RELEASE(pSlider);*/
 
 	CInventory* pInventory = m_pScene->CreateUIObject<CInventory>("Inventory");
+
+	((CPlayer*)m_pPlayer)->SetInventory(pInventory);
 
 	SAFE_RELEASE(pInventory);
 
@@ -119,7 +122,8 @@ bool CTestGameMode::LoadTexture()
 	pManager->LoadTexture("Inventorytitlebar", TEXT("Inventorytitlebar.png"));
 	pManager->LoadTexture("SlotGrid", TEXT("SlotGrid.png"));
 	pManager->LoadTexture("InventoryScrollBar", TEXT("InventoryScrollBar.png"));
-
+	pManager->LoadTexture("InventoryScroll", TEXT("InventoryScroll.png"));
+	pManager->LoadTexture("PixelTest", TEXT("PixelCollision.png"));
 	return true;
 }
 
@@ -135,6 +139,26 @@ bool CTestGameMode::LoadAnimation2D()
 		(int)pTexture->GetImageCount());
 
 	SAFE_RELEASE(pTexture);
+
+	return true;
+}
+
+bool CTestGameMode::CreateMaterial()
+{
+	CSceneResource* pManager = m_pScene->GetResourceManager();
+
+	//해당 모드에서 사용하는 Texture를 Setting해주기 위해서 GameMode에서 생성
+	//--------------------------------------------------------------------
+	pManager->CreateMaterial("TextPixelMtrl");
+
+	CMaterial* pMtrl = pManager->FindMaterial("TestPixelMtrl");
+
+	pMtrl->SetShader("NormalShader");
+	pMtrl->SetTexture(TEXTURE_LINK::DIFFUSE, "PixelTest",
+		(int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL);
+
+	SAFE_RELEASE(pMtrl);
+	//--------------------------------------------------------------------
 
 	return true;
 }

@@ -201,6 +201,7 @@
     <ClInclude Include="Ref.h" />
     <ClInclude Include="Render\BlendState.h" />
     <ClInclude Include="Render\DepthStencilState.h" />
+    <ClInclude Include="Render\RenderInstancing.h" />
     <ClInclude Include="Render\RenderLayer.h" />
     <ClInclude Include="Render\RenderManager.h" />
     <ClInclude Include="Render\RenderState.h" />
@@ -281,6 +282,7 @@
     <ClCompile Include="Ref.cpp" />
     <ClCompile Include="Render\BlendState.cpp" />
     <ClCompile Include="Render\DepthStencilState.cpp" />
+    <ClCompile Include="Render\RenderInstancing.cpp" />
     <ClCompile Include="Render\RenderLayer.cpp" />
     <ClCompile Include="Render\RenderManager.cpp" />
     <ClCompile Include="Render\RenderState.cpp" />

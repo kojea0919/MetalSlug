@@ -37,6 +37,9 @@ CEngine::~CEngine()
 	DESTROY_SINGLE(CCollisionManager);
 	DESTROY_SINGLE(CInput);
 	DESTROY_SINGLE(CRenderManager);
+
+	GET_SINGLE(CResourceManager)->Destroy();
+
 	DESTROY_SINGLE(CResourceManager);
 	DESTROY_SINGLE(CPathManager);
 

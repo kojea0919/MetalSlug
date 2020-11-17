@@ -3,6 +3,8 @@
 #include "../Resource/Texture.h"
 #include "../Resource/Material.h"
 #include "../Resource/ShaderManager.h"
+#include "../Scene/Scene.h"
+#include "../Scene/SceneResource.h"
 
 CUIProgressBar::CUIProgressBar()
 	:m_eDir(BAR_DIR::LeftRight), m_fPercent(1.f)
@@ -23,7 +25,8 @@ bool CUIProgressBar::Init()
 	if (!CUIControl::Init())
 		return false;
 
-	m_pMaterial->SetShader("BarShader");
+	SAFE_RELEASE(m_pMaterial);
+	m_pMaterial = m_pScene->GetResourceManager()->FindMaterial("ProgressBarMaterial");
 
 	return true;
 }

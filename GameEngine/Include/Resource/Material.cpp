@@ -50,7 +50,7 @@ CMaterial::~CMaterial()
 	for (size_t iCnt = 0; iCnt < iSize; ++iCnt)
 	{
 		GET_SINGLE(CResourceManager)->ReleaseTexture(m_vecTexture[iCnt]->pTexture->GetName());
-		SAFE_RELEASE(m_vecTexture[iCnt]->pTexture);
+		//SAFE_RELEASE(m_vecTexture[iCnt]->pTexture);
 		SAFE_DELETE(m_vecTexture[iCnt]);
 	}
 

@@ -12,7 +12,7 @@ public:
 protected:
 	class CMesh2DComponent* m_pMesh;
 	//class CColliderPixel* m_pBody;
-	class CColliderRect* m_pBody;
+	class CColliderPixel* m_pBody;
 public:
 	virtual bool Init();
 	virtual void Start();

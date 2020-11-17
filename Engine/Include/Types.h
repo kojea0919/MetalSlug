@@ -57,6 +57,40 @@ using namespace FMOD;
 
 #endif
 
+//정점 버퍼
+//------------------------------
+typedef struct _tagVertexBuffer
+{
+	ID3D11Buffer* pBuffer;	//버퍼
+	int				iSize;		//정점 1개의 크기
+	int				iCount;		//정점 수
+	D3D11_USAGE		eUsage;
+
+	void* pData;
+
+	_tagVertexBuffer()
+	{
+		pBuffer = nullptr;
+		pData = nullptr;
+		iSize = 0;
+		iCount = 0;
+	}
+}VertexBuffer, * PVertexBuffer;
+//------------------------------
+
+
+//인덱스 버퍼
+//------------------------------
+typedef struct _tagIndexBuffer
+{
+	ID3D11Buffer* pBuffer;	//버퍼
+	int				iSize;		//정점 1개의 크기
+	int				iCount;		//정점 수
+	D3D11_USAGE		eUsage;
+	DXGI_FORMAT		eFmt;
+}IndexBuffer, * PIndexBuffer;
+//------------------------------
+
 typedef struct _tagConstantBuffer
 {
 	ID3D11Buffer* pBuffer;
@@ -227,3 +261,8 @@ typedef struct _tagMaterialTextureInfo
 	int				iShaderType;	//적용할 셰이더 타입
 }MaterialTextureInfo, * PMaterialTextureInfo;
 //------------------------------------------
+
+typedef struct _tagInstancingData
+{
+	Matrix	matWVP;
+}InstancingData, * PInstancingData;

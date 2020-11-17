@@ -13,6 +13,7 @@
 #include "Component/ColliderPixel.h"
 #include "Component/ColliderSphere2D.h"
 #include "PathManager.h"
+#include "../UI/Inventory.h"
 
 
 CPlayer::CPlayer()
@@ -24,7 +25,8 @@ CPlayer::CPlayer()
 	m_bIsAimUp(false),m_eUpperAnimState(PLAYER_ANIMSTATE::PS_IDLE),
 	m_eLowerAnimState(PLAYER_ANIMSTATE::PS_IDLE),
 	m_bIsStand(true),m_bIsCanFire(true),
-	m_bRecvDownInput(false),m_eCurWeaponState(WEAPON_STATE::WS_HEAVY)
+	m_bRecvDownInput(false),m_eCurWeaponState(WEAPON_STATE::WS_HEAVY),
+	m_pInventory(nullptr)
 {
 }
 
@@ -591,6 +593,8 @@ bool CPlayer::Init()
 
 	AddBindAxis("MoveSide", this, &CPlayer::MoveSide);
 	AddBindAxis("RotationZ", this, &CPlayer::RotationZ);
+	AddBindAxis("Scroll", this, &CPlayer::InventoryScroll);
+	
 	AddBindAction("Fire", KT_DOWN, this, &CPlayer::Fire);
 	AddBindAction("AimUp",KT_DOWN, this, &CPlayer::AimUp);
 	AddBindAction("AimUp", KT_UP, this, &CPlayer::AimDown);
@@ -598,7 +602,7 @@ bool CPlayer::Init()
 	AddBindAction("Down", KT_UP, this, &CPlayer::Up);
 	AddBindAction("Bomb", KT_DOWN, this, &CPlayer::ThrowBomb);
 
-	
+
 	return true;
 }
 
@@ -865,9 +869,15 @@ void CPlayer::ThrowBomb(float fTime)
 	}
 }
 
-void CPlayer::TEST(float fTime)
+void CPlayer::InventoryScroll(float fScale, float fTime)
 {
-	
+	if (fScale != 0)
+	{
+		if (fScale < 0.f)
+		{
+			m_pInventory->ScrollDown();
+		}
+	}
 }
 
 void CPlayer::MoveStartEndProc()

@@ -43,6 +43,8 @@ public:
 	class CMesh* FindMesh(const string& strName);
 
 public:
+	bool CreateMaterial(const string& strName);
+
 	//Material Å½»öÇÔ¼ö
 	class CMaterial* FindMaterial(const string& strName);
 

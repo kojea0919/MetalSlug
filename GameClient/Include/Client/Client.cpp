@@ -11,6 +11,9 @@ bool GlobalSetting()
 	GET_SINGLE(CInput)->AddAxisKey("RotationZ", 'E', 1.f);
 	GET_SINGLE(CInput)->AddAxisKey("RotationZ", 'Q', -1.f);
 	
+	GET_SINGLE(CInput)->AddAxisKey("Scroll", (char)MOUSEWHEELUP, 1.f);
+	GET_SINGLE(CInput)->AddAxisKey("Scroll", (char)MOUSEWHEELDOWN, -1.f);
+
 	GET_SINGLE(CInput)->AddActionKey("Fire", 'J');
 	GET_SINGLE(CInput)->AddActionKey("AimUp", 'W');
 	GET_SINGLE(CInput)->AddActionKey("Down", 'S');

@@ -17,5 +17,7 @@ private:
 
 	//GameMOde에서 사용하는 애니메이션 정보 Load
 	bool LoadAnimation2D();
+
+	bool CreateMaterial();
 };
 

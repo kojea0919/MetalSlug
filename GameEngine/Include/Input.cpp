@@ -254,6 +254,23 @@ void CInput::UpdateDInputKeyInfo(float fTime)
 
 	for (; iter != iterEnd; ++iter)
 	{
+		//마우스 휠인 경우
+		//----------------------------------
+		if ((*iter)->cKey == (char)MOUSEWHEELUP && m_tMouseState.lZ >0)
+		{
+			(*iter)->bPush = true;
+			(*iter)->fPushTime += fTime;
+			continue;
+		}
+		else if ((*iter)->cKey == (char)MOUSEWHEELDOWN && m_tMouseState.lZ < 0)
+		{
+			(*iter)->bPush = true;
+			(*iter)->fPushTime += fTime;
+			continue;
+		}
+
+		//----------------------------------
+
 		//VK -> DK
 		unsigned char	cKey = ConvertKey((*iter)->cKey);
 
@@ -865,8 +882,6 @@ unsigned char CInput::ConvertKey(unsigned char cKey)
 			return DIK_MOUSELBUTTON;
 		case VK_RBUTTON:
 			return DIK_MOUSERBUTTON;
-		case DIK_MOUSEWHEEL:
-			return DIK_MOUSEWHEEL;
 		default:
 			return -1;
 		}

@@ -6,6 +6,9 @@
 #define DIK_MOUSERBUTTON	0xfd
 #define DIK_MOUSEWHEEL		0xfe
 
+#define MOUSEWHEELUP		0xdd
+#define MOUSEWHEELDOWN		0xde
+
 //Key입력 종류 열거형
 //-------------------
 enum KEY_TYPE

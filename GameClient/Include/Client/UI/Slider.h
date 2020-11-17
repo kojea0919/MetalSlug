@@ -21,7 +21,7 @@ public:
 	virtual void PrevRender();
 	virtual void Render();
 	virtual void PostRender();
-	virtual CSlider* Clone();
+	virtual CSlider* Clone(); 
 
 
 private:

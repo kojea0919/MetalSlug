@@ -45,7 +45,8 @@ bool CUICheckBox::Init()
 	if (!CUIButton::Init())
 		return false;
 
-	m_pMaterial->SetShader("CheckBoxShader");
+	SAFE_RELEASE(m_pMaterial);
+	m_pMaterial = m_pScene->GetResourceManager()->FindMaterial("CheckBoxMaterial");
 
 	m_pText = new CUIText;
 
