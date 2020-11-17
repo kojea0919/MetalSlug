@@ -25,20 +25,7 @@ CInventory::~CInventory()
 
 void CInventory::ScrollDown()
 {
-	++m_fStart;
-	++m_fEnd;
 
-	if (m_fEnd == m_fSlotHeight)
-	{
-		--m_fEnd;
-		--m_fStart;
-		return;
-	}
-
-	float fRate = m_fSlotHeight - m_fEnd / m_fSlotHeight;
-
-	
-	m_pBar->AddRelativePos(0.f, -1.f, 0.f);
 }
 
 void CInventory::ScrollUp()
@@ -106,9 +93,14 @@ bool CInventory::Init()
 	m_fSlotRenderHeight = 175.f;
 	//------------------------
 
+	//BackBar에서 Bar의 가동 범위 크기
+	//------------------------
+	m_fBarMoveLen = 147.f;
+	//------------------------
+
 	//Bar의 세로 크기 Setting
 	//------------------------
-	float fBarHeight = m_fSlotRenderHeight * 147 / m_fSlotHeight;
+	float fBarHeight = m_fSlotRenderHeight * m_fBarMoveLen / m_fSlotHeight;
 	//------------------------
 
 	m_pBar->SetInheritScale(false);

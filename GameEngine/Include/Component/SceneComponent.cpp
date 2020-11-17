@@ -644,6 +644,11 @@ Vector3 CSceneComponent::GetPivot() const
 	return m_pTransform->GetPivot();
 }
 
+Vector3 CSceneComponent::GetMeshSize() const
+{
+	return m_pTransform->GetMeshSize();
+}
+
 Matrix CSceneComponent::GetScaleMatrix() const
 {
 	return m_pTransform->GetScaleMatrix();

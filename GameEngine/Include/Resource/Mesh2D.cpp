@@ -211,6 +211,10 @@ void CMesh2D::Render(float fTime)
 	}
 }
 
+void CMesh2D::RenderInstancing(const PVertexBuffer pData, float fTime)
+{
+}
+
 void CMesh2D::Save(FILE* pFile)
 {
 	CMesh::Save(pFile);

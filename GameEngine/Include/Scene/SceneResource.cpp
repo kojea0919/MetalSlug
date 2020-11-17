@@ -20,7 +20,6 @@ CSceneResource::~CSceneResource()
 
 		for (; iter != iterEnd; ++iter)
 		{
-			SAFE_RELEASE(iter->second);
 			GET_SINGLE(CResourceManager)->ReleaseMesh(iter->first);
 		}
 	}
@@ -31,7 +30,6 @@ CSceneResource::~CSceneResource()
 
 		for (; iter != iterEnd; ++iter)
 		{
-			SAFE_RELEASE(iter->second);
 			GET_SINGLE(CResourceManager)->ReleaseMaterial(iter->first);
 		}
 	}
@@ -52,7 +50,6 @@ CSceneResource::~CSceneResource()
 
 		for (; iter != iterEnd; ++iter)
 		{
-			SAFE_RELEASE(iter->second);
 			GET_SINGLE(CResourceManager)->ReleaseTexture(iter->first);
 		}
 	}
@@ -63,7 +60,6 @@ CSceneResource::~CSceneResource()
 		
 		for (; iter != iterEnd; ++iter)
 		{
-			SAFE_RELEASE(iter->second);
 			GET_SINGLE(CResourceManager)->ReleaseAnimation2DSequence(iter->first);
 		}
 	}
@@ -74,7 +70,6 @@ CSceneResource::~CSceneResource()
 
 		for (; iter != iterEnd; ++iter)
 		{
-			SAFE_RELEASE(iter->second);
 			GET_SINGLE(CResourceManager)->ReleaseSound(iter->first);
 		}
 	}

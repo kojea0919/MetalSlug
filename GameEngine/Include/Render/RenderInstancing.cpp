@@ -46,7 +46,7 @@ void CRenderInstancing::AddInstancingData(const InstancingData* pData)
 	++m_iCount;
 }
 
-void CRenderInstancing::Render()
+void CRenderInstancing::Render(float fTime)
 {
 	D3D11_MAPPED_SUBRESOURCE	tMap = {};
 
@@ -55,4 +55,13 @@ void CRenderInstancing::Render()
 	memcpy(tMap.pData, m_tInstancingBuffer.pData, m_tInstancingBuffer.iSize * m_iCount);
 
 	CONTEXT->Unmap(m_tInstancingBuffer.pBuffer, 0);
+
+	m_pMaterial->SetMaterial();
+
+	m_pMesh->RenderInstancing(&m_tInstancingBuffer, fTime);
+}
+
+void CRenderInstancing::Clear()
+{
+	m_iCount = 0;
 }

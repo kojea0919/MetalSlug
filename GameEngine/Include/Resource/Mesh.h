@@ -22,6 +22,11 @@ protected:
 	MESH_TYPE	m_eMeshType;
 
 public:
+	MESH_TYPE GetMeshType()	const
+	{
+		return m_eMeshType;
+	}
+
 	//Material SetÇÔ¼ö
 	void SetMaterial(class CMaterial* pMaterial);
 
@@ -53,6 +58,7 @@ public:
 
 public:
 	virtual void Render(float fTime) = 0;
+	virtual void RenderInstancing(const PVertexBuffer pData, float fTime);
 
 public:
 	virtual void Save(FILE* pFile);

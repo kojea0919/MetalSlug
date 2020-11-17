@@ -46,6 +46,10 @@ public:
 	{
 		m_bActive = false;
 	}
+	int GetRefCount() const
+	{
+		return m_iRefCount;
+	}
 	//------------------
 
 

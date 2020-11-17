@@ -7,7 +7,7 @@
 #include "../CollisionManager.h"
 
 CCollider::CCollider()
-    : m_pDebugMesh(nullptr), m_pMaterial(nullptr),
+    : m_pDebugMesh(nullptr),
     m_bUI(false),m_b2D(false),m_pProfile(nullptr),
     m_bMouseCollision(false),m_bCollisionEnable(true)
 {
@@ -27,11 +27,6 @@ CCollider::CCollider(const CCollider& com)
 
     if (m_pDebugMesh)
         m_pDebugMesh->AddRef();
-
-    m_pMaterial = com.m_pMaterial;
-
-    if (m_pMaterial)
-        m_pMaterial->AddRef();
 }
 
 CCollider::~CCollider()
@@ -52,7 +47,6 @@ CCollider::~CCollider()
         //----------------------------------------------
     }
 
-    SAFE_RELEASE(m_pMaterial);
     SAFE_RELEASE(m_pDebugMesh);
 }
 
@@ -62,7 +56,11 @@ bool CCollider::Init()
         return false;
 
     //Collider Material Setting
-    m_pMaterial = GET_SINGLE(CResourceManager)->FindMaterial("Collider");
+    CMaterial* pMaterial = GET_SINGLE(CResourceManager)->FindMaterial("Collider");
+
+    SetMaterial(pMaterial);
+
+    SAFE_RELEASE(pMaterial);
 
     m_pProfile = GET_SINGLE(CCollisionManager)->FindProfile("Static");
 
@@ -99,14 +97,14 @@ void CCollider::PrevRender(float fTime)
 
 void CCollider::Render(float fTime)
 {
-    CPrimitiveComponent::Render(fTime);
-
     if (m_PrevCollisionList.empty() && !m_bMouseCollision)
         m_pMaterial->SetDiffuseColor(0.f, 1.f, 0.f, 1.f);
 
     //충돌한 충돌체가 있거나 마우스 충돌을 한 경우 
     else
         m_pMaterial->SetDiffuseColor(1.f, 0.f, 0.f, 1.f);
+
+    CPrimitiveComponent::Render(fTime);
 }
 
 void CCollider::PostRender(float fTime)

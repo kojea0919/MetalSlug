@@ -96,8 +96,6 @@ void CColliderRect::Render(float fTime)
 {
     CCollider::Render(fTime);
 
-    m_pMaterial->SetMaterial();
-
     m_pDebugMesh->Render(fTime);
 }
 

@@ -282,6 +282,12 @@ bool CShaderManager::Init()
 	pShader->AddInputLayoutDesc("WORLD", 3,
 		DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 16,
 		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("MESHSIZE", 0,
+		DXGI_FORMAT_R32G32B32_FLOAT, 1, 12,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("PIVOT", 0,
+		DXGI_FORMAT_R32G32B32_FLOAT, 1, 12,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
 
 	if (!pShader->CreateInputLayout())
 	{

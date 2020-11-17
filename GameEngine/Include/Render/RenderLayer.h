@@ -40,6 +40,7 @@ public:
 
 private:
 	vector<class CPrimitiveComponent*>	m_vecRender;
+	list<class CRenderInstancing*>		m_RenderInstancingList;
 	bool								m_b2D;
 
 public:

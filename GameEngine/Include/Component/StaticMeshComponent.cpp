@@ -7,7 +7,7 @@ CStaticMeshComponent::CStaticMeshComponent()
 }
 
 CStaticMeshComponent::CStaticMeshComponent(const CStaticMeshComponent& com) :
-	CMeshComponent(com)
+	CPrimitiveComponent(com)
 {
 }
 
@@ -17,7 +17,7 @@ CStaticMeshComponent::~CStaticMeshComponent()
 
 bool CStaticMeshComponent::Init()
 {
-	if (!CMeshComponent::Init())
+	if (!CPrimitiveComponent::Init())
 		return false;
 
 	return true;
@@ -25,37 +25,37 @@ bool CStaticMeshComponent::Init()
 
 void CStaticMeshComponent::Start()
 {
-	CMeshComponent::Start();
+	CPrimitiveComponent::Start();
 }
 
 void CStaticMeshComponent::Update(float fTime)
 {
-	CMeshComponent::Update(fTime);
+	CPrimitiveComponent::Update(fTime);
 }
 
 void CStaticMeshComponent::PostUpdate(float fTime)
 {
-	CMeshComponent::PostUpdate(fTime);
+	CPrimitiveComponent::PostUpdate(fTime);
 }
 
 void CStaticMeshComponent::Collision(float fTime)
 {
-	CMeshComponent::Collision(fTime);
+	CPrimitiveComponent::Collision(fTime);
 }
 
 void CStaticMeshComponent::PrevRender(float fTime)
 {
-	CMeshComponent::PrevRender(fTime);
+	CPrimitiveComponent::PrevRender(fTime);
 }
 
 void CStaticMeshComponent::Render(float fTime)
 {
-	CMeshComponent::Render(fTime);
+	CPrimitiveComponent::Render(fTime);
 }
 
 void CStaticMeshComponent::PostRender(float fTime)
 {
-	CMeshComponent::PostRender(fTime);
+	CPrimitiveComponent::PostRender(fTime);
 }
 
 CStaticMeshComponent* CStaticMeshComponent::Clone()
@@ -65,11 +65,11 @@ CStaticMeshComponent* CStaticMeshComponent::Clone()
 
 void CStaticMeshComponent::Save(FILE* pFile)
 {
-	CMeshComponent::Save(pFile);
+	CPrimitiveComponent::Save(pFile);
 }
 
 void CStaticMeshComponent::Load(FILE* pFile)
 {
-	CMeshComponent::Load(pFile);
+	CPrimitiveComponent::Load(pFile);
 }
 

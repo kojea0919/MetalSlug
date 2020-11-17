@@ -30,6 +30,8 @@ private:
 	float			m_fStart;
 	float			m_fEnd;
 
+	float			m_fBarMoveLen;
+
 public:
 	void ScrollDown();
 	void ScrollUp();

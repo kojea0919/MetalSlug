@@ -36,7 +36,7 @@ public:
 
 public:
 	virtual void Render(float fTime);
-
+	virtual void RenderInstancing(const PVertexBuffer pData, float fTime);
 public:
 	virtual void Save(FILE* pFile);
 	virtual void Load(FILE* pFile);

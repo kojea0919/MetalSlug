@@ -68,6 +68,10 @@ bool CMesh::CreateMesh(void* pVertices, int iVtxCount, int iVtxSize, D3D11_USAGE
 	return true;
 }
 
+void CMesh::RenderInstancing(const PVertexBuffer pData, float fTime)
+{
+}
+
 void CMesh::Save(FILE* pFile)
 {
 	CRef::Save(pFile);

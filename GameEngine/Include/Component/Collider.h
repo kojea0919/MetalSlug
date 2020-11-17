@@ -18,7 +18,6 @@ protected:
 	//에디터에서만 Render
 	//---------------------------------	
 	class CMesh*		m_pDebugMesh;
-	class CMaterial*	m_pMaterial;
 	//---------------------------------
 
 	//충돌시 교점

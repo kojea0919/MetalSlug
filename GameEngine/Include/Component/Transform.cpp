@@ -1468,6 +1468,11 @@ Vector3 CTransform::GetPivot() const
     return m_vPivot;
 }
 
+Vector3 CTransform::GetMeshSize() const
+{
+    return m_vMeshSize;
+}
+
 Matrix CTransform::GetScaleMatrix() const
 {
     return m_matScale;
@@ -1530,8 +1535,6 @@ void CTransform::PostUpdate(float fTime)
 
 void CTransform::SetTransform()
 {
-    Resolution m_tRS = RESOLUTION;
-
     CCamera* pCamera = m_pScene->GetCameraManager()->GetMainCamera();
 
     if(m_pOwner->GetSceneComponentType() == SCENECOMPONENT_TYPE::ST_UI)

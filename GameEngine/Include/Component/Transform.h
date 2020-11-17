@@ -197,6 +197,7 @@ public:
 	Vector3 GetWorldPos()	const;
 	Vector3 GetWorldAxis(AXIS eAxis)	const;
 	Vector3 GetPivot()	const;
+	Vector3 GetMeshSize() const;
 
 	Matrix GetScaleMatrix()	const;
 	Matrix GetRotMatrix()	const;
