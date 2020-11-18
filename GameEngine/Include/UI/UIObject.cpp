@@ -63,6 +63,8 @@ void CUIObject::Render()
 
 	for (size_t i = 0; i < iSize; ++i)
 	{
+		if (!m_vecControl[i]->IsEnable())
+			continue;
 		m_vecControl[i]->Render();
 	}
 }

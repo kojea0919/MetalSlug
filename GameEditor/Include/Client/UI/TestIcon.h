@@ -15,7 +15,8 @@ private:
 
 public:
 	bool IsUp() const;
-
+	bool IsAttachMouse() const;
+	void DetatchMouse();
 public:
 	virtual bool Init();
 	virtual void Start();

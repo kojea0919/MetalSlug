@@ -23,6 +23,34 @@ struct VS_OUTPUT_2D
 	float4	vColor	: COLOR;
 };
 
+struct VS_INPUT_2D_INSTANCING
+{
+	// Vector3
+	// semantic : POSITION 레지스터를 이용하겠다 라는 것이다.
+	// semantic을 이용해서 입력레지스터의 이름과 번호를 지정해서
+	// 가져오게 한다.
+	// 이름 뒤에 번호를 안붙이면 0번으로 처리한다.
+	float3 vPos : POSITION;
+	float2 vUV : TEXCOORD;
+	float4 vColor : COLOR;
+	matrix matWVP : WORLD;
+	float3 vMeshSize : MESHSIZE;
+	float3 vMeshPivot : PIVOT;
+};
+
+VS_OUTPUT_2D Standard2DInstancing(VS_INPUT_2D_INSTANCING input)
+{
+	VS_OUTPUT_2D output = (VS_OUTPUT_2D)0;
+
+	float3 vPos = input.vPos - input.vMeshSize * input.vMeshPivot;
+
+	output.vPos = mul(float4(vPos, 1.f), input.matWVP);
+	output.vColor = input.vColor;
+	output.vUV = input.vUV;
+
+	return output;
+}
+
 // 인자 input은 레지스터가 지정되어 있기 때문에 인자를 안넘겨주어도
 // 입력레지스터에 들어가 있는 값을 가져와서 사용하게 된다.
 VS_OUTPUT_2D Standard2DColorVS(VS_INPUT_2D input)

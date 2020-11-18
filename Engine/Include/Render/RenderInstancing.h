@@ -15,8 +15,20 @@ private:
 	int						m_iCount;
 
 public:
+	bool CheckMesh(class CMesh* pMesh)
+	{
+		return m_pMesh == pMesh;
+	}
+
+	bool CheckMaterial(class CMaterial* pMaterial)
+	{
+		return m_pMaterial == pMaterial;
+	}
+
+public:
 	bool Init(class CMesh* pMesh, class CMaterial* pMaterial);
 	void AddInstancingData(const InstancingData* pData);
-	void Render();
+	void Render(float fTime);
+	void Clear();
 };
 

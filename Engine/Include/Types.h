@@ -265,4 +265,6 @@ typedef struct _tagMaterialTextureInfo
 typedef struct _tagInstancingData
 {
 	Matrix	matWVP;
+	Vector3	vMeshSize;
+	Vector3	vMeshPivot;
 }InstancingData, * PInstancingData;

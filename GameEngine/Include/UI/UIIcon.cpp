@@ -7,13 +7,15 @@
 
 CUIIcon::CUIIcon()
 	: m_bMouseCollision(false), m_bDown(false),
-	m_bPush(false), m_bUp(false), m_bDrag(false)
+	m_bPush(false), m_bUp(false), m_bDrag(false),
+    m_bAttachMouse(false)
 {
 }
 
 CUIIcon::CUIIcon(const CUIIcon& control)
 	: CUIControl(control), m_bMouseCollision(false), m_bDown(false),
-	m_bPush(false), m_bUp(false), m_bDrag(false)
+	m_bPush(false), m_bUp(false), m_bDrag(false),
+    m_bAttachMouse(control.m_bAttachMouse)
 {
 }
 
@@ -60,6 +62,8 @@ void CUIIcon::Update(float fTime)
         m_bUp = true;
         m_bPush = false;
         m_bDown = false;
+
+        m_vPrevPos = Vector3();
     }
 
     //°è¼Ó ¶¾ °æ¿ì
@@ -72,10 +76,13 @@ void CUIIcon::Update(float fTime)
     if (m_bMouseCollision)
     {
         if (m_bDown)
+        {
             m_bDrag = true;
+            m_bAttachMouse = true;
+        }
 
         if (m_bDrag)
-        {
+        {    
             m_vPrevPos.x += GET_SINGLE(CInput)->GetMouseMove().x;
             m_vPrevPos.y += GET_SINGLE(CInput)->GetMouseMove().y;
 

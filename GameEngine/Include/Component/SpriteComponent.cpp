@@ -11,8 +11,7 @@
 #include "../GameObject.h"
 
 CSpriteComponent::CSpriteComponent()
-    : m_pMesh(nullptr), m_pMaterial(nullptr),
-    m_pCurrent(nullptr),m_fScale(1.f)
+    : m_pCurrent(nullptr),m_fScale(1.f)
 {
     m_eSceneComponentType = SCENECOMPONENT_TYPE::ST_2D;
     m_eSceneClassType = SCENECOMPONENT_CLASS_TYPE::SPRITE;
@@ -21,15 +20,7 @@ CSpriteComponent::CSpriteComponent()
 CSpriteComponent::CSpriteComponent(const CSpriteComponent& com)
     : CPrimitiveComponent(com)
 {
-    m_pMesh = com.m_pMesh;
-
-    if (m_pMesh)
-        m_pMesh->AddRef();
-
-    m_pMaterial = com.m_pMaterial;
-
-    if (m_pMaterial)
-        m_pMaterial->AddRef();
+    m_mapSpriteInfo.clear();
 
     //SpriteInfo บนป็
     //--------------------------------
@@ -63,9 +54,6 @@ CSpriteComponent::CSpriteComponent(const CSpriteComponent& com)
 
 CSpriteComponent::~CSpriteComponent()
 {
-    SAFE_RELEASE(m_pMaterial);
-    SAFE_RELEASE(m_pMesh);
-
     auto iter = m_mapSpriteInfo.begin();
     auto iterEnd = m_mapSpriteInfo.end();
 
@@ -75,22 +63,6 @@ CSpriteComponent::~CSpriteComponent()
         SAFE_RELEASE(iter->second->pAnimation);
         SAFE_DELETE(iter->second);
     }
-}
-
-void CSpriteComponent::SetMaterial(CMaterial* pMaterial)
-{
-    SAFE_RELEASE(m_pMaterial);
-    m_pMaterial = pMaterial;
-    if (m_pMaterial)
-        m_pMaterial->AddRef();
-}
-
-CMaterial* CSpriteComponent::GetMaterial() const
-{
-    if (m_pMaterial)
-        m_pMaterial->AddRef();
-
-    return m_pMaterial;
 }
 
 void CSpriteComponent::SetTexture(TEXTURE_LINK eLink, CTexture* pTexture, int iShaderType, int iRegister)

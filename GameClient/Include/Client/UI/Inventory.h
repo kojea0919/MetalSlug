@@ -14,23 +14,35 @@ private:
 	class CUITitleBar* m_pTitleBar;
 	class CUIButton* m_pExitButton;
 
-	class CUIImage* m_pSlotImage;
+	vector<class CUISlot*> m_vecSlot;
 
 	class CUIImage* m_pBarBack;
 	class CUIImage* m_pBar;
 
 private:
-	//슬롯 이미지가 출력 가능한 세로 크기
-	float			m_fSlotRenderHeight;
-	
-	//슬롯 이미지의 세로 크기
-	float			m_fSlotHeight;
+	//슬롯 개수
+	//---------------------------------
+	int					m_iSlotWidthCnt;
+	int					m_iSlotHeightCnt;
 
-	//현재 출력되는 Slot의 시작과 끝 (상대)좌표
-	float			m_fStart;
-	float			m_fEnd;
+	//출력되는 슬롯 세로 개수
+	int					m_iSlotRenderHeightCnt;
 
-	float			m_fBarMoveLen;
+	//---------------------------------
+
+
+	//Scroll이 움직일수 있는 길이
+	int					m_iCanMoveScrollLen;
+
+	//Scroll이 한번에 움직여야 하는 크기
+	int 				m_iScrollMoveUnit;
+
+	//Scroll 현재 출력시작 Idx
+	int					m_iRenderStartIdx;
+	const int			m_iRenderMaxIdx;
+
+	//Grid가 한번에 움직여야 하는 크기
+	int					m_iGridMoveUnit;
 
 public:
 	void ScrollDown();

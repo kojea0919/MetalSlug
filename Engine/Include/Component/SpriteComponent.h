@@ -34,9 +34,6 @@ protected:
 	virtual ~CSpriteComponent();
 
 protected:
-	class CMesh2D* m_pMesh;
-	class CMaterial* m_pMaterial;
-
 	unordered_map<string, PSpriteInfo>	m_mapSpriteInfo;
 
 	//현재 실행중인 애니메이션
@@ -53,10 +50,6 @@ public:
 	{
 		m_fScale = fScale;
 	}
-
-public:
-	void SetMaterial(class CMaterial* pMaterial);
-	class CMaterial* GetMaterial() const;
 
 public:
 	//Texture관리 함수

@@ -1,7 +1,6 @@
 #pragma once
 #include "MeshComponent.h"
-class CStaticMeshComponent :
-	public CMeshComponent
+class CStaticMeshComponent : public CPrimitiveComponent
 {
 	friend class CGameObject;
 

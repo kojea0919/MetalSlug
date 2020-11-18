@@ -14,6 +14,37 @@ protected:
 protected:
 	string		m_strLayer;
 
+	//Instancing을 활용할지 나타내는 bool변수
+	bool		m_bInstancing;
+
+protected:
+	class CMaterial* m_pMaterial;
+	class CMesh* m_pMesh;
+
+public:
+	void SetMaterial(class CMaterial* pMaterial);
+	class CMaterial* GetMaterial()	const;
+
+public:
+	class CMesh* GetMesh()	const;
+	void SetMesh(class CMesh* pMesh);
+	void SetMesh(const string& strMeshName);
+
+public:
+	void SetTexture(TEXTURE_LINK eLink, class CTexture* pTexture,
+		int iShaderType = (int)CBUFFER_SHADER_TYPE::CBUFFER_VERTEX | (int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL,
+		int iRegister = 0);
+	void SetTexture(TEXTURE_LINK eLink, const string& strName,
+		int iShaderType = (int)CBUFFER_SHADER_TYPE::CBUFFER_VERTEX | (int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL,
+		int iRegister = 0);
+	void SetTexture(TEXTURE_LINK eLink, const string& strName, const TCHAR* pFileName,
+		const string& strPathName,
+		int iShaderType = (int)CBUFFER_SHADER_TYPE::CBUFFER_VERTEX | (int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL,
+		int iRegister = 0);
+	void SetTexture(TEXTURE_LINK eLink, const string& strName, const TCHAR* pFullPath,
+		int iShaderType = (int)CBUFFER_SHADER_TYPE::CBUFFER_VERTEX | (int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL,
+		int iRegister = 0);
+
 public:
 	string GetLayerName() const
 	{
@@ -23,6 +54,16 @@ public:
 	void SetLayer(const string& strName)
 	{
 		m_strLayer = strName;
+	}
+
+	bool IsInstancing()	const
+	{
+		return m_bInstancing;
+	}
+
+	void SetInstancing(bool bInstancing = true)
+	{
+		m_bInstancing = bInstancing;
 	}
 
 public:

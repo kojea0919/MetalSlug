@@ -21,6 +21,16 @@ bool CTestIcon::IsUp() const
 	return m_pIcon->IsUp();
 }
 
+bool CTestIcon::IsAttachMouse() const
+{
+	return m_pIcon->IsAttachMouse();
+}
+
+void CTestIcon::DetatchMouse()
+{
+	m_pIcon->DetatchMouse();
+}
+
 bool CTestIcon::Init()
 {
 	if (!CUIObject::Init())
@@ -28,7 +38,7 @@ bool CTestIcon::Init()
 
 	m_pIcon = CreateControl<CUIIcon>("Icon");
 
-	m_pIcon->SetRelativePos(150.f, 100.f, 0.f);
+	//m_pIcon->SetRelativePos(150.f, 100.f, 0.f);
 	m_pIcon->SetRelativeScale(45.f, 45.f, 0.f);
 	m_pIcon->SetTexture("WeaponIcon");
 

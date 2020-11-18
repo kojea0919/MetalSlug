@@ -7,6 +7,8 @@ struct VS_INPUT_TILE
     float2 vUV : TEXCOORD;
     float4 vColor : COLOR;
     matrix matWVP : WORLD;
+    float3 vMeshSize : MESHSIZE;
+    float3 vMeshPivot : PIVOT;
 };
 
 struct VS_OUTPUT_TILE

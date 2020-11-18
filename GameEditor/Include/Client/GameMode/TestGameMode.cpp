@@ -30,6 +30,7 @@ bool CTestGameMode::Init()
 
 	LoadTexture();
 	LoadAnimation2D();
+	CreateMaterial();
 
 	// 오브젝트 생성시 호출해줄 함수를 해당 장면에 등록한다.
 
@@ -120,10 +121,12 @@ bool CTestGameMode::LoadTexture()
 	pManager->LoadTexture("WeaponIcon", TEXT("WeaponIcon.png"));
 	pManager->LoadTexture("InventoryBackImage", TEXT("InventoryBackImage.png"));
 	pManager->LoadTexture("Inventorytitlebar", TEXT("Inventorytitlebar.png"));
-	pManager->LoadTexture("SlotGrid", TEXT("SlotGrid.png"));
+	pManager->LoadTexture("InventorySlot", TEXT("InventorySlot.png"));
 	pManager->LoadTexture("InventoryScrollBar", TEXT("InventoryScrollBar.png"));
 	pManager->LoadTexture("InventoryScroll", TEXT("InventoryScroll.png"));
 	pManager->LoadTexture("PixelTest", TEXT("PixelCollision.png"));
+	pManager->LoadTexture("Heavy", TEXT("Heavy.png"));
+
 	return true;
 }
 
@@ -149,7 +152,7 @@ bool CTestGameMode::CreateMaterial()
 
 	//해당 모드에서 사용하는 Texture를 Setting해주기 위해서 GameMode에서 생성
 	//--------------------------------------------------------------------
-	pManager->CreateMaterial("TextPixelMtrl");
+	pManager->CreateMaterial("TestPixelMtrl");
 
 	CMaterial* pMtrl = pManager->FindMaterial("TestPixelMtrl");
 

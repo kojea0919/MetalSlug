@@ -27,6 +27,11 @@ private:
 	Material_Type			m_eMaterialType;
 
 public:
+	Material_Type GetMaterialType() const
+	{
+		return m_eMaterialType;
+	}
+
 	void Start()
 	{
 		m_bStart = true;

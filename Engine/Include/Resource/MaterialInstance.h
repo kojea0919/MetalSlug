@@ -16,6 +16,13 @@ protected:
 	class CMaterial*	m_pOriginMaterial;
 
 public:
+	class CMaterial* GetOriginMaterial() const
+	{
+		m_pOriginMaterial->AddRef();
+		return m_pOriginMaterial;
+	}
+
+public:
 	virtual void SetTexture(TEXTURE_LINK eLink, class CTexture* pTexture,
 		int iShaderType = (int)CBUFFER_SHADER_TYPE::CBUFFER_VERTEX | (int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL,
 		int iRegister = 0);

@@ -877,6 +877,10 @@ void CPlayer::InventoryScroll(float fScale, float fTime)
 		{
 			m_pInventory->ScrollDown();
 		}
+		else
+		{
+			m_pInventory->ScrollUp();
+		}
 	}
 }
 

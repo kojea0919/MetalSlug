@@ -19,10 +19,22 @@ protected:
 	bool		m_bUp;
 	bool		m_bDrag;
 
+	bool		m_bAttachMouse;
+
 public:
 	bool IsUp() const
 	{
 		return m_bUp;
+	}
+	
+	bool IsAttachMouse() const
+	{
+		return m_bAttachMouse;
+	}
+
+	void DetatchMouse()
+	{
+		m_bAttachMouse = false;
 	}
 
 public:

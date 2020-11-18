@@ -61,8 +61,9 @@ void CTestSlot::Update(float fTime)
 
 	//Icon에서 마우스가 Up된 경우
 	//------------------------------------
-	if (m_pIcon && m_pIcon->IsUp())
+	if (m_pIcon && m_pIcon->IsUp() && m_pIcon->IsAttachMouse())
 	{
+		m_pIcon->DetatchMouse();
 		Vector2 vMousePos = GET_SINGLE(CInput)->GetMousePos();
 
 		//해당 마우스 자리에 다른 Slot이 있는지 확인
