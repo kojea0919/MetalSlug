@@ -28,6 +28,10 @@ bool CTileMapObj::Init()
 
     m_pTileMap->CreateTile<CTile>(TILE_SHAPE::Rect, 100, 100, 100.f, 100.f);
 
+    m_pTileMap->SetTileMaterial("TileMtrl");
+    m_pTileMap->SetTileImageSize(64.f, 320.f);
+
+
     return true;
 }
 

@@ -22,6 +22,15 @@ protected:
 	class CMesh* m_pMesh;
 
 public:
+	//Instancing이 되는 경우 InstancingData에 추가하기위해
+	//필요한 Get함수
+	//------------------------------------
+	virtual Vector2 GetFrameStart() const;
+	virtual Vector2 GetFrameEnd() const;
+	virtual Vector2 GetTextureSize() const;
+	//------------------------------------
+
+public:
 	void SetMaterial(class CMaterial* pMaterial);
 	class CMaterial* GetMaterial()	const;
 

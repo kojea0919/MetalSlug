@@ -13,14 +13,11 @@ protected:
 	virtual ~CTileMap();
 
 protected:
-	class CMaterial* m_pMaterial;
-	class CMesh2D* m_pMesh;
-
-protected:
 	TILE_SHAPE		m_eShape;
 	int				m_iCountX;
 	int				m_iCountY;
 	Vector3			m_vTileSize;
+	Vector2			m_vTileImageSize;
 	vector<class CTile*>	m_vecTile;
 
 	//현재 화면에서 타일 범위
@@ -33,13 +30,25 @@ protected:
 
 	bool			m_bTileMapRender;
 
+	//Tilemap에서 사용할 RenderInstancing, Material
+	//--------------------------------------
+	class CRenderInstancing* m_pInstancing;
+	class CMaterial* m_pTileMaterial;
+	//--------------------------------------
+
+	//Tile은 항상 배경에 출력(깊이 판정 비활성화)
+	class CRenderState* m_pDepthDisable;
+
 public:
-	void SetMaterial(class CMaterial* pMaterial);
-	class CMaterial* GetMaterial()	const;
-	void SetMesh(class CMesh2D* pMesh);
-	void SetMesh(const string& strMeshName);
 	void SetTexture(const string& strName);
 	void SetTexture(class CTexture* pTexture);
+	void SetTileMaterial(const string& strName);
+	void SetTileMaterial(class CMaterial* pMaterial);
+	void SetTileImageSize(float x, float y);
+	void SetTileImageSize(const Vector2& vSize);
+	void SetTileFrame(const Vector3& vPos, int iImageFrameX, int iImageFrameY);
+	void SetTileFrame(int idxX, int idxY, int iImageFrameX, int iImageFrameY);
+
 public:
 	virtual bool Init();
 	virtual void Start();

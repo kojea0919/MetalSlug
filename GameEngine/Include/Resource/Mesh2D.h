@@ -35,8 +35,12 @@ public:
 		DXGI_FORMAT eFmt = DXGI_FORMAT_UNKNOWN);
 
 public:
+	//정점 버퍼와 인덱스 버퍼에 들어있는 정보로 그리는 기본 함수
 	virtual void Render(float fTime);
+
+	//Instancing 버퍼를 받아 그리는 Instancing용 그리기 함수
 	virtual void RenderInstancing(const PVertexBuffer pData, float fTime);
+
 public:
 	virtual void Save(FILE* pFile);
 	virtual void Load(FILE* pFile);

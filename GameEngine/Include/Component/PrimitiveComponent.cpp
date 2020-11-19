@@ -32,6 +32,21 @@ CPrimitiveComponent::~CPrimitiveComponent()
 	SAFE_RELEASE(m_pMaterial);
 }
 
+Vector2 CPrimitiveComponent::GetFrameStart() const
+{
+	return Vector2(0.f, 0.f);
+}
+
+Vector2 CPrimitiveComponent::GetFrameEnd() const
+{
+	return GetTextureSize();
+}
+
+Vector2 CPrimitiveComponent::GetTextureSize() const
+{
+	return m_pMaterial->GetDiffuseTextureSize(0);
+}
+
 void CPrimitiveComponent::SetMaterial(CMaterial* pMaterial)
 {
 	SAFE_RELEASE(m_pMaterial);

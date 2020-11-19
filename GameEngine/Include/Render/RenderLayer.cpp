@@ -35,11 +35,14 @@ void CRenderLayer::AddPrimitiveComponent(CPrimitiveComponent* pComponent)
 
 		for (; iter != iterEnd; ++iter)
 		{
+			//해당 Component가 사용중인 Mesh와 Material이 같은 RenderInstancing이 있는 경우
+			//-------------------------------------------------------------------
 			if ((*iter)->CheckMesh(pMesh) && (*iter)->CheckMaterial(pMaterial))
 			{
 				pInstancing = *iter;
 				break;
 			}
+			//-------------------------------------------------------------------
 		}
 		//-------------------------------------------------
 
@@ -49,27 +52,53 @@ void CRenderLayer::AddPrimitiveComponent(CPrimitiveComponent* pComponent)
 		{
 			pInstancing = new CRenderInstancing;
 
-			pInstancing->Init(pMesh, pMaterial);
+			if (pComponent->GetSceneComponentType() == SCENECOMPONENT_TYPE::ST_2D)
+				pInstancing->Init(pMesh, pMaterial, sizeof(InstancingData2D), "InstancingShader2D");
+			else
+				pInstancing->Init(pMesh, pMaterial, sizeof(InstancingData2D), "InstancingShader");
 		}
 		//---------------------------------------
 
 		CCamera* pCamera = GET_SINGLE(CSceneManager)->GetScene()->GetCameraManager()->GetMainCamera();
 
-		InstancingData	tData = {};
-		tData.matWVP = pComponent->GetWorldMatrix() * pCamera->GetViewMatrix() * pCamera->GetProjMatrix();
-		tData.vMeshPivot = pComponent->GetPivot();
-		tData.vMeshSize = pComponent->GetMeshSize();
+		//해당 RenderInstancing에 InstancingData정보 추가
+		//----------------------------------------------------
+		if (pComponent->GetSceneComponentType() == SCENECOMPONENT_TYPE::ST_2D)
+		{
+			InstancingData2D	tData = {};
+			tData.matWVP = pComponent->GetWorldMatrix() * pCamera->GetViewMatrix() * pCamera->GetProjMatrix();
+			tData.vMeshPivot = pComponent->GetPivot();
+			tData.vMeshSize = pComponent->GetMeshSize();
+			tData.vFrameStart = pComponent->GetFrameStart();
+			tData.vFrameEnd = pComponent->GetFrameEnd();
+			tData.vImageSize = pComponent->GetTextureSize();
 
-		tData.matWVP.Transpose();
+			tData.matWVP.Transpose();
 
-		pInstancing->AddInstancingData(&tData);
+			pInstancing->AddInstancingData(&tData);
+		}
+		else
+		{
+			InstancingData	tData = {};
+			tData.matWVP = pComponent->GetWorldMatrix() * pCamera->GetViewMatrix() * pCamera->GetProjMatrix();
+			tData.vMeshPivot = pComponent->GetPivot();
+			tData.vMeshSize = pComponent->GetMeshSize();
+
+			tData.matWVP.Transpose();
+
+			pInstancing->AddInstancingData(&tData);
+		}
+		//----------------------------------------------------
+
 
 		SAFE_RELEASE(pMaterial);
 		SAFE_RELEASE(pMesh);
 	}
 	//-------------------------------------------
 
-	m_vecRender.push_back(pComponent);
+	//Instancing이 필요없는 경우 m_vecRender에서 처리
+	else
+		m_vecRender.push_back(pComponent);
 }
 
 void CRenderLayer::Render(float fTime)
@@ -115,18 +144,19 @@ void CRenderLayer::Clear()
 
 bool CRenderLayer::SortY(CPrimitiveComponent* pSrc, CPrimitiveComponent* pDest)
 {
-	Render_Priority eSrcPriority = pSrc->GetRender_Priority();
-	Render_Priority eDestPriority = pDest->GetRender_Priority();
+	return pSrc->GetWorldPos().y > pDest->GetWorldPos().y;
+	//Render_Priority eSrcPriority = pSrc->GetRender_Priority();
+	//Render_Priority eDestPriority = pDest->GetRender_Priority();
 
-	//출력 우선순위가 높은 경우 먼저 출력
-	if (eDestPriority < eSrcPriority)
-		return false;
-	else if (eDestPriority == eSrcPriority)
-	{
-		//앞에있는게 y값이 작은 경우 뒤에 출력
-		return pSrc->GetWorldPos().y < pDest->GetWorldPos().y;
-	}
-	else
-		return true;
+	////출력 우선순위가 높은 경우 먼저 출력
+	//if (eDestPriority < eSrcPriority)
+	//	return false;
+	//else if (eDestPriority == eSrcPriority)
+	//{
+	//	//앞에있는게 y값이 작은 경우 뒤에 출력
+	//	return pSrc->GetWorldPos().y < pDest->GetWorldPos().y;
+	//}
+	//else
+	//	return true;
 
 }

@@ -36,6 +36,9 @@ struct VS_INPUT_2D_INSTANCING
 	matrix matWVP : WORLD;
 	float3 vMeshSize : MESHSIZE;
 	float3 vMeshPivot : PIVOT;
+	float2 vFrameStart : FRAMESTART;
+	float2 vFrameEnd : FRAMEEND;
+	float2 vImageSize : IMAGESIZE;
 };
 
 VS_OUTPUT_2D Standard2DInstancing(VS_INPUT_2D_INSTANCING input)
@@ -46,7 +49,7 @@ VS_OUTPUT_2D Standard2DInstancing(VS_INPUT_2D_INSTANCING input)
 
 	output.vPos = mul(float4(vPos, 1.f), input.matWVP);
 	output.vColor = input.vColor;
-	output.vUV = input.vUV;
+	output.vUV = ComputeSpriteUV(input.vUV, input.vFrameStart, input.vFrameEnd, input.vImageSize);
 
 	return output;
 }

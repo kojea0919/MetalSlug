@@ -12,6 +12,7 @@ public:
 protected:
 	class CTileMap* m_pTileMap;
 
+
 public:
 	virtual bool Init();
 	virtual void Start();

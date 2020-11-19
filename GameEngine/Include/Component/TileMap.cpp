@@ -7,10 +7,16 @@
 #include "../Scene/CameraManager.h"
 #include "Camera.h"
 #include "../Device.h"
+#include "../Render/RenderInstancing.h"
+#include "../Render/RenderManager.h"
+#include "../Render/RenderState.h"
+#include "Tile.h"
 
 CTileMap::CTileMap()
-    : m_pMaterial(nullptr),m_pMesh(nullptr),
-    m_bTileMapRender(false)
+    : m_bTileMapRender(false),
+    m_pTileMaterial(nullptr),
+    m_pInstancing(nullptr),
+    m_pDepthDisable(nullptr)
 {
     m_eSceneComponentType = SCENECOMPONENT_TYPE::ST_2D;
     m_eSceneClassType = SCENECOMPONENT_CLASS_TYPE::TILEMAP;
@@ -22,77 +28,17 @@ CTileMap::CTileMap(const CTileMap& com)
 {
     m_bTileMapRender = com.m_bTileMapRender;
 
-    m_pMaterial = com.m_pMaterial;
-
-    if (m_pMaterial)
-        m_pMaterial->AddRef();
-
-    m_pMesh = com.m_pMesh;
-
-    if (m_pMesh)
-        m_pMesh->AddRef();
-
     m_vTileSize = com.m_vTileSize;
+
+    if (m_pTileMaterial)
+        m_pTileMaterial->AddRef();
 }
 
 CTileMap::~CTileMap()
 {
+    SAFE_DELETE(m_pInstancing);
+    SAFE_RELEASE(m_pTileMaterial);
     SAFE_DELETE_VECLIST(m_vecTile);
-    SAFE_RELEASE(m_pMesh);
-    SAFE_RELEASE(m_pMaterial);
-}
-
-void CTileMap::SetMaterial(CMaterial* pMaterial)
-{
-    SAFE_RELEASE(m_pMaterial);
-    m_pMaterial = pMaterial;
-    if (m_pMaterial)
-        m_pMaterial->AddRef();
-}
-
-CMaterial* CTileMap::GetMaterial() const
-{
-    if (m_pMaterial)
-        m_pMaterial->AddRef();
-
-    return m_pMaterial;
-}
-
-void CTileMap::SetMesh(CMesh2D* pMesh)
-{
-    SAFE_RELEASE(m_pMesh);
-    m_pMesh = pMesh;
-
-    if (m_pMesh)
-    {
-        CMaterial* pMaterial = m_pMesh->GetMaterial();
-        CMaterial* pClone = pMaterial->Clone();
-
-        SetMaterial(pClone);
-        m_pMesh->AddRef();
-        SAFE_RELEASE(pMaterial);
-        SAFE_RELEASE(pClone);
-
-        m_pTransform->SetMeshSize(m_pMesh->GetMax() - m_pMesh->GetMin());
-    }
-}
-
-void CTileMap::SetMesh(const string& strMeshName)
-{
-    SAFE_RELEASE(m_pMesh);
-    m_pMesh = (CMesh2D*)m_pScene->GetResourceManager()->FindMesh(strMeshName);
-
-    if (m_pMesh)
-    {
-        CMaterial* pMaterial = m_pMesh->GetMaterial();
-        CMaterial* pClone = pMaterial->Clone();
-
-        SetMaterial(pClone);
-        SAFE_RELEASE(pClone);
-        SAFE_RELEASE(pMaterial);
-
-        m_pTransform->SetMeshSize(m_pMesh->GetMax() - m_pMesh->GetMin());
-    }
 }
 
 void CTileMap::SetTexture(const string& strName)
@@ -107,10 +53,137 @@ void CTileMap::SetTexture(CTexture* pTexture)
     m_bTileMapRender = true;
 }
 
+void CTileMap::SetTileMaterial(const string& strName)
+{
+    //해당 이름의 Material을 Setting
+    //---------------------------------------------------------------------
+    SAFE_RELEASE(m_pTileMaterial);
+    m_pTileMaterial = m_pScene->GetResourceManager()->FindMaterial(strName);
+    //---------------------------------------------------------------------
+
+    //모든 타일에 FrameStart,FrameEnd Setting
+    //---------------------------------------------------------------------
+    int iWidth = m_iCountX;
+    int iHeight = m_iCountY;
+    for (int iHeightCnt = 0; iHeightCnt < iHeight; ++iHeightCnt)
+    {
+        for (int iWidthCnt = 0; iWidthCnt < iWidth; ++iWidthCnt)
+        {
+            int iIndex = iHeightCnt * iWidth + iWidthCnt;
+
+            m_vecTile[iIndex]->SetFrameStart(0.f, 0.f);
+            m_vecTile[iIndex]->SetFrameEnd(m_pTileMaterial->GetDiffuseTextureSize());
+        }
+    }
+    //---------------------------------------------------------------------
+
+    if (!m_pInstancing)
+    {
+        m_pInstancing = new CRenderInstancing;
+        m_pInstancing->Init(m_pMesh, m_pTileMaterial, sizeof(InstancingData2D), "InstancingShader2D");
+    }
+
+    else
+        m_pInstancing->SetMaterial(m_pTileMaterial);
+}
+
+void CTileMap::SetTileMaterial(CMaterial* pMaterial)
+{
+    //Material Setting
+    //---------------------------------------------------------------------
+    SAFE_RELEASE(m_pTileMaterial);
+    m_pTileMaterial = pMaterial;
+    //---------------------------------------------------------------------
+
+    //모든 타일에 FrameStart,FrameEnd Setting
+    //---------------------------------------------------------------------
+    int iWidth = m_iCountX;
+    int iHeight = m_iCountY;
+    for (int iHeightCnt = 0; iHeightCnt < iHeight; ++iHeightCnt)
+    {
+        for (int iWidthCnt = 0; iWidthCnt < iWidth; ++iWidthCnt)
+        {
+            int iIndex = iHeightCnt * iWidth + iWidthCnt;
+
+            m_vecTile[iIndex]->SetFrameStart(0.f, 0.f);
+            m_vecTile[iIndex]->SetFrameEnd(m_pTileMaterial->GetDiffuseTextureSize());
+        }
+    }
+    //---------------------------------------------------------------------
+
+    if (!m_pInstancing)
+    {
+        m_pInstancing = new CRenderInstancing;
+        m_pInstancing->Init(m_pMesh, m_pTileMaterial, sizeof(InstancingData2D), "InstancingShader2D");
+    }
+
+    else
+        m_pInstancing->SetMaterial(m_pTileMaterial);
+}
+
+void CTileMap::SetTileImageSize(float x, float y)
+{
+    m_vTileImageSize = Vector2(x, y);
+    
+    int iWidth = m_iCountX;
+    int iHeight = m_iCountY;
+    for (int iHeightCnt = 0; iHeightCnt < iHeight; ++iHeightCnt)
+    {
+        for (int iWidthCnt = 0; iWidthCnt < iWidth; ++iWidthCnt)
+        {
+            int iIndex = iHeightCnt * iWidth + iWidthCnt;
+
+            m_vecTile[iIndex]->SetFrameStart(0.f, 0.f);
+            m_vecTile[iIndex]->SetFrameEnd(m_vTileImageSize);
+        }
+    }
+}
+
+void CTileMap::SetTileImageSize(const Vector2& vSize)
+{
+    m_vTileImageSize = vSize; 
+
+    int iWidth = m_iCountX;
+    int iHeight = m_iCountY;
+    for (int iHeightCnt = 0; iHeightCnt < iHeight; ++iHeightCnt)
+    {
+        for (int iWidthCnt = 0; iWidthCnt < iWidth; ++iWidthCnt)
+        {
+            int iIndex = iHeightCnt * iWidth + iWidthCnt;
+
+            m_vecTile[iIndex]->SetFrameStart(0.f, 0.f);
+            m_vecTile[iIndex]->SetFrameEnd(m_vTileImageSize);
+        }
+    }
+}
+
+void CTileMap::SetTileFrame(const Vector3& vPos, int iImageFrameX, int iImageFrameY)
+{
+    Vector3	vConvertPos = vPos - GetWorldPos();
+
+    int idxX = (int)(vConvertPos.x / m_vTileSize.x);
+    int idxY = (int)(vConvertPos.y / m_vTileSize.y);
+
+    int	iIndex = idxY * m_iCountX + idxX;
+
+    m_vecTile[iIndex]->SetFrameStart(iImageFrameX * m_vTileImageSize.x, iImageFrameY * m_vTileImageSize.y);
+    m_vecTile[iIndex]->SetFrameEnd((iImageFrameX + 1) * m_vTileImageSize.x, (iImageFrameY + 1) * m_vTileImageSize.y);
+}
+
+void CTileMap::SetTileFrame(int idxX, int idxY, int iImageFrameX, int iImageFrameY)
+{
+    int	iIndex = idxY * m_iCountX + idxX;
+
+    m_vecTile[iIndex]->SetFrameStart(iImageFrameX * m_vTileImageSize.x, iImageFrameY * m_vTileImageSize.y);
+    m_vecTile[iIndex]->SetFrameEnd((iImageFrameX + 1) * m_vTileImageSize.x, (iImageFrameY + 1) * m_vTileImageSize.y);
+}
+
 bool CTileMap::Init()
 {
     if (!CPrimitiveComponent::Init())
         return false;
+
+    m_pDepthDisable = GET_SINGLE(CRenderManager)->FindRenderState("DepthDisable");
 
     CMesh* pMesh = m_pScene->GetResourceManager()->GetDefault2DMesh();
     SetMesh((CMesh2D*)pMesh);
@@ -187,6 +260,40 @@ void CTileMap::PostUpdate(float fTime)
             m_vecTile[iIndex]->PostUpdate(fTime);
         }
     }
+
+    //Tile InstancingData 정보 Setting
+    //------------------------------------------
+    if (m_pInstancing)
+    {
+        CCamera* pCamera = m_pScene->GetCameraManager()->GetMainCamera();
+
+        int iHeight = m_iEndY;
+        int iWidth = m_iEndX;
+
+        for (int iHeightCnt = m_iStartY; iHeightCnt <= iHeight; ++iHeightCnt)
+        {
+            for (int iWidthCnt = m_iStartX; iWidthCnt <= iWidth; ++iWidthCnt)
+            {
+                int iIndex = iHeightCnt * m_iCountX + iWidthCnt;
+
+                InstancingData2D	tData = {};
+
+                tData.matWVP = m_vecTile[iIndex]->GetWorldMatirx() * pCamera->GetViewMatrix() *
+                    pCamera->GetProjMatrix();
+                tData.vMeshPivot = m_pTransform->GetPivot();
+                tData.vMeshSize = m_pTransform->GetMeshSize();
+                tData.vFrameStart = m_vecTile[iIndex]->GetFrameStart();
+                tData.vFrameEnd = m_vecTile[iIndex]->GetFrameEnd();
+                tData.vImageSize = m_pTileMaterial->GetDiffuseTextureSize();
+
+                tData.matWVP.Transpose();
+
+                m_pInstancing->AddInstancingData(&tData);
+            }
+        }
+    
+    }
+    //------------------------------------------
 }
 
 void CTileMap::Collision(float fTime)
@@ -203,20 +310,21 @@ void CTileMap::Render(float fTime)
 {
     CPrimitiveComponent::Render(fTime);
 
-    if (m_pMaterial)
-        m_pMaterial->SetMaterial();
+    m_pDepthDisable->SetState();
 
-    if (m_pMesh)
-        m_pMesh->Render(fTime);
-
-    for (int iHeightCnt = m_iStartY; iHeightCnt <= m_iEndY; ++iHeightCnt)
+    if (m_bTileMapRender)
     {
-        for (int iWidthCnt = m_iStartX; iWidthCnt <= m_iEndX; ++iWidthCnt)
-        {
-            int	iIndex = iHeightCnt * m_iCountX + iWidthCnt;
-            m_vecTile[iIndex]->Render(fTime);
-        }
+        m_pMaterial->SetMaterial();
+        m_pMesh->Render(fTime);
     }
+
+    // Instancing으로 그려낸다.
+    if (m_pInstancing)
+    {
+        m_pInstancing->Render(fTime);
+    }
+
+    m_pDepthDisable->ResetState();
 }
 
 void CTileMap::PostRender(float fTime)

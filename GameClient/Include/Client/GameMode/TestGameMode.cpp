@@ -15,6 +15,7 @@
 #include "../UI/Inventory.h"
 #include "../UI/TestSlot.h"
 #include "../UI/TestIcon.h"
+#include "../Object/TileMapObj.h"
 
 CTestGameMode::CTestGameMode()
 {
@@ -45,17 +46,21 @@ bool CTestGameMode::Init()
 
 	SAFE_RELEASE(pMonster);*/
 
-	CTestObj* pTestObj = m_pScene->CreateObject<CTestObj>("TestObj");
+	//CTestObj* pTestObj = m_pScene->CreateObject<CTestObj>("TestObj");
 
-	SAFE_RELEASE(pTestObj);
+	//SAFE_RELEASE(pTestObj);
 
-	CTestButton* pTestButton = m_pScene->CreateUIObject<CTestButton>("TestButton");
+	//CTestButton* pTestButton = m_pScene->CreateUIObject<CTestButton>("TestButton");
 
-	SAFE_RELEASE(pTestButton);
+	//SAFE_RELEASE(pTestButton);
 
-	CTestBar* pTestBar = m_pScene->CreateUIObject<CTestBar>("TestBar");
+	//CTestBar* pTestBar = m_pScene->CreateUIObject<CTestBar>("TestBar");
 
-	SAFE_RELEASE(pTestBar);
+	//SAFE_RELEASE(pTestBar);
+
+	CTileMapObj* pTileMapObj = m_pScene->CreateObject<CTileMapObj>("TileMapObj");
+
+	SAFE_RELEASE(pTileMapObj);
 
 	/*CCheckBox* pTestCheckBox = m_pScene->CreateUIObject<CCheckBox>("TestCheckBox");
 
@@ -65,7 +70,7 @@ bool CTestGameMode::Init()
 
 	SAFE_RELEASE(pSlider);*/
 
-	CInventory* pInventory = m_pScene->CreateUIObject<CInventory>("Inventory");
+	/*CInventory* pInventory = m_pScene->CreateUIObject<CInventory>("Inventory");
 
 	((CPlayer*)m_pPlayer)->SetInventory(pInventory);
 
@@ -82,7 +87,7 @@ bool CTestGameMode::Init()
 	
 	SAFE_RELEASE(pTestSlot2);
 	SAFE_RELEASE(pTestIcon);
-	SAFE_RELEASE(pTestSlot);
+	SAFE_RELEASE(pTestSlot);*/
 
 	return true;
 }
@@ -126,6 +131,7 @@ bool CTestGameMode::LoadTexture()
 	pManager->LoadTexture("InventoryScroll", TEXT("InventoryScroll.png"));
 	pManager->LoadTexture("PixelTest", TEXT("PixelCollision.png"));
 	pManager->LoadTexture("Heavy", TEXT("Heavy.png"));
+	pManager->LoadTexture("Tile", TEXT("Floors.png"));
 
 	return true;
 }
@@ -162,6 +168,16 @@ bool CTestGameMode::CreateMaterial()
 
 	SAFE_RELEASE(pMtrl);
 	//--------------------------------------------------------------------
+
+	pManager->CreateMaterial("TileMtrl");
+
+	pMtrl = pManager->FindMaterial("TileMtrl");
+
+	pMtrl->SetShader("InstancingShader2D");
+	pMtrl->SetTexture(TEXTURE_LINK::DIFFUSE, "Tile",
+		(int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL);
+
+	SAFE_RELEASE(pMtrl);
 
 	return true;
 }

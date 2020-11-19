@@ -65,6 +65,23 @@ CSpriteComponent::~CSpriteComponent()
     }
 }
 
+Vector2 CSpriteComponent::GetFrameStart() const
+{
+    return m_pCurrent->pAnimation->m_vecAnimFrame[m_pCurrent->iFrame].vStart;
+}
+
+Vector2 CSpriteComponent::GetFrameEnd() const
+{
+    return m_pCurrent->pAnimation->m_vecAnimFrame[m_pCurrent->iFrame].vEnd;
+}
+
+Vector2 CSpriteComponent::GetTextureSize() const
+{
+    CTexture* pTexture = m_pCurrent->pAnimation->m_pTexture;
+
+	return Vector2((float)pTexture->GetWidth(),(float)pTexture->GetHeight());
+}
+
 void CSpriteComponent::SetTexture(TEXTURE_LINK eLink, CTexture* pTexture, int iShaderType, int iRegister)
 {
     m_pMaterial->SetTexture(eLink, pTexture, iShaderType, iRegister);

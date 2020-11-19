@@ -2,6 +2,8 @@
 #include "../Resource/Mesh.h"
 #include "../Resource/Material.h"
 #include "../Device.h"
+#include "../Resource/Shader.h"
+#include "../Resource/ShaderManager.h"
 
 CRenderInstancing::CRenderInstancing()
 	: m_pMesh(nullptr), m_pMaterial(nullptr),
@@ -11,17 +13,29 @@ CRenderInstancing::CRenderInstancing()
 
 CRenderInstancing::~CRenderInstancing()
 {
+	SAFE_RELEASE(m_pShader);
 	SAFE_RELEASE(m_tInstancingBuffer.pBuffer);
 	SAFE_DELETE_ARRAY(m_tInstancingBuffer.pData);
 }
 
-bool CRenderInstancing::Init(CMesh* pMesh, CMaterial* pMaterial)
+void CRenderInstancing::SetMaterial(CMaterial* pMaterial)
 {
+	m_pMaterial = pMaterial;
+}
+
+bool CRenderInstancing::Init(CMesh* pMesh, CMaterial* pMaterial, int iSize, const string& strShaderName)
+{
+	//Resource Setting
+	//--------------------------------------
 	m_pMesh = pMesh;
 	m_pMaterial = pMaterial;
+	m_pShader = GET_SINGLE(CShaderManager)->FindShader(strShaderName);
+	//--------------------------------------
 
-	m_tInstancingBuffer.iSize = sizeof(InstancingData);
-	m_tInstancingBuffer.iCount = 1000;
+	//인스턴싱용 버퍼 생성
+	//--------------------------------------
+	m_tInstancingBuffer.iSize = iSize;
+	m_tInstancingBuffer.iCount = 100000;
 	m_tInstancingBuffer.eUsage = D3D11_USAGE_DYNAMIC;
 	m_tInstancingBuffer.pData = new char[m_tInstancingBuffer.iSize * m_tInstancingBuffer.iCount];
 	
@@ -34,14 +48,15 @@ bool CRenderInstancing::Init(CMesh* pMesh, CMaterial* pMaterial)
 
 	if(FAILED(DEVICE->CreateBuffer(&tDesc,nullptr,&m_tInstancingBuffer.pBuffer)))
 		return false;
+	//--------------------------------------
 
 	return true;
 }
 
-void CRenderInstancing::AddInstancingData(const InstancingData* pData)
+void CRenderInstancing::AddInstancingData(const void* pData)
 {
-	memcpy(((InstancingData*)m_tInstancingBuffer.pData) +m_iCount,pData,
-		m_tInstancingBuffer.iSize);
+	memcpy(((char*)m_tInstancingBuffer.pData) + (m_iCount * m_tInstancingBuffer.iSize)
+		,pData,	m_tInstancingBuffer.iSize);
 
 	++m_iCount;
 }
@@ -58,7 +73,12 @@ void CRenderInstancing::Render(float fTime)
 
 	m_pMaterial->SetMaterial();
 
+	m_pShader->SetShader();
+
+	//instancing용 Render함수 호출
 	m_pMesh->RenderInstancing(&m_tInstancingBuffer, fTime);
+
+	Clear();
 }
 
 void CRenderInstancing::Clear()

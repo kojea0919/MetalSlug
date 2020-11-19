@@ -562,7 +562,7 @@ bool CPlayer::Init()
 	//---------------------------------
 	m_pLowerMesh->SetWorldScale(1.f, 1.f, 1.f);
 	m_pLowerMesh->SetScale(2.f);
-	m_pLowerMesh->SetRelativePos(500.f, 500.f, 0.f);
+	m_pLowerMesh->SetRelativePos(500.f, 300.f, 0.f);
 	m_pLowerMesh->InitVelocity();
 	m_pLowerMesh->SetPivot(0.5f, 0.5f, 0.f);
 	m_pLowerMesh->ChangeSprite("PlayerRightLowerIdle");
@@ -580,8 +580,7 @@ bool CPlayer::Init()
 	m_pCamera->SetInheritRotX(false);
 	m_pCamera->SetInheritRotY(false);
 	m_pCamera->SetInheritRotZ(false);
-	m_pCamera->SetPivot(0.7f, 0.5f, 0.f);
-	m_pCamera->SetRelativePos(0.f,0.f, -50.f);
+	m_pCamera->SetPivot(0.5f, 0.5f, 0.f);
 
 	m_pBody->SetInheritScale(false);
 	//---------------------------------
@@ -873,6 +872,9 @@ void CPlayer::InventoryScroll(float fScale, float fTime)
 {
 	if (fScale != 0)
 	{
+		if (!m_pInventory)
+			return;
+
 		if (fScale < 0.f)
 		{
 			m_pInventory->ScrollDown();

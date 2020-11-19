@@ -262,9 +262,25 @@ typedef struct _tagMaterialTextureInfo
 }MaterialTextureInfo, * PMaterialTextureInfo;
 //------------------------------------------
 
+//2D Instancing용 데이터 구조체
+//----------------------------------
+typedef struct _tagInstancingData2D
+{
+	Matrix	matWVP;
+	Vector3	vMeshSize;
+	Vector3	vMeshPivot;
+	Vector2 vFrameStart;
+	Vector2 vFrameEnd;
+	Vector2	vImageSize;
+}InstancingData2D, * PInstancingData2D;
+//----------------------------------
+
+//3D Instancing용 데이터 구조체
+//----------------------------------
 typedef struct _tagInstancingData
 {
 	Matrix	matWVP;
 	Vector3	vMeshSize;
 	Vector3	vMeshPivot;
 }InstancingData, * PInstancingData;
+//----------------------------------

@@ -57,6 +57,12 @@ CMaterial::~CMaterial()
 	SAFE_RELEASE(m_pShader);
 }
 
+Vector2 CMaterial::GetDiffuseTextureSize(int iFrame) const
+{
+	CTexture* pTexture = m_vecTexture[iFrame]->pTexture;
+	return Vector2((float)pTexture->GetWidth(),(float)pTexture->GetHeight());
+}
+
 void CMaterial::SetTexture(TEXTURE_LINK eLink, CTexture* pTexture, int iShaderType, int iRegister)
 {
 	if (m_bStart)

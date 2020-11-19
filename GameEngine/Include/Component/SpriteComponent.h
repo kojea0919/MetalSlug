@@ -46,6 +46,15 @@ protected:
 	float			m_fScale;
 
 public:
+	//Instancing이 되는 경우 InstancingData에 추가하기위해
+	//필요한 Get함수
+	//------------------------------------
+	virtual Vector2 GetFrameStart() const;
+	virtual Vector2 GetFrameEnd() const;
+	virtual Vector2 GetTextureSize() const;
+	//------------------------------------
+
+public:
 	void SetScale(float fScale)
 	{
 		m_fScale = fScale;

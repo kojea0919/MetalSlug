@@ -39,8 +39,12 @@ public:
 	}
 
 private:
+	//Layer俊 加茄 PrimitiveComponent包府 Vector
 	vector<class CPrimitiveComponent*>	m_vecRender;
+
+	//Layer俊 加茄 RenderInstancing包府 list
 	list<class CRenderInstancing*>		m_RenderInstancingList;
+
 	bool								m_b2D;
 
 public:
@@ -57,6 +61,5 @@ public:
 private:
 	static bool SortY(class CPrimitiveComponent* pSrc,
 		class CPrimitiveComponent* pDest);
-
 };
 

@@ -90,6 +90,23 @@ float2 ComputeSpriteUV(float2 vUV)
 	return vResult;
 }
 
+float2 ComputeSpriteUV(float2 vUV, float2 vFrameStart, float2 vFrameEnd, float2 vImageSize)
+{
+	float2 vResult = (float2) 0.f;
+
+	if (vUV.x > 0.f)
+		vResult.x = vFrameEnd.x / vImageSize.x;
+	else
+		vResult.x = vFrameStart.x / vImageSize.x;
+
+	if (vUV.y > 0.f)
+		vResult.y = vFrameEnd.y / vImageSize.y;
+	else
+		vResult.y = vFrameStart.y / vImageSize.y;
+
+	return vResult;
+}
+
 float RandomR(in float2 uv,in float fDeltaTime)
 {
 	float fResult = (frac(sin(dot(uv, float2(12.9898, 78.233) * 2.0)) * 43758.5453 * fDeltaTime )) + 0.3;

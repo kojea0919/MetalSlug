@@ -37,6 +37,9 @@ public:
 		m_bStart = true;
 	}
 
+	//Material에 저장된 Texture들중 iFrame번째 Texutre의 크기를 반환
+	Vector2 GetDiffuseTextureSize(int iFrame = 0)	const;
+
 public:
 	//Texture Settting
 	//----------------------------------------------------------------------
