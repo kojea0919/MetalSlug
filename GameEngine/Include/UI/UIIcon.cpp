@@ -83,6 +83,7 @@ void CUIIcon::Update(float fTime)
 
         if (m_bDrag)
         {    
+            m_iZOrder = 30;
             m_vPrevPos.x += GET_SINGLE(CInput)->GetMouseMove().x;
             m_vPrevPos.y += GET_SINGLE(CInput)->GetMouseMove().y;
 

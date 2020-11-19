@@ -581,6 +581,7 @@ bool CPlayer::Init()
 	m_pCamera->SetInheritRotY(false);
 	m_pCamera->SetInheritRotZ(false);
 	m_pCamera->SetPivot(0.5f, 0.5f, 0.f);
+	m_pCamera->SetRelativePos(0.f, 0.f, -10.f);
 
 	m_pBody->SetInheritScale(false);
 	//---------------------------------

@@ -58,9 +58,9 @@ bool CTestGameMode::Init()
 
 	//SAFE_RELEASE(pTestBar);
 
-	CTileMapObj* pTileMapObj = m_pScene->CreateObject<CTileMapObj>("TileMapObj");
+	/*CTileMapObj* pTileMapObj = m_pScene->CreateObject<CTileMapObj>("TileMapObj");
 
-	SAFE_RELEASE(pTileMapObj);
+	SAFE_RELEASE(pTileMapObj);*/
 
 	/*CCheckBox* pTestCheckBox = m_pScene->CreateUIObject<CCheckBox>("TestCheckBox");
 
@@ -70,7 +70,7 @@ bool CTestGameMode::Init()
 
 	SAFE_RELEASE(pSlider);*/
 
-	/*CInventory* pInventory = m_pScene->CreateUIObject<CInventory>("Inventory");
+	CInventory* pInventory = m_pScene->CreateUIObject<CInventory>("Inventory");
 
 	((CPlayer*)m_pPlayer)->SetInventory(pInventory);
 
@@ -85,9 +85,11 @@ bool CTestGameMode::Init()
 	CTestSlot* pTestSlot2 = m_pScene->CreateUIObject<CTestSlot>("TestSlot");
 	pTestSlot2->SetWorldPos(pTestSlot->GetWorldPos() + Vector3(80.f, 0.f, 0.f));
 	
+	pTestIcon->SetZOrder(pTestSlot->GetZOrder() + 1);
+
 	SAFE_RELEASE(pTestSlot2);
 	SAFE_RELEASE(pTestIcon);
-	SAFE_RELEASE(pTestSlot);*/
+	SAFE_RELEASE(pTestSlot);
 
 	return true;
 }
