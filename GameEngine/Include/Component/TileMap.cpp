@@ -270,9 +270,9 @@ void CTileMap::PostUpdate(float fTime)
         int iHeight = m_iEndY;
         int iWidth = m_iEndX;
 
-        for (int iHeightCnt = m_iStartY; iHeightCnt <= iHeight; ++iHeightCnt)
+        for (int iHeightCnt = m_iStartY; iHeightCnt <= iHeight + 1; ++iHeightCnt)
         {
-            for (int iWidthCnt = m_iStartX; iWidthCnt <= iWidth; ++iWidthCnt)
+            for (int iWidthCnt = m_iStartX; iWidthCnt <= iWidth + 1; ++iWidthCnt)
             {
                 int iIndex = iHeightCnt * m_iCountX + iWidthCnt;
 

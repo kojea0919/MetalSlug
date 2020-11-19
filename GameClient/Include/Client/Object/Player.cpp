@@ -562,7 +562,7 @@ bool CPlayer::Init()
 	//---------------------------------
 	m_pLowerMesh->SetWorldScale(1.f, 1.f, 1.f);
 	m_pLowerMesh->SetScale(2.f);
-	m_pLowerMesh->SetRelativePos(500.f, 300.f, 0.f);
+	m_pLowerMesh->SetRelativePos(0.f, 0.f, 0.f);
 	m_pLowerMesh->InitVelocity();
 	m_pLowerMesh->SetPivot(0.5f, 0.5f, 0.f);
 	m_pLowerMesh->ChangeSprite("PlayerRightLowerIdle");
