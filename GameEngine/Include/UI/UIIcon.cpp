@@ -28,6 +28,7 @@ bool CUIIcon::Init()
 	if (!CUIControl::Init())
 		return false;
 
+
 	return true;
 }
 
@@ -64,6 +65,10 @@ void CUIIcon::Update(float fTime)
         m_bDown = false;
 
         m_vPrevPos = Vector3();
+
+        //ZOrder원상 복구
+        m_pOwner->SetZOrder(m_iPrevOwnerZOrder);
+        m_iZOrder = m_iPrevZOrder;
     }
 
     //계속 뗀 경우
@@ -83,11 +88,19 @@ void CUIIcon::Update(float fTime)
 
         if (m_bDrag)
         {    
-            m_iZOrder = 30;
+            //마우스를 따라서 이동
+            //--------------------------------------------------
             m_vPrevPos.x += GET_SINGLE(CInput)->GetMouseMove().x;
             m_vPrevPos.y += GET_SINGLE(CInput)->GetMouseMove().y;
-
             m_pOwner->SetWorldPos(m_vPrevPos);
+            //--------------------------------------------------
+
+            m_iPrevOwnerZOrder = m_pOwner->GetZOrder();
+            //m_iPrevZOrder = m_iZOrder;
+
+            //드래그 중에는 항상 맨위에 출력 & 충돌체크 가장 먼저
+            m_pOwner->SetZOrder(INT_MIN);
+            SetZOrder(INT_MIN);
         }
     }
 }

@@ -21,6 +21,9 @@ protected:
 
 	bool		m_bAttachMouse;
 
+	int			m_iPrevOwnerZOrder;
+	int			m_iPrevZOrder;
+
 public:
 	bool IsUp() const
 	{

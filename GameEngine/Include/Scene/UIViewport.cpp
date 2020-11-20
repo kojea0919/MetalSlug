@@ -59,8 +59,6 @@ void CUIViewport::PostUpdate(float fTime)
 	{
 		(*iter)->PostUpdate(fTime);
 	}
-
-	m_UIList.sort(CUIViewport::SortUI);
 }
 
 void CUIViewport::PrevRender(float fTime)
@@ -116,5 +114,5 @@ void CUIViewport::Load(FILE* pFile)
 
 bool CUIViewport::SortUI(CUIObject* pSrc, CUIObject* pDest)
 {
-	return pSrc->GetZOrder() < pDest->GetZOrder();
+	return pSrc->GetZOrder() > pDest->GetZOrder();
 }

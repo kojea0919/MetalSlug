@@ -26,7 +26,7 @@ bool CTestSlot::AddIcon(CTestIcon* pIcon)
 		return false;
 
 	pIcon->AddRef();
-	pIcon->SetZOrder(2);
+	pIcon->SetZOrder(GetZOrder() - 1);
 	m_pIcon = pIcon;
 	
 	pIcon->SetWorldPos(m_pSlot->GetConnectPos() + m_pSlot->GetWorldPos());

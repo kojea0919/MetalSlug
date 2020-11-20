@@ -209,6 +209,10 @@ void CSceneCollision::Collision(float fTime)
 	//ZOrder가 큰 순으로 정렬
 	sort(m_vecUI.begin(), m_vecUI.end(), CSceneCollision::SortUI);
 
+
+	//savepoint 여기서 문제가 INT_MIN으로 했는데 비교에서 0이 더 작게 나옴
+	//둘다 INT_MIN이여서 그럼
+
 	Vector2 vMousePos = GET_SINGLE(CInput)->GetMousePos();
 	size_t iSize = m_vecUI.size();
 
@@ -329,5 +333,5 @@ void CSceneCollision::Collision(float fTime)
 
 bool CSceneCollision::SortUI(CUIControl* pSrc, CUIControl* pDest)
 {
-	return pSrc->GetZOrder() > pDest->GetZOrder();
+	return pSrc->GetZOrder() < pDest->GetZOrder();
 }

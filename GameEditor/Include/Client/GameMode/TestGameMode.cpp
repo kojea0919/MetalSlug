@@ -91,8 +91,6 @@ bool CTestGameMode::Init()
 
 	pTestSlot2->AddToViewport();
 	pTestSlot2->SetWorldPos(pTestSlot->GetWorldPos() + Vector3(80.f, 0.f, 0.f));
-	
-	pTestIcon->SetZOrder(pTestSlot->GetZOrder() + 1);
 
 	SAFE_RELEASE(pTestSlot2);
 	SAFE_RELEASE(pTestIcon);
