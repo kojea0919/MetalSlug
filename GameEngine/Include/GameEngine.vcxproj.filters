@@ -127,13 +127,13 @@
     <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\02. Sprite">
       <UniqueIdentifier>{9b6e5cce-478c-47cf-9ba4-09e0a139628b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\03. Collider">
+    <Filter Include="06. Component\01. Scene\03. Collider">
       <UniqueIdentifier>{5750523c-2fb3-471d-9197-b543243ea853}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\04. TileMap">
+    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\03. TileMap">
       <UniqueIdentifier>{a69211ad-584e-4b76-843b-9da4fac5dfb2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\05. Widget">
+    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\04. Widget">
       <UniqueIdentifier>{17f013a0-1ef0-418c-86cc-cf737106ec27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -283,13 +283,13 @@
       <Filter>03. Resource\05. Animation</Filter>
     </ClInclude>
     <ClInclude Include="Component\Collider.h">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="Component\ColliderRect.h">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="Component\Collision.h">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>01. Engine\07. Collision</Filter>
@@ -304,13 +304,13 @@
       <Filter>02. Scene\04. Collision</Filter>
     </ClInclude>
     <ClInclude Include="Component\ColliderSphere2D.h">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="Component\ColliderOBB2D.h">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="Component\ColliderPixel.h">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="UI\UIManager.h">
       <Filter>07. UI</Filter>
@@ -364,10 +364,10 @@
       <Filter>07. UI\01. Control</Filter>
     </ClInclude>
     <ClInclude Include="Component\TileMap.h">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\04. TileMap</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. TileMap</Filter>
     </ClInclude>
     <ClInclude Include="Component\Tile.h">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\04. TileMap</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. TileMap</Filter>
     </ClInclude>
     <ClInclude Include="UI\UIIcon.h">
       <Filter>07. UI\01. Control</Filter>
@@ -516,13 +516,13 @@
       <Filter>03. Resource\05. Animation</Filter>
     </ClCompile>
     <ClCompile Include="Component\Collider.cpp">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="Component\ColliderRect.cpp">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="Component\Collision.cpp">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>01. Engine\07. Collision</Filter>
@@ -537,13 +537,13 @@
       <Filter>02. Scene\04. Collision</Filter>
     </ClCompile>
     <ClCompile Include="Component\ColliderSphere2D.cpp">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="Component\ColliderOBB2D.cpp">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="Component\ColliderPixel.cpp">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
+      <Filter>06. Component\01. Scene\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="UI\UIManager.cpp">
       <Filter>07. UI</Filter>
@@ -597,10 +597,10 @@
       <Filter>07. UI\01. Control</Filter>
     </ClCompile>
     <ClCompile Include="Component\Tile.cpp">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\04. TileMap</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. TileMap</Filter>
     </ClCompile>
     <ClCompile Include="Component\TileMap.cpp">
-      <Filter>06. Component\01. Scene\01. PrimitiveComponent\04. TileMap</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. TileMap</Filter>
     </ClCompile>
     <ClCompile Include="UI\UIIcon.cpp">
       <Filter>07. UI\01. Control</Filter>

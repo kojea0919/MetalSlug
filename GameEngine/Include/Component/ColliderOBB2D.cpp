@@ -5,12 +5,18 @@
 #include "Collision.h"
 #include "ColliderSphere2D.h"
 #include "ColliderRect.h"
+#include "Transform.h"
 
 CColliderOBB2D::CColliderOBB2D()
 {
 	m_eSceneComponentType = SCENECOMPONENT_TYPE::ST_2D;
 	m_eSceneClassType = SCENECOMPONENT_CLASS_TYPE::COLLIDEROBB2D;
 	m_eColliderType = COLLIDER_TYPE::OBB2D;
+
+	for (int i = 0; i < AXIS_END; ++i)
+	{
+		m_tInfo.vAxis[i] = Vector3::Axis[i];
+	}
 
 	m_tInfo.vLength = Vector3(30.f, 30.f, 0.f);
 
@@ -48,7 +54,10 @@ bool CColliderOBB2D::Init()
 	if (!CCollider::Init())
 		return false;
 
-	m_pDebugMesh = GET_SINGLE(CResourceManager)->FindMesh("ColliderRect");
+	if (m_bEditorRender)
+		m_pDebugMesh = GET_SINGLE(CResourceManager)->FindMesh("ColliderRect");
+
+	m_pTransform->SetTransformSpace(true);
 
 	return true;
 }
@@ -119,8 +128,9 @@ void CColliderOBB2D::PrevRender(float fTime)
 void CColliderOBB2D::Render(float fTime)
 {
 	CCollider::Render(fTime);
-
-	m_pDebugMesh->Render(fTime);
+	
+	if (m_bEditorRender)
+		m_pDebugMesh->Render(fTime);
 }
 
 void CColliderOBB2D::PostRender(float fTime)

@@ -12,6 +12,7 @@ public:
 
 protected:
 	class CMesh2DComponent* m_pMesh;
+	class CColliderSphere2D* m_pBody;
 	float	m_fDistance;
 
 public:

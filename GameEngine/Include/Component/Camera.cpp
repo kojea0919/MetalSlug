@@ -70,6 +70,8 @@ void CCamera::Start()
 void CCamera::Update(float fTime)
 {
     CSceneComponent::Update(fTime);
+
+    SetRelativePos(GetRelativePos().x, GetRelativePos().y, 0.f);
 }
 
 void CCamera::PostUpdate(float fTime)

@@ -5,19 +5,23 @@
 #include "../Scene/SceneCollision.h"
 #include "../Scene/Scene.h"
 #include "../CollisionManager.h"
+#include "../Render/RenderManager.h"
+#include "Transform.h"
 
 CCollider::CCollider()
-    : m_pDebugMesh(nullptr),
-    m_bUI(false),m_b2D(false),m_pProfile(nullptr),
+    : m_bEditorRender(true), m_pDebugMesh(nullptr),
+    m_pMaterial(nullptr),m_bUI(false),
+    m_b2D(false),m_pProfile(nullptr),
     m_bMouseCollision(false),m_bCollisionEnable(true)
 {
 }
 
 CCollider::CCollider(const CCollider& com)
-    : CPrimitiveComponent(com)
+    : CSceneComponent(com)
 {
     m_bUI = com.m_bUI;
     m_pDebugMesh = com.m_pDebugMesh;
+    m_pMaterial = com.m_pMaterial;
     m_pProfile = com.m_pProfile;
     m_PrevCollisionList.clear();
     m_SectionList.clear();
@@ -27,6 +31,9 @@ CCollider::CCollider(const CCollider& com)
 
     if (m_pDebugMesh)
         m_pDebugMesh->AddRef();
+
+    if (m_pMaterial)
+        m_pMaterial->AddRef();
 }
 
 CCollider::~CCollider()
@@ -46,45 +53,42 @@ CCollider::~CCollider()
         CallCollisionCallback(Collision_State::End, *iter, 0.f);
         //----------------------------------------------
     }
-
+    SAFE_RELEASE(m_pMaterial);
     SAFE_RELEASE(m_pDebugMesh);
 }
 
 bool CCollider::Init()
 {
-    if (!CPrimitiveComponent::Init())
+    if (!CSceneComponent::Init())
         return false;
 
-    //Collider Material Setting
-    CMaterial* pMaterial = GET_SINGLE(CResourceManager)->FindMaterial("Collider");
-
-    SetMaterial(pMaterial);
-
-    SAFE_RELEASE(pMaterial);
+    m_pMaterial = GET_SINGLE(CResourceManager)->FindMaterial("Collider");
 
     m_pProfile = GET_SINGLE(CCollisionManager)->FindProfile("Static");
+
+    m_pTransform->SetTransformSpace(true);
 
     return true;
 }
 
 void CCollider::Start()
 {
-    CPrimitiveComponent::Start();
+    CSceneComponent::Start();
 }
 
 void CCollider::Update(float fTime)
 {
-    CPrimitiveComponent::Update(fTime);
+    CSceneComponent::Update(fTime);
 }
 
 void CCollider::PostUpdate(float fTime)
 {
-    CPrimitiveComponent::PostUpdate(fTime);
+    CSceneComponent::PostUpdate(fTime);
 }
 
 void CCollider::Collision(float fTime)
 {
-    CPrimitiveComponent::Collision(fTime);
+    CSceneComponent::Collision(fTime);
 
     //CollisionManager에 해당 Collider등록
     m_pScene->GetCollisionManager()->AddCollider(this);
@@ -92,7 +96,13 @@ void CCollider::Collision(float fTime)
 
 void CCollider::PrevRender(float fTime)
 {
-    CPrimitiveComponent::PrevRender(fTime);
+    CSceneComponent::PrevRender(fTime);
+
+    //Editor인 경우 화면에 출력하기위해 RenderManager에 등록
+    //-----------------------------------------------------
+    if (GET_SINGLE(CCollisionManager)->GetColliderRender())
+        GET_SINGLE(CRenderManager)->AddCollider(this);
+    //-----------------------------------------------------
 }
 
 void CCollider::Render(float fTime)
@@ -104,12 +114,14 @@ void CCollider::Render(float fTime)
     else
         m_pMaterial->SetDiffuseColor(1.f, 0.f, 0.f, 1.f);
 
-    CPrimitiveComponent::Render(fTime);
+    m_pMaterial->SetMaterial();
+
+    CSceneComponent::Render(fTime);
 }
 
 void CCollider::PostRender(float fTime)
 {
-    CPrimitiveComponent::PostRender(fTime);
+    CSceneComponent::PostRender(fTime);
 }
 
 CCollider* CCollider::Clone()
@@ -119,12 +131,12 @@ CCollider* CCollider::Clone()
 
 void CCollider::Save(FILE* pFile)
 {
-    CPrimitiveComponent::Save(pFile);
+    CSceneComponent::Save(pFile);
 }
 
 void CCollider::Load(FILE* pFile)
 {
-    CPrimitiveComponent::Load(pFile);
+    CSceneComponent::Load(pFile);
 
     m_pMaterial = GET_SINGLE(CResourceManager)->FindMaterial("Collider");
 

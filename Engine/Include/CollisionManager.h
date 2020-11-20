@@ -11,6 +11,20 @@ private:
 	//Profile관리 map
 	unordered_map<string, PCollisionProfile>		m_mapProfile;
 
+	//Editor인 경우 Render
+	bool			m_bColliderRender;
+
+public:
+	bool GetColliderRender()	const
+	{
+		return m_bColliderRender;
+	}
+
+	void SetColliderRender(bool bColliderRender)
+	{
+		m_bColliderRender = bColliderRender;
+	}
+
 public:
 	bool Init();
 

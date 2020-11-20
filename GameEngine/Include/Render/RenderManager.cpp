@@ -5,11 +5,13 @@
 #include "BlendState.h"
 #include "DepthStencilState.h"
 #include "RenderLayer.h"
+#include "../Component/Collider.h"
 
 DEFINITION_SINGLE(CRenderManager)
 
 CRenderManager::CRenderManager()
 {
+	m_vecRenderCollider.reserve(300);
 }
 
 CRenderManager::~CRenderManager()
@@ -82,9 +84,11 @@ bool CRenderManager::Init()
 	CreateDepthStencil("DepthDisable", false);
 
 	// Default Layer 생성
+	CreateLayer("Collider", 2);
 	CreateLayer("Default", 1);
 	CreateLayer("Back");
 
+	CreateLayer2D("Collider", 2);
 	CreateLayer2D("Default", 1);
 	CreateLayer2D("Back");
 
@@ -120,6 +124,11 @@ void CRenderManager::AddSceneComponent(CPrimitiveComponent* pComponent)
 	//--------------------------------------------------
 }
 
+void CRenderManager::AddCollider(CCollider* pCollider)
+{
+	m_vecRenderCollider.push_back(pCollider);
+}
+
 void CRenderManager::Render(float fTime)
 {
 	Render3D(fTime);
@@ -133,26 +142,59 @@ void CRenderManager::Render(float fTime)
 
 void CRenderManager::Render3D(float fTime)
 {
-	auto	iter = m_vecRenderLayer.begin();
-	auto	iterEnd = m_vecRenderLayer.end();
-
-	for (; iter != iterEnd; ++iter)
+	//Primitive Component Redner
+	//-----------------------------------------
 	{
-		(*iter)->Render(fTime);
+		auto	iter = m_vecRenderLayer.begin();
+		auto	iterEnd = m_vecRenderLayer.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			(*iter)->Render(fTime);
+		}
 	}
+	//-----------------------------------------
+
+	//Collider Render
+	//-----------------------------------------
+	/*{
+		auto	iter = m_vecRenderCollider.begin();
+		auto	iterEnd = m_vecRenderCollider.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			(*iter)->Render(fTime);
+		}
+	}*/
+	//-----------------------------------------
 }
 
 void CRenderManager::Render2D(float fTime)
 {
 	//SetState("AlphaBlend");
-
-	auto	iter = m_vecRenderLayer2D.begin();
-	auto	iterEnd = m_vecRenderLayer2D.end();
-
-	for (; iter != iterEnd; ++iter)
 	{
-		(*iter)->Render(fTime);
+		auto	iter = m_vecRenderLayer2D.begin();
+		auto	iterEnd = m_vecRenderLayer2D.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			(*iter)->Render(fTime);
+		}
 	}
+
+	//SetState("DepthDisable");
+	// 충돌체를 그려낸다.
+	{
+		auto	iter = m_vecRenderCollider.begin();
+		auto	iterEnd = m_vecRenderCollider.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			(*iter)->Render(fTime);
+		}
+	}
+
+	//ResetState("DepthDisable");
 
 	//ResetState("AlphaBlend");
 }
@@ -179,6 +221,9 @@ void CRenderManager::Clear()
 			(*iter)->Clear();
 		}
 	}
+
+
+	m_vecRenderCollider.clear();
 }
 
 bool CRenderManager::AddBlendInfo(const string& strName, bool bEnable, D3D11_BLEND eSrcBlend, D3D11_BLEND eDestBlend, D3D11_BLEND_OP eBlendOp, D3D11_BLEND eSrcBlendAlpha, D3D11_BLEND eDestBlendAlpha, D3D11_BLEND_OP eBlendAlphaOp, UINT8 iWriteMask)

@@ -9,6 +9,7 @@ private:
 	//--------------------------------------------
 	vector<class CRenderLayer*>	m_vecRenderLayer2D;
 	vector<class CRenderLayer*>	m_vecRenderLayer;
+	vector<class CCollider*>	m_vecRenderCollider;
 	//--------------------------------------------
 
 	//RenderState °ü¸® Map
@@ -19,6 +20,7 @@ public:
 	bool CreateLayer2D(const string& strName, int iSortOrder = 0);
 	bool Init();
 	void AddSceneComponent(class CPrimitiveComponent* pComponent);
+	void AddCollider(class CCollider* pCollider);
 	void Render(float fTime);
 
 private:

@@ -6,6 +6,7 @@
 #include "Component/Camera.h"
 #include "Component/TestCamera.h"
 #include "Component/SpriteComponent.h"
+#include "Component/ColliderSphere2D.h"
 
 CBullet::CBullet() :
 	m_pMesh(nullptr)
@@ -20,27 +21,29 @@ CBullet::CBullet(const CBullet& bullet) :
 CBullet::~CBullet()
 {
 	SAFE_RELEASE(m_pMesh);
+	SAFE_RELEASE(m_pBody);
 }
 
 bool CBullet::Init()
 {
-	m_pMesh = CreateComponent<CMesh2DComponent>("Bullet");
+	m_pMesh = CreateComponent<CMesh2DComponent>("Mesh");
+	m_pBody = CreateComponent<CColliderSphere2D>("Body");
 
 	SetRootComponent(m_pMesh);
 
-	m_pMesh->SetRelativeScale(150.f, 80.f, 1.f);
+	m_pMesh->SetRelativeScale(50.f, 50.f, 1.f);
 	m_pMesh->SetRelativePos(0.f, 0.f, 0.f);
 	m_pMesh->SetPivot(0.5f, 0.5f, 0.f);
 
-	CMaterial* pMaterial = m_pMesh->GetMaterial();
+	//m_pBody->SetExtent(200.f, 100.f);
+	m_pBody->SetRadius(60.f);
+	//m_pBody->SetCollisionProfile("PlayerAttack");
 
-	pMaterial->SetDiffuseColor(1.0f, 1.0f, 1.0f, 1.f);
-
-	SAFE_RELEASE(pMaterial);
-
-	m_fDistance = 600.f;
+	m_pMesh->AddChild(m_pBody);
 
 	m_pMesh->SetMaterial("BulletMtrl");
+
+	m_fDistance = 600.f;
 
 	return true;
 }

@@ -2,7 +2,7 @@
 
 #include "PrimitiveComponent.h"
 
-class CCollider : public CPrimitiveComponent
+class CCollider : public CSceneComponent
 {
 	friend class CCollision;
 	friend class CGameObject;
@@ -18,6 +18,8 @@ protected:
 	//에디터에서만 Render
 	//---------------------------------	
 	class CMesh*		m_pDebugMesh;
+	bool				m_bEditorRender;
+	class CMaterial*	m_pMaterial;
 	//---------------------------------
 
 	//충돌시 교점

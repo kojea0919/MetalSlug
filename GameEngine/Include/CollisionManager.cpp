@@ -3,6 +3,7 @@
 DEFINITION_SINGLE(CCollisionManager)
 
 CCollisionManager::CCollisionManager()
+	: m_bColliderRender(true)
 {
 
 }
