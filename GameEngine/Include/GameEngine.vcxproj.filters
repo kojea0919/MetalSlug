@@ -52,9 +52,6 @@
     <Filter Include="06. Component\02. Object">
       <UniqueIdentifier>{cbeec0c0-4f99-48dd-bb27-d22c80e943f8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06. Component\01. Scene\01. MeshComponent">
-      <UniqueIdentifier>{dfa072ee-2275-4bef-8777-187b07a811e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="01. Engine\05. Math">
       <UniqueIdentifier>{6e64ef29-87e5-4a49-840f-36fbaf1a8a26}</UniqueIdentifier>
     </Filter>
@@ -91,14 +88,8 @@
     <Filter Include="04. Render\01. RenderState">
       <UniqueIdentifier>{f83c696e-9c8a-4b15-8a8e-e83df05c7005}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06. Component\01. Scene\03. Sprite">
-      <UniqueIdentifier>{9b6e5cce-478c-47cf-9ba4-09e0a139628b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="03. Resource\05. Animation">
       <UniqueIdentifier>{0004fdd5-879b-4d4a-8aee-f8e79d88c1bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="06. Component\01. Scene\04. Collider">
-      <UniqueIdentifier>{5750523c-2fb3-471d-9197-b543243ea853}</UniqueIdentifier>
     </Filter>
     <Filter Include="01. Engine\07. Collision">
       <UniqueIdentifier>{66d2be5e-d2d8-461e-ae93-076a9dee5b5c}</UniqueIdentifier>
@@ -121,14 +112,29 @@
     <Filter Include="03. Resource\06. Sound">
       <UniqueIdentifier>{ce980982-b57a-4d4c-9d2f-cb2a9d6f76fb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="06. Component\01. Scene\05. TileMap">
-      <UniqueIdentifier>{a69211ad-584e-4b76-843b-9da4fac5dfb2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="04. Render\02. RenderLayer">
       <UniqueIdentifier>{dc6ae68e-7ffc-4d37-b7c6-065653ffe804}</UniqueIdentifier>
     </Filter>
     <Filter Include="04. Render\03. Instancing">
       <UniqueIdentifier>{53343511-e68b-4b78-b5fc-e67cc2063b05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent">
+      <UniqueIdentifier>{798d34c0-042c-4b61-b4f8-e69c87f64d00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\01. MeshComponent">
+      <UniqueIdentifier>{dfa072ee-2275-4bef-8777-187b07a811e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\02. Sprite">
+      <UniqueIdentifier>{9b6e5cce-478c-47cf-9ba4-09e0a139628b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\03. Collider">
+      <UniqueIdentifier>{5750523c-2fb3-471d-9197-b543243ea853}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\04. TileMap">
+      <UniqueIdentifier>{a69211ad-584e-4b76-843b-9da4fac5dfb2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="06. Component\01. Scene\01. PrimitiveComponent\05. Widget">
+      <UniqueIdentifier>{17f013a0-1ef0-418c-86cc-cf737106ec27}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -175,10 +181,10 @@
       <Filter>06. Component\01. Scene</Filter>
     </ClInclude>
     <ClInclude Include="Component\MeshComponent.h">
-      <Filter>06. Component\01. Scene\01. MeshComponent</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\01. MeshComponent</Filter>
     </ClInclude>
     <ClInclude Include="Component\StaticMeshComponent.h">
-      <Filter>06. Component\01. Scene\01. MeshComponent</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\01. MeshComponent</Filter>
     </ClInclude>
     <ClInclude Include="EngineMath.h">
       <Filter>헤더 파일</Filter>
@@ -226,7 +232,7 @@
       <Filter>03. Resource\02. Shader</Filter>
     </ClInclude>
     <ClInclude Include="Component\Mesh2DComponent.h">
-      <Filter>06. Component\01. Scene\01. MeshComponent</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\01. MeshComponent</Filter>
     </ClInclude>
     <ClInclude Include="Component\Transform.h">
       <Filter>06. Component\01. Scene</Filter>
@@ -267,11 +273,8 @@
     <ClInclude Include="Render\BlendState.h">
       <Filter>04. Render\01. RenderState</Filter>
     </ClInclude>
-    <ClInclude Include="Component\PrimitiveComponent.h">
-      <Filter>06. Component\01. Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Component\SpriteComponent.h">
-      <Filter>06. Component\01. Scene\03. Sprite</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\02. Sprite</Filter>
     </ClInclude>
     <ClInclude Include="Resource\Animation2DSequence.h">
       <Filter>03. Resource\05. Animation</Filter>
@@ -280,13 +283,13 @@
       <Filter>03. Resource\05. Animation</Filter>
     </ClInclude>
     <ClInclude Include="Component\Collider.h">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="Component\ColliderRect.h">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="Component\Collision.h">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="CollisionManager.h">
       <Filter>01. Engine\07. Collision</Filter>
@@ -301,13 +304,13 @@
       <Filter>02. Scene\04. Collision</Filter>
     </ClInclude>
     <ClInclude Include="Component\ColliderSphere2D.h">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="Component\ColliderOBB2D.h">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="Component\ColliderPixel.h">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClInclude>
     <ClInclude Include="UI\UIManager.h">
       <Filter>07. UI</Filter>
@@ -361,10 +364,10 @@
       <Filter>07. UI\01. Control</Filter>
     </ClInclude>
     <ClInclude Include="Component\TileMap.h">
-      <Filter>06. Component\01. Scene\05. TileMap</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\04. TileMap</Filter>
     </ClInclude>
     <ClInclude Include="Component\Tile.h">
-      <Filter>06. Component\01. Scene\05. TileMap</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\04. TileMap</Filter>
     </ClInclude>
     <ClInclude Include="UI\UIIcon.h">
       <Filter>07. UI\01. Control</Filter>
@@ -380,6 +383,12 @@
     </ClInclude>
     <ClInclude Include="Render\RenderInstancing.h">
       <Filter>04. Render\03. Instancing</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\PrimitiveComponent.h">
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="Component\WidgetComponent.h">
+      <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -420,10 +429,10 @@
       <Filter>06. Component\01. Scene</Filter>
     </ClCompile>
     <ClCompile Include="Component\MeshComponent.cpp">
-      <Filter>06. Component\01. Scene\01. MeshComponent</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\01. MeshComponent</Filter>
     </ClCompile>
     <ClCompile Include="Component\StaticMeshComponent.cpp">
-      <Filter>06. Component\01. Scene\01. MeshComponent</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\01. MeshComponent</Filter>
     </ClCompile>
     <ClCompile Include="Matrix.cpp">
       <Filter>01. Engine\05. Math</Filter>
@@ -465,7 +474,7 @@
       <Filter>03. Resource\02. Shader</Filter>
     </ClCompile>
     <ClCompile Include="Component\Mesh2DComponent.cpp">
-      <Filter>06. Component\01. Scene\01. MeshComponent</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\01. MeshComponent</Filter>
     </ClCompile>
     <ClCompile Include="Component\Transform.cpp">
       <Filter>06. Component\01. Scene</Filter>
@@ -500,9 +509,6 @@
     <ClCompile Include="Render\BlendState.cpp">
       <Filter>04. Render\01. RenderState</Filter>
     </ClCompile>
-    <ClCompile Include="Component\PrimitiveComponent.cpp">
-      <Filter>06. Component\01. Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Resource\Animation2DSequence.cpp">
       <Filter>03. Resource\05. Animation</Filter>
     </ClCompile>
@@ -510,13 +516,13 @@
       <Filter>03. Resource\05. Animation</Filter>
     </ClCompile>
     <ClCompile Include="Component\Collider.cpp">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="Component\ColliderRect.cpp">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="Component\Collision.cpp">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="CollisionManager.cpp">
       <Filter>01. Engine\07. Collision</Filter>
@@ -531,13 +537,13 @@
       <Filter>02. Scene\04. Collision</Filter>
     </ClCompile>
     <ClCompile Include="Component\ColliderSphere2D.cpp">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="Component\ColliderOBB2D.cpp">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="Component\ColliderPixel.cpp">
-      <Filter>06. Component\01. Scene\04. Collider</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\03. Collider</Filter>
     </ClCompile>
     <ClCompile Include="UI\UIManager.cpp">
       <Filter>07. UI</Filter>
@@ -567,7 +573,7 @@
       <Filter>07. UI\01. Control</Filter>
     </ClCompile>
     <ClCompile Include="Component\SpriteComponent.cpp">
-      <Filter>06. Component\01. Scene\03. Sprite</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\02. Sprite</Filter>
     </ClCompile>
     <ClCompile Include="UI\UIButton.cpp">
       <Filter>07. UI\01. Control</Filter>
@@ -591,10 +597,10 @@
       <Filter>07. UI\01. Control</Filter>
     </ClCompile>
     <ClCompile Include="Component\Tile.cpp">
-      <Filter>06. Component\01. Scene\05. TileMap</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\04. TileMap</Filter>
     </ClCompile>
     <ClCompile Include="Component\TileMap.cpp">
-      <Filter>06. Component\01. Scene\05. TileMap</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\04. TileMap</Filter>
     </ClCompile>
     <ClCompile Include="UI\UIIcon.cpp">
       <Filter>07. UI\01. Control</Filter>
@@ -610,6 +616,12 @@
     </ClCompile>
     <ClCompile Include="Render\RenderInstancing.cpp">
       <Filter>04. Render\03. Instancing</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\PrimitiveComponent.cpp">
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="Component\WidgetComponent.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

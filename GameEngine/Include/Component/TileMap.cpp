@@ -21,6 +21,7 @@ CTileMap::CTileMap()
     m_eSceneComponentType = SCENECOMPONENT_TYPE::ST_2D;
     m_eSceneClassType = SCENECOMPONENT_CLASS_TYPE::TILEMAP;
     m_vTileSize = Vector3(30.f, 30.f, 1.f);
+    m_strLayer = "Back";
 }
 
 CTileMap::CTileMap(const CTileMap& com)
@@ -270,9 +271,9 @@ void CTileMap::PostUpdate(float fTime)
         int iHeight = m_iEndY;
         int iWidth = m_iEndX;
 
-        for (int iHeightCnt = m_iStartY; iHeightCnt <= iHeight + 1; ++iHeightCnt)
+        for (int iHeightCnt = m_iStartY; iHeightCnt <= iHeight; ++iHeightCnt)
         {
-            for (int iWidthCnt = m_iStartX; iWidthCnt <= iWidth + 1; ++iWidthCnt)
+            for (int iWidthCnt = m_iStartX; iWidthCnt <= iWidth; ++iWidthCnt)
             {
                 int iIndex = iHeightCnt * m_iCountX + iWidthCnt;
 
@@ -322,6 +323,7 @@ void CTileMap::Render(float fTime)
     if (m_pInstancing)
     {
         m_pInstancing->Render(fTime);
+        m_pInstancing->Clear();
     }
 
     m_pDepthDisable->ResetState();

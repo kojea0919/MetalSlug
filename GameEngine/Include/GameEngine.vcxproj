@@ -186,6 +186,7 @@
     <ClInclude Include="Component\Tile.h" />
     <ClInclude Include="Component\TileMap.h" />
     <ClInclude Include="Component\Transform.h" />
+    <ClInclude Include="Component\WidgetComponent.h" />
     <ClInclude Include="Device.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineMath.h" />
@@ -271,6 +272,7 @@
     <ClCompile Include="Component\Tile.cpp" />
     <ClCompile Include="Component\TileMap.cpp" />
     <ClCompile Include="Component\Transform.cpp" />
+    <ClCompile Include="Component\WidgetComponent.cpp" />
     <ClCompile Include="Device.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="GameInstance.cpp" />

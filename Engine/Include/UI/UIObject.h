@@ -48,6 +48,7 @@ public:
 public:
 	void SetRoot(class CUIControl* pRoot);
 	class CUIControl* FindUIControl(const string& strName);
+	void AddToViewport();
 
 public:
 	Vector3 GetVelocityScale()	const;

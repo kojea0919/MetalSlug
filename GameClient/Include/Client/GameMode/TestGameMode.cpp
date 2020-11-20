@@ -58,9 +58,9 @@ bool CTestGameMode::Init()
 
 	//SAFE_RELEASE(pTestBar);
 
-	/*CTileMapObj* pTileMapObj = m_pScene->CreateObject<CTileMapObj>("TileMapObj");
+	CTileMapObj* pTileMapObj = m_pScene->CreateObject<CTileMapObj>("TileMapObj");
 
-	SAFE_RELEASE(pTileMapObj);*/
+	SAFE_RELEASE(pTileMapObj);
 
 	/*CCheckBox* pTestCheckBox = m_pScene->CreateUIObject<CCheckBox>("TestCheckBox");
 
@@ -72,6 +72,8 @@ bool CTestGameMode::Init()
 
 	CInventory* pInventory = m_pScene->CreateUIObject<CInventory>("Inventory");
 
+	pInventory->AddToViewport();
+
 	((CPlayer*)m_pPlayer)->SetInventory(pInventory);
 
 	SAFE_RELEASE(pInventory);
@@ -80,9 +82,14 @@ bool CTestGameMode::Init()
 
 	CTestSlot* pTestSlot = m_pScene->CreateUIObject<CTestSlot>("TestSlot");
 
+	pTestIcon->AddToViewport();
+	pTestSlot->AddToViewport();
+
 	pTestSlot->AddIcon(pTestIcon);
 	
 	CTestSlot* pTestSlot2 = m_pScene->CreateUIObject<CTestSlot>("TestSlot");
+
+	pTestSlot2->AddToViewport();
 	pTestSlot2->SetWorldPos(pTestSlot->GetWorldPos() + Vector3(80.f, 0.f, 0.f));
 	
 	pTestIcon->SetZOrder(pTestSlot->GetZOrder() + 1);
@@ -159,6 +166,9 @@ bool CTestGameMode::CreateMaterial()
 	CSceneResource* pManager = m_pScene->GetResourceManager();
 
 	//해당 모드에서 사용하는 Texture를 Setting해주기 위해서 GameMode에서 생성
+	//-------------------------------------------------------------------------------
+
+	//Pixel충돌용 Material
 	//--------------------------------------------------------------------
 	pManager->CreateMaterial("TestPixelMtrl");
 
@@ -171,6 +181,8 @@ bool CTestGameMode::CreateMaterial()
 	SAFE_RELEASE(pMtrl);
 	//--------------------------------------------------------------------
 
+	//Tile Material
+	//--------------------------------------------------------------------
 	pManager->CreateMaterial("TileMtrl");
 
 	pMtrl = pManager->FindMaterial("TileMtrl");
@@ -180,6 +192,22 @@ bool CTestGameMode::CreateMaterial()
 		(int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL);
 
 	SAFE_RELEASE(pMtrl);
+	//--------------------------------------------------------------------
+
+	//Bullet Material
+	//--------------------------------------------------------------------
+	pManager->CreateMaterial("BulletMtrl");
+	
+	pMtrl = pManager->FindMaterial("BulletMtrl");
+
+	pMtrl->SetShader("NormalShader");
+	pMtrl->SetTexture(TEXTURE_LINK::DIFFUSE, "UIBar",
+		(int)CBUFFER_SHADER_TYPE::CBUFFER_PIXEL);
+
+	SAFE_RELEASE(pMtrl);
+	//--------------------------------------------------------------------
+
+	//-------------------------------------------------------------------------------
 
 	return true;
 }

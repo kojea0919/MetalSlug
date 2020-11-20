@@ -55,6 +55,12 @@ void CPrimitiveComponent::SetMaterial(CMaterial* pMaterial)
 		m_pMaterial->AddRef();
 }
 
+void CPrimitiveComponent::SetMaterial(const string& strName)
+{
+	SAFE_RELEASE(m_pMaterial);
+	m_pMaterial = m_pScene->GetResourceManager()->FindMaterial(strName);
+}
+
 CMaterial* CPrimitiveComponent::GetMaterial() const
 {
 	if (m_pMaterial)
@@ -164,9 +170,6 @@ void CPrimitiveComponent::Collision(float fTime)
 
 void CPrimitiveComponent::PrevRender(float fTime)
 {
-	CMaterial* pMaterial = m_pMaterial;
-	pMaterial->AddRef();
-
 	//MaterailInst를 사용하는 경우 Instancing false
 	//---------------------------------------------------------
 	if (m_pMaterial->GetMaterialType() == Material_Type::Instance)
@@ -177,7 +180,7 @@ void CPrimitiveComponent::PrevRender(float fTime)
 	//---------------------------------------------------------
 	else
 	{
-		if (pMaterial->GetRefCount() >= 7 && m_pMesh->GetRefCount() >= 7)
+		if (m_pMaterial->GetRefCount() >= 7 && m_pMesh->GetRefCount() >= 7)
 		{
 			SetInstancing();
 		}
@@ -186,7 +189,6 @@ void CPrimitiveComponent::PrevRender(float fTime)
 			SetInstancing(false);
 	}
 	//---------------------------------------------------------
-	SAFE_RELEASE(pMaterial);
 
 	GET_SINGLE(CRenderManager)->AddSceneComponent(this);
 	CSceneComponent::PrevRender(fTime);

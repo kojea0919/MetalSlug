@@ -21,6 +21,8 @@ bool CStartGameMode::Init()
 
 	CStartBackObj* pBack = m_pScene->CreateUIObject<CStartBackObj>("Back");
 
+	pBack->AddToViewport();
+
 	SAFE_RELEASE(pBack);
 
 	return true;

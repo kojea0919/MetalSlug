@@ -16,6 +16,7 @@ CRenderLayer::CRenderLayer()
 
 CRenderLayer::~CRenderLayer()
 {
+	SAFE_DELETE_VECLIST(m_RenderInstancingList);
 }
 
 void CRenderLayer::AddPrimitiveComponent(CPrimitiveComponent* pComponent)
@@ -56,6 +57,8 @@ void CRenderLayer::AddPrimitiveComponent(CPrimitiveComponent* pComponent)
 				pInstancing->Init(pMesh, pMaterial, sizeof(InstancingData2D), "InstancingShader2D");
 			else
 				pInstancing->Init(pMesh, pMaterial, sizeof(InstancingData2D), "InstancingShader");
+
+			m_RenderInstancingList.push_back(pInstancing);
 		}
 		//---------------------------------------
 

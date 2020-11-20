@@ -32,6 +32,7 @@ public:
 
 public:
 	void SetMaterial(class CMaterial* pMaterial);
+	void SetMaterial(const string& strName);
 	class CMaterial* GetMaterial()	const;
 
 public:

@@ -50,9 +50,10 @@ public:
 	//pMesh, pMaterial : Object들이 공용으로 사용하는 Mesh와 Material
 	//iSize : Instancing Data의 크기(2D,3D 판정)
 	//strShaderName : 해당 RenderInstancing에서 사용할 인스턴싱용 Shader
+	//iCount : 사용할 데이터 최대 개수
 	//-------------------------------------------------------
 	bool Init(class CMesh* pMesh, class CMaterial* pMaterial,
-		int iSize, const string & strShaderName);
+		int iSize, const string & strShaderName, int iCount = 10000);
 	//-------------------------------------------------------
 
 	void AddInstancingData(const void* pData);

@@ -274,5 +274,5 @@ CRenderState* CRenderManager::FindRenderState(const string& strName)
 
 bool CRenderManager::SortLayer(CRenderLayer* pSrc, CRenderLayer* pDest)
 {	
-	return pSrc->GetSortOrder() > pDest->GetSortOrder();
+	return pSrc->GetSortOrder() < pDest->GetSortOrder();
 }

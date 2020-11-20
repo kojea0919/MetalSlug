@@ -211,9 +211,9 @@ void CMesh2D::Render(float fTime)
 	}
 }
 
-void CMesh2D::RenderInstancing(const PVertexBuffer pData, float fTime)
+void CMesh2D::RenderInstancing(const PVertexBuffer pData,int iCount, float fTime)
 {
-	UINT iStride[2] = { m_tVB.iSize, pData->iSize };
+	UINT iStride[2] = { (UINT)m_tVB.iSize, (UINT)pData->iSize };
 	UINT iOffset[2] = {};
 
 	ID3D11Buffer* pBuffer[2] = { m_tVB.pBuffer,pData->pBuffer };
@@ -224,13 +224,13 @@ void CMesh2D::RenderInstancing(const PVertexBuffer pData, float fTime)
 	if (m_tIB.pBuffer)
 	{
 		CONTEXT->IASetIndexBuffer(m_tIB.pBuffer, m_tIB.eFmt, 0);
-		CONTEXT->DrawIndexedInstanced(m_tIB.iCount, pData->iCount, 0, 0, 0);
+		CONTEXT->DrawIndexedInstanced(m_tIB.iCount, iCount, 0, 0, 0);
 	}
 
 	else
 	{
 		CONTEXT->IASetIndexBuffer(nullptr, DXGI_FORMAT_UNKNOWN, 0);
-		CONTEXT->DrawInstanced(m_tVB.iCount, pData->iCount, 0, 0);
+		CONTEXT->DrawInstanced(m_tVB.iCount, iCount, 0, 0);
 	}
 }
 

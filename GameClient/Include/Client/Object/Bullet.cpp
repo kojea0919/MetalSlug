@@ -40,6 +40,8 @@ bool CBullet::Init()
 
 	m_fDistance = 600.f;
 
+	m_pMesh->SetMaterial("BulletMtrl");
+
 	return true;
 }
 

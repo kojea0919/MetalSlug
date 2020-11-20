@@ -39,7 +39,7 @@ public:
 	virtual void Render(float fTime);
 
 	//Instancing 버퍼를 받아 그리는 Instancing용 그리기 함수
-	virtual void RenderInstancing(const PVertexBuffer pData, float fTime);
+	virtual void RenderInstancing(const PVertexBuffer pData, int iCount, float fTime);
 
 public:
 	virtual void Save(FILE* pFile);

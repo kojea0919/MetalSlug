@@ -1,5 +1,7 @@
 #include "UIObject.h"
 #include "UIControl.h"
+#include "../Scene/Scene.h"
+#include "../Scene/UIViewport.h"
 
 CUIObject::CUIObject()
 	: m_iZOrder(0), m_pViewport(nullptr)
@@ -94,6 +96,11 @@ CUIControl* CUIObject::FindUIControl(const string& strName)
 		return nullptr;
 
 	return m_pRoot->FindControl(strName);
+}
+
+void CUIObject::AddToViewport()
+{
+	m_pScene->GetUIViewport()->AddUI(this);
 }
 
 Vector3 CUIObject::GetVelocityScale() const

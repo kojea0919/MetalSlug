@@ -770,6 +770,19 @@ void CPlayer::Fire(float fTime)
 	else
 		SetNormalMidShotState();
 	//---------------------------------
+
+
+	CBullet* pBullet = m_pScene->CreateObject<CBullet>("Bullet");
+
+	pBullet->SetRelativeRotation(GetRelativeRot());
+
+	Vector3	vPos = GetWorldPos() + GetWorldAxis(AXIS_Y) *
+		((GetWorldScale().y * GetPivot().y) +
+			((1.f - pBullet->GetPivot().y) * pBullet->GetWorldScale().y));
+
+	pBullet->SetWorldPos(vPos);
+
+	SAFE_RELEASE(pBullet);
 }
 
 void CPlayer::AttackEnd()

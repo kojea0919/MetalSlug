@@ -96,6 +96,11 @@ private:
 	Vector3			m_vWorldSize;
 
 public:
+	class CUIViewport* GetUIViewport() const
+	{
+		return m_pUIViewport;
+	}
+
 	Vector3 GetWorldSize() const
 	{
 		return m_vWorldSize;
@@ -188,8 +193,6 @@ public:
 			SAFE_RELEASE(pObj);
 			return nullptr;
 		}
-
-		m_pUIViewport->AddUI(pObj);
 
 		if (m_EditorUICreateFunc)
 			m_EditorUICreateFunc(pObj);
