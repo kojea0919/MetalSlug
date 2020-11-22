@@ -19,10 +19,32 @@ CWidgetComponent::CWidgetComponent()
 CWidgetComponent::CWidgetComponent(const CWidgetComponent& com)
 	: CPrimitiveComponent(com)
 {
+	if (com.m_pUIObject)
+		m_pUIObject = com.m_pUIObject->Clone();
 }
 
 CWidgetComponent::~CWidgetComponent()
 {
+	SAFE_RELEASE(m_pUIObject);
+}
+
+void CWidgetComponent::SetUIObject(CUIObject* pObj)
+{
+	SAFE_RELEASE(m_pUIObject);
+	m_pUIObject = pObj;
+	if (m_pUIObject)
+	{
+		m_pUIObject->SetZOrder(-100);
+		m_pUIObject->AddRef();
+	}
+}
+
+CUIObject* CWidgetComponent::GetUIObject() const
+{
+	if (m_pUIObject)
+		m_pUIObject->AddRef();
+
+	return m_pUIObject;
 }
 
 bool CWidgetComponent::Init()
@@ -32,6 +54,7 @@ bool CWidgetComponent::Init()
 
 	SetMesh(nullptr);
 	SetMaterial(nullptr);
+	m_pTransform->SetTransformSpace(true);
 
 	return true;
 }
@@ -87,7 +110,10 @@ void CWidgetComponent::PrevRender(float fTime)
 void CWidgetComponent::Render(float fTime)
 {
 	if (m_pUIObject)
+	{
+		m_pUIObject->SetWidgetZ(GetWorldPos().z);
 		m_pUIObject->Render();
+	}
 }
 
 void CWidgetComponent::PostRender(float fTime)

@@ -64,9 +64,22 @@ protected:
 	bool				m_bMouseCollision;
 	bool				m_bCollisionEnable;
 
+	//Instancing을 할지 나타내는 bool변수
+	bool				m_bInstancing;
+
+	bool				m_bIsCollision;
+
 public:
 	//Get함수
 	//---------------------------------
+	class CMesh* GetMesh() const;
+	class CMaterial* GetMaterial() const;
+
+	bool IsCollision() const
+	{
+		return m_bIsCollision;
+	}
+
 	COLLIDER_TYPE GetColliderType() const
 	{
 		return m_eColliderType;
@@ -112,6 +125,10 @@ public:
 	void SetMouseCollision(bool bCollision)
 	{
 		m_bMouseCollision = bCollision;
+	}
+	bool IsInstancing() const
+	{
+		return m_bInstancing;
 	}
 	//---------------------------------
 

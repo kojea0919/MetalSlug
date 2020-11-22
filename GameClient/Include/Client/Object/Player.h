@@ -99,6 +99,12 @@ protected:
 	//인벤토리
 	class CInventory* m_pInventory;
 
+
+	//test code
+	class CWidgetComponent* m_pWidget;
+	class CWidgetComponent* m_pNameWidget;
+
+
 public:
 	void SetInventory(class CInventory* pInventory)
 	{

@@ -183,6 +183,9 @@
     <ClInclude Include="Client\Object\TileMapObj.h">
       <Filter>02. Object\04. TileMap</Filter>
     </ClInclude>
+    <ClInclude Include="Client\UI\TextUI.h">
+      <Filter>09. UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameEditor.cpp">
@@ -301,6 +304,9 @@
     </ClCompile>
     <ClCompile Include="Client\Object\TileMapObj.cpp">
       <Filter>02. Object\04. TileMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Client\UI\TextUI.cpp">
+      <Filter>09. UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -33,7 +33,7 @@ bool CTestBar::Init()
 	m_pBar->SetRelativePos(5.f, 5.f, 0.f);
 	m_pBar->SetRelativeScale(200.f, 30.f, 1.f);
 	m_pBar->SetTexture("UIBar");
-	m_pBar->SetZOrder(1);
+	m_pBar->SetZOrder(1); 
 	//m_pBar->SetBarDir(BAR_DIR::RightLeft);
 	//m_pBar->SetBarDir(BAR_DIR::BottomTop);
 	m_pBar->SetBarDir(BAR_DIR::TopBottom);

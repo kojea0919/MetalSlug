@@ -41,6 +41,15 @@ struct VS_INPUT_2D_INSTANCING
 	float2 vImageSize : IMAGESIZE;
 };
 
+struct VS_INPUT_COLLIDER_INSTANCING
+{
+	float3 vPos : POSITION;
+	matrix matWVP : WORLD;
+	float3 vMeshSize : MESHSIZE;
+	float3 vMeshPivot : PIVOT;
+	bool bCollision : COLLISION;
+};
+
 VS_OUTPUT_2D Standard2DInstancing(VS_INPUT_2D_INSTANCING input)
 {
 	VS_OUTPUT_2D output = (VS_OUTPUT_2D)0;
@@ -53,6 +62,32 @@ VS_OUTPUT_2D Standard2DInstancing(VS_INPUT_2D_INSTANCING input)
 
 	return output;
 }
+
+VS_OUTPUT_2D StandardColliderInstancingVS(VS_INPUT_COLLIDER_INSTANCING input)
+{
+	VS_OUTPUT_2D output = (VS_OUTPUT_2D)0;
+
+	float3 vPos = input.vPos -input.vMeshSize * input.vMeshPivot;
+
+	output.vPos = mul(float4(vPos, 1.f), input.matWVP);
+
+	if (input.bCollision)
+		output.vColor = float4(1.f, 0.f, 0.f, 1.f);
+	else
+		output.vColor = float4(0.f, 1.f, 0.f, 1.f);
+
+	return output;
+}
+
+PS_OUTPUT_SINGLE StandardColliderInstancingPS(VS_OUTPUT_2D input)
+{
+	PS_OUTPUT_SINGLE	output = (PS_OUTPUT_SINGLE)0;
+
+	output.vColor = input.vColor;
+
+	return output;
+}
+
 
 // 인자 input은 레지스터가 지정되어 있기 때문에 인자를 안넘겨주어도
 // 입력레지스터에 들어가 있는 값을 가져와서 사용하게 된다.

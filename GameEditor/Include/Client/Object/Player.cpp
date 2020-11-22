@@ -14,7 +14,9 @@
 #include "Component/ColliderSphere2D.h"
 #include "PathManager.h"
 #include "../UI/Inventory.h"
-
+#include "Component/WidgetComponent.h"
+#include "../UI/TestBar.h"
+#include "../UI/TextUI.h"
 
 CPlayer::CPlayer()
 	:m_pLowerMesh(nullptr), m_pUpperMesh(nullptr),
@@ -37,6 +39,10 @@ CPlayer::CPlayer(const CPlayer& player)	:
 
 CPlayer::~CPlayer()
 {
+	//test
+	SAFE_RELEASE(m_pNameWidget);
+	SAFE_RELEASE(m_pWidget);
+
 	SAFE_RELEASE(m_pLowerMesh);
 	SAFE_RELEASE(m_pUpperMesh);
 	SAFE_RELEASE(m_pBody);
@@ -541,6 +547,33 @@ bool CPlayer::Init()
 	//m_pBody = CreateComponent<CColliderRect>("Collider");
 	m_pBody = CreateComponent<CColliderSphere2D>("Collider");
 	m_pCamera = CreateComponent<CCamera>("Camera");
+
+	//test
+	m_pWidget = CreateComponent<CWidgetComponent>("HPBarWidget");
+	m_pNameWidget = CreateComponent<CWidgetComponent>("NameWidget");
+
+
+	m_pWidget->SetInheritScale(false);
+	m_pWidget->SetInheritRotX(false);
+	m_pWidget->SetInheritRotY(false);
+	m_pWidget->SetInheritRotZ(false);
+
+	m_pLowerMesh->AddChild(m_pWidget);
+	m_pLowerMesh->AddChild(m_pNameWidget);
+
+	CTestBar* pTestBar = m_pScene->CreateUIObject<CTestBar>("TestBar");
+	m_pWidget->SetUIObject(pTestBar);
+
+	m_pWidget->SetRelativePos(-100.f, 50.f, 0.f);
+
+	SAFE_RELEASE(pTestBar);
+
+	CTextUI* pTextUI = m_pScene->CreateUIObject<CTextUI>("Text");
+	m_pNameWidget->SetUIObject(pTextUI);
+
+	m_pNameWidget->SetRelativePos(-100.f, 20.f, 0.f);
+
+	SAFE_RELEASE(pTextUI);
 	//---------------------------------
 
 	//°èÃþ °ü°è Setting
@@ -746,7 +779,8 @@ void CPlayer::MoveSide(float fScale, float fTime)
 
 void CPlayer::RotationZ(float fScale, float fTime)
 {
-	AddRelativeRotationZ(180.f * fScale * fTime);
+	if(fScale != 0 )
+		AddRelativeRotationZ(180.f * fScale * fTime);
 }
 
 void CPlayer::Fire(float fTime)

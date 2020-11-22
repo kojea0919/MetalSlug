@@ -50,6 +50,9 @@ public:
 	class CUIControl* FindUIControl(const string& strName);
 	void AddToViewport();
 
+	//WidgetComponent사용시 Z값을 사용하므로 z값을 Setting
+	void SetWidgetZ(float fZ);
+
 public:
 	Vector3 GetVelocityScale()	const;
 	Vector3 GetVelocityRot()	const;

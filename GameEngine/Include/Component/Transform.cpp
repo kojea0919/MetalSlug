@@ -47,6 +47,10 @@ CTransform::~CTransform()
 
 void CTransform::InheritScale()
 {
+    //UI인 경우는 pass
+    if (m_pOwner->GetSceneComponentClassType() == SCENECOMPONENT_CLASS_TYPE::WIDGET)
+        return;
+
     //부모의 Scale을 상속받아 사용하는 경우 부모의 Scale까지 계산하여
     //자신의 WorldScale을 Setting
     if (m_bInheritScale)
@@ -68,6 +72,10 @@ void CTransform::InheritScale()
 
 void CTransform::InheritRot()
 {
+    //UI인 경우는 pass
+    if (m_pOwner->GetSceneComponentClassType() == SCENECOMPONENT_CLASS_TYPE::WIDGET)
+        return;
+
     //부모의 X축 회전을 상속받아 사용하는 경우 부모의
     //X축 회전까지 계산하여 자신의 X축 회전을 Setting
     if (m_bInheritRotX)
@@ -90,6 +98,7 @@ void CTransform::InheritRot()
     }
 
     //부모가 회전한 경우 자식의 위치도 변하므로 Pos도 갱신
+    //UI인 경우는 제외
     if (m_pParent)
         InheritPos();
 
@@ -143,14 +152,21 @@ void CTransform::InheritPos()
     //해당 Transform의 Pos에는
     //Parent의 Pos뿐만 아니라 Parent의 Rotation도 영향을 미친다.
 
-    //1. 부모의 회전 계산
-    matRot.Rotation(m_pParent->GetWorldRot());
+    //UI인 경우는 pass
+    if (m_pOwner->GetSceneComponentClassType() != SCENECOMPONENT_CLASS_TYPE::WIDGET)
+    {
+
+        //1. 부모의 회전 계산
+        matRot.Rotation(m_pParent->GetWorldRot());
+    }
 
     //2. 부모의 Pos 추가
     memcpy(&matRot._41, &m_pParent->GetWorldPos(), sizeof(Vector3));
 
     //자신의 RelativePos에 부모의 회전과 Pos변환을 계산
     m_vWorldPos = m_vRelativePos.TransformCoord(matRot);
+
+    
 
     m_bUpdatePos = true;
 

@@ -283,4 +283,15 @@ typedef struct _tagInstancingData
 	Vector3	vMeshSize;
 	Vector3	vMeshPivot;
 }InstancingData, * PInstancingData;
+//----------------------------
+
+//Collider Instancing용 데이터 구조체
 //----------------------------------
+typedef struct _tagInstancingDataCollider
+{
+	Matrix	matWVP;
+	Vector3	vMeshSize;
+	Vector3	vMeshPivot;
+	bool bCollision;
+}InstancingDataCollider, * PInstancingDataCollider;
+//----------------------------------------

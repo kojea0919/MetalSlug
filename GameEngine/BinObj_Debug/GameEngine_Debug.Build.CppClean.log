@@ -1,98 +1,98 @@
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.pdb
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.idb
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\transform.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\tilemap.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\tile.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\testcamera.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\staticmeshcomponent.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\spritecomponent.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\scenecomponent.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\primitivecomponent.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\objectcomponent.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\meshcomponent.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\mesh2dcomponent.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\component.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\collision.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\collidersphere2d.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\colliderrect.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\colliderpixel.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\colliderobb2d.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\collider.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\camera.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\collisionmanager.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\material.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\graphicshader.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\computeshader.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\animation2dsequence.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\animation2dnotify.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\renderstate.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\rendermanager.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\renderlayer.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\renderinstancing.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\depthstencilstate.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\blendstate.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\ref.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\pathmanager.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\matrix.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\inputobj.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\input.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameobject.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameinstance.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\engine.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\device.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uiicon.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\mouseobj.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\timer.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uiviewport.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\sceneresource.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\scenemanager.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\scenecollision.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\scene.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gamemode.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\collisionsection.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\cameramanager.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\texture.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\staticmesh.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\sound.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\shadermanager.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\shader.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\resourcemanager.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\mesh2d.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\mesh.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\materialinstance.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\vector4.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\vector3.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\vector2.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uitransform.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uititlebar.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uitext.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uisprite.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uislot.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uiprogressbar.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uiobject.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uimanager.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uiimage.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uicontrol.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uicheckbox.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uibutton.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\uislider.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\widgetcomponent.obj
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\bin\collider.cso
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\bin\standard2d.cso
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\bin\tilemap.cso
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\bin\ui.cso
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\bin\gameengine_debug.lib
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.res
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\include\../bin/gameengine_debug.lib
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\cl.command.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\cl.read.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\cl.write.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\fxc.command.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\fxc.read.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\fxc.write.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\lib-link-cvtres.read.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\lib-link-cvtres.write.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\lib.command.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\rc.command.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\rc.read.1.tlog
-c:\users\assortrock\documents\새 폴더\metalslug\gameengine\binobj_debug\gameengine.tlog\rc.write.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.pdb
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.idb
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\transform.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\tilemap.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\tile.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\testcamera.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\staticmeshcomponent.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\spritecomponent.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\scenecomponent.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\primitivecomponent.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\objectcomponent.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\meshcomponent.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\mesh2dcomponent.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\component.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\collision.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\collidersphere2d.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\colliderrect.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\colliderpixel.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\colliderobb2d.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\collider.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\camera.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\collisionmanager.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\graphicshader.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\computeshader.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\animation2dsequence.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\animation2dnotify.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\renderstate.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\rendermanager.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\renderlayer.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\renderinstancing.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\depthstencilstate.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\blendstate.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\ref.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\pathmanager.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\matrix.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\inputobj.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\input.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameobject.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameinstance.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\engine.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\device.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\widgetcomponent.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\mouseobj.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\timer.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uiviewport.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\sceneresource.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\scenemanager.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\scenecollision.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\scene.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gamemode.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\collisionsection.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\cameramanager.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\texture.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\staticmesh.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\sound.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\shadermanager.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\shader.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\resourcemanager.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\mesh2d.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\mesh.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\materialinstance.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\material.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\vector4.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\vector3.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\vector2.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uitransform.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uititlebar.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uitext.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uisprite.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uislot.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uiprogressbar.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uiobject.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uimanager.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uiimage.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uicontrol.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uicheckbox.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uibutton.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uislider.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\uiicon.obj
+c:\users\kjh\desktop\가마우지\metal\gameengine\bin\collider.cso
+c:\users\kjh\desktop\가마우지\metal\gameengine\bin\tilemap.cso
+c:\users\kjh\desktop\가마우지\metal\gameengine\bin\ui.cso
+c:\users\kjh\desktop\가마우지\metal\gameengine\bin\standard2d.cso
+c:\users\kjh\desktop\가마우지\metal\gameengine\bin\gameengine_debug.lib
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.res
+c:\users\kjh\desktop\가마우지\metal\gameengine\include\../bin/gameengine_debug.lib
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\cl.command.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\cl.read.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\cl.write.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\fxc.command.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\fxc.read.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\fxc.write.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\lib-link-cvtres.read.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\lib-link-cvtres.write.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\lib.command.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\rc.command.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\rc.read.1.tlog
+c:\users\kjh\desktop\가마우지\metal\gameengine\binobj_debug\gameengine.tlog\rc.write.1.tlog

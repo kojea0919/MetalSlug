@@ -2,6 +2,7 @@
 #include "UIControl.h"
 #include "../Scene/Scene.h"
 #include "../Scene/UIViewport.h"
+#include "UITransform.h"
 
 CUIObject::CUIObject()
 	: m_iZOrder(0), m_pViewport(nullptr)
@@ -101,6 +102,21 @@ CUIControl* CUIObject::FindUIControl(const string& strName)
 void CUIObject::AddToViewport()
 {
 	m_pScene->GetUIViewport()->AddUI(this);
+}
+
+void CUIObject::SetWidgetZ(float fZ)
+{
+	sort(m_vecControl.begin(), m_vecControl.end(), CUIObject::SortControl);
+
+	size_t	iSize = m_vecControl.size();
+
+	for (size_t i = 0; i < iSize; ++i)
+	{
+		Vector3 vPos = m_vecControl[i]->GetWorldPos();
+		vPos.z = 10 + fZ - i * 1;
+		m_vecControl[i]->SetWorldPos(vPos);
+		m_vecControl[i]->GetTransform()->PostUpdate(0.f);
+	}
 }
 
 Vector3 CUIObject::GetVelocityScale() const

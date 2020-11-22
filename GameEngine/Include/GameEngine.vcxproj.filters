@@ -388,7 +388,7 @@
       <Filter>06. Component\01. Scene\01. PrimitiveComponent</Filter>
     </ClInclude>
     <ClInclude Include="Component\WidgetComponent.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\04. Widget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -621,7 +621,7 @@
       <Filter>06. Component\01. Scene\01. PrimitiveComponent</Filter>
     </ClCompile>
     <ClCompile Include="Component\WidgetComponent.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>06. Component\01. Scene\01. PrimitiveComponent\04. Widget</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

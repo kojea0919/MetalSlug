@@ -9,7 +9,6 @@ private:
 	//--------------------------------------------
 	vector<class CRenderLayer*>	m_vecRenderLayer2D;
 	vector<class CRenderLayer*>	m_vecRenderLayer;
-	vector<class CCollider*>	m_vecRenderCollider;
 	//--------------------------------------------
 
 	//RenderState °ü¸® Map

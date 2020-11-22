@@ -10,9 +10,10 @@
 
 CCollider::CCollider()
     : m_bEditorRender(true), m_pDebugMesh(nullptr),
-    m_pMaterial(nullptr),m_bUI(false),
-    m_b2D(false),m_pProfile(nullptr),
-    m_bMouseCollision(false),m_bCollisionEnable(true)
+    m_pMaterial(nullptr), m_bUI(false),
+    m_b2D(false), m_pProfile(nullptr),
+    m_bMouseCollision(false), m_bCollisionEnable(true),
+    m_bInstancing(false), m_bIsCollision(false)
 {
 }
 
@@ -66,8 +67,6 @@ bool CCollider::Init()
 
     m_pProfile = GET_SINGLE(CCollisionManager)->FindProfile("Static");
 
-    m_pTransform->SetTransformSpace(true);
-
     return true;
 }
 
@@ -98,6 +97,30 @@ void CCollider::PrevRender(float fTime)
 {
     CSceneComponent::PrevRender(fTime);
 
+    //Instancing을 해야하는 판단
+    //----------------------------
+    if (m_pDebugMesh)
+    {
+        if (m_pDebugMesh->GetRefCount() >= 7)
+        {
+            m_bInstancing = true;
+        }
+        else
+            m_bInstancing = false;
+    }
+    //----------------------------
+
+    if (m_PrevCollisionList.empty() && !m_bMouseCollision)
+    {
+        m_bIsCollision = false;
+    }
+
+    //충돌한 충돌체가 있거나 마우스 충돌을 한 경우 
+    else
+    {
+        m_bIsCollision = true;
+    }
+
     //Editor인 경우 화면에 출력하기위해 RenderManager에 등록
     //-----------------------------------------------------
     if (GET_SINGLE(CCollisionManager)->GetColliderRender())
@@ -108,11 +131,15 @@ void CCollider::PrevRender(float fTime)
 void CCollider::Render(float fTime)
 {
     if (m_PrevCollisionList.empty() && !m_bMouseCollision)
+    {
         m_pMaterial->SetDiffuseColor(0.f, 1.f, 0.f, 1.f);
+    }
 
     //충돌한 충돌체가 있거나 마우스 충돌을 한 경우 
     else
+    {
         m_pMaterial->SetDiffuseColor(1.f, 0.f, 0.f, 1.f);
+    }
 
     m_pMaterial->SetMaterial();
 
@@ -141,6 +168,22 @@ void CCollider::Load(FILE* pFile)
     m_pMaterial = GET_SINGLE(CResourceManager)->FindMaterial("Collider");
 
     m_pProfile = GET_SINGLE(CCollisionManager)->FindProfile("Static");
+}
+
+CMesh* CCollider::GetMesh() const
+{
+    if (m_pDebugMesh)
+        m_pDebugMesh->AddRef();
+
+    return m_pDebugMesh;
+}
+
+CMaterial* CCollider::GetMaterial() const
+{
+    if (m_pMaterial)
+        m_pMaterial->AddRef();
+
+    return m_pMaterial;
 }
 
 void CCollider::SetCollisionProfile(const string& strName)

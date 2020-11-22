@@ -1,5 +1,6 @@
 #include "RenderLayer.h"
 #include "../Component/PrimitiveComponent.h"
+#include "../Component/Collider.h"
 #include "RenderInstancing.h"
 #include "../Resource/Material.h"
 #include "../Resource/Mesh.h"
@@ -12,6 +13,7 @@ CRenderLayer::CRenderLayer()
 	: m_iSortOrder(0), m_b2D(false)
 {
 	m_vecRender.reserve(400);
+	m_vecColliderRender.reserve(400);
 }
 
 CRenderLayer::~CRenderLayer()
@@ -56,7 +58,7 @@ void CRenderLayer::AddPrimitiveComponent(CPrimitiveComponent* pComponent)
 			if (pComponent->GetSceneComponentType() == SCENECOMPONENT_TYPE::ST_2D)
 				pInstancing->Init(pMesh, pMaterial, sizeof(InstancingData2D), "InstancingShader2D");
 			else
-				pInstancing->Init(pMesh, pMaterial, sizeof(InstancingData2D), "InstancingShader");
+				pInstancing->Init(pMesh, pMaterial, sizeof(InstancingData), "InstancingShader");
 
 			m_RenderInstancingList.push_back(pInstancing);
 		}
@@ -104,6 +106,74 @@ void CRenderLayer::AddPrimitiveComponent(CPrimitiveComponent* pComponent)
 		m_vecRender.push_back(pComponent);
 }
 
+void CRenderLayer::AddCollider(CCollider* pCollider)
+{
+	//해당 Collider가 Instancing을 사용하는 경우
+	//-------------------------------------------
+	if (pCollider->IsInstancing())
+	{
+		//해당 Collider가 사용하는 CRenderInstancing 탐색
+		//-------------------------------------------------
+		CMesh* pMesh = pCollider->GetMesh();
+
+		auto	iter = m_RenderInstancingList.begin();
+		auto	iterEnd = m_RenderInstancingList.end();
+		CRenderInstancing* pInstancing = nullptr;
+
+		for (; iter != iterEnd; ++iter)
+		{
+			//해당 Collider가 사용중인 Mesh와 같은 RenderInstancing이 있는 경우
+			//-------------------------------------------------------------------
+			if ((*iter)->CheckMesh(pMesh))
+			{
+				pInstancing = *iter;
+				break;
+			}
+			//-------------------------------------------------------------------
+		}
+		//-------------------------------------------------
+
+		//없으면 새로 생성
+		//---------------------------------------
+		if (!pInstancing)
+		{
+			pInstancing = new CRenderInstancing;
+			
+			CMaterial * pMaterial = pCollider->GetMaterial();
+			
+			pInstancing->Init(pMesh, pMaterial, sizeof(InstancingDataCollider), "InstancingShaderCollider");
+			
+			SAFE_RELEASE(pMaterial);
+
+			m_RenderInstancingList.push_back(pInstancing);
+		}
+		//---------------------------------------
+
+		CCamera* pCamera = GET_SINGLE(CSceneManager)->GetScene()->GetCameraManager()->GetMainCamera();
+
+		//해당 RenderInstancing에 InstancingData정보 추가
+		//----------------------------------------------------
+	
+		InstancingDataCollider	tData = {};
+		tData.matWVP = pCollider->GetWorldMatrix() * pCamera->GetViewMatrix() * pCamera->GetProjMatrix();
+		tData.vMeshPivot = pCollider->GetPivot();
+		tData.vMeshSize = pCollider->GetMeshSize();
+		tData.bCollision = pCollider->IsCollision();
+
+		tData.matWVP.Transpose();
+
+		pInstancing->AddInstancingData(&tData);
+	
+		SAFE_RELEASE(pMesh);
+		//----------------------------------------------------
+	}
+	//-------------------------------------------
+
+	//Instancing이 필요없는 경우 m_vecRender에서 처리
+	else
+		m_vecColliderRender.push_back(pCollider);
+}
+
 void CRenderLayer::Render(float fTime)
 {
 	//2D일 경우 order를 이용해서 sort
@@ -138,11 +208,22 @@ void CRenderLayer::Render(float fTime)
 			(*iter)->Render(fTime);
 		}
 	}
+
+	{
+		auto	iter = m_vecColliderRender.begin();
+		auto	iterEnd = m_vecColliderRender.end();
+
+		for (; iter != iterEnd; ++iter)
+		{
+			(*iter)->Render(fTime);
+		}
+	}
 }
 
 void CRenderLayer::Clear()
 {
 	m_vecRender.clear();
+	m_vecColliderRender.clear();
 }
 
 bool CRenderLayer::SortY(CPrimitiveComponent* pSrc, CPrimitiveComponent* pDest)

@@ -130,7 +130,7 @@ bool CShaderManager::Init()
 	SAFE_RELEASE(pShader);
 	//-------------------------------------
 
-	//Instancing¿ë Shader Setting
+	//Instancing2D¿ë Shader Setting
 	//-------------------------------------
 	pShader = CreateShader<CGraphicShader>("InstancingShader2D");
 
@@ -178,6 +178,53 @@ bool CShaderManager::Init()
 		D3D11_INPUT_PER_INSTANCE_DATA, 1);
 	pShader->AddInputLayoutDesc("IMAGESIZE", 0,
 		DXGI_FORMAT_R32G32_FLOAT, 1, 8,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+
+	if (!pShader->CreateInputLayout())
+	{
+		SAFE_RELEASE(pShader);
+		return false;
+	}
+
+	SAFE_RELEASE(pShader);
+	//-------------------------------------
+
+	//Instancing Collider¿ë Shader Setting
+	//-------------------------------------
+	pShader = CreateShader<CGraphicShader>("InstancingShaderCollider");
+
+	if (!LoadVertexShader("InstancingShaderCollider", "StandardColliderInstancingVS",
+		TEXT("Standard2D.fx")))
+		return false;
+
+	if (!LoadPixelShader("InstancingShaderCollider", "StandardColliderInstancingPS",
+		TEXT("Standard2D.fx")))
+		return false;
+
+	pShader->AddInputLayoutDesc("POSITION", 0,
+		DXGI_FORMAT_R32G32B32_FLOAT, 0, 12,
+		D3D11_INPUT_PER_VERTEX_DATA, 0);
+
+	pShader->AddInputLayoutDesc("WORLD", 0,
+		DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 16,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("WORLD", 1,
+		DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 16,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("WORLD", 2,
+		DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 16,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("WORLD", 3,
+		DXGI_FORMAT_R32G32B32A32_FLOAT, 1, 16,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("MESHSIZE", 0,
+		DXGI_FORMAT_R32G32B32_FLOAT, 1, 12,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("PIVOT", 0,
+		DXGI_FORMAT_R32G32B32_FLOAT, 1, 12,
+		D3D11_INPUT_PER_INSTANCE_DATA, 1);
+	pShader->AddInputLayoutDesc("COLLISION", 0,
+		DXGI_FORMAT_R8_UINT, 1, 1,
 		D3D11_INPUT_PER_INSTANCE_DATA, 1);
 
 	if (!pShader->CreateInputLayout())

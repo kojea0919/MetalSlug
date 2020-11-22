@@ -42,6 +42,9 @@ private:
 	//Layer俊 加茄 PrimitiveComponent包府 Vector
 	vector<class CPrimitiveComponent*>	m_vecRender;
 
+	//Layer俊 加茄 Collider包府 Vector
+	vector<class CCollider*> m_vecColliderRender;
+
 	//Layer俊 加茄 RenderInstancing包府 list
 	list<class CRenderInstancing*>		m_RenderInstancingList;
 
@@ -55,6 +58,7 @@ public:
 
 public:
 	void AddPrimitiveComponent(class CPrimitiveComponent* pComponent);
+	void AddCollider(class CCollider* pCollider);
 	void Render(float fTime);
 	void Clear();
 

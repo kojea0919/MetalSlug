@@ -15,6 +15,10 @@ protected:
 	class CUIObject*	m_pUIObject;
 
 public:
+	void SetUIObject(class CUIObject* pObj);
+	class CUIObject* GetUIObject()	const;
+
+public:
 	virtual bool Init();
 	virtual void Start();
 	virtual void Update(float fTime);

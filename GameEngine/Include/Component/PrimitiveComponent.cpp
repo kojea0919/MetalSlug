@@ -170,25 +170,28 @@ void CPrimitiveComponent::Collision(float fTime)
 
 void CPrimitiveComponent::PrevRender(float fTime)
 {
-	//MaterailInst를 사용하는 경우 Instancing false
-	//---------------------------------------------------------
-	if (m_pMaterial->GetMaterialType() == Material_Type::Instance)
-		SetInstancing(false);
-	//---------------------------------------------------------
-
-	//RefCount가 7개 이상인 경우에만 Instancing 사용
-	//---------------------------------------------------------
-	else
+	if (m_pMaterial)
 	{
-		if (m_pMaterial->GetRefCount() >= 7 && m_pMesh->GetRefCount() >= 7)
-		{
-			SetInstancing();
-		}
-
-		else
+		//MaterailInst를 사용하는 경우 Instancing false
+		//---------------------------------------------------------
+		if (m_pMaterial->GetMaterialType() == Material_Type::Instance)
 			SetInstancing(false);
+		//---------------------------------------------------------
+
+		//RefCount가 7개 이상인 경우에만 Instancing 사용
+		//---------------------------------------------------------
+		if (m_pMesh)
+		{
+			if (m_pMaterial->GetRefCount() >= 7 && m_pMesh->GetRefCount() >= 7)
+			{
+				SetInstancing();
+			}
+		}
+		//---------------------------------------------------------
 	}
-	//---------------------------------------------------------
+
+	else
+		SetInstancing(false);
 
 	GET_SINGLE(CRenderManager)->AddSceneComponent(this);
 	CSceneComponent::PrevRender(fTime);

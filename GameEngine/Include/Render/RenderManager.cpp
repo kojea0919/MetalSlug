@@ -11,7 +11,6 @@ DEFINITION_SINGLE(CRenderManager)
 
 CRenderManager::CRenderManager()
 {
-	m_vecRenderCollider.reserve(300);
 }
 
 CRenderManager::~CRenderManager()
@@ -126,7 +125,8 @@ void CRenderManager::AddSceneComponent(CPrimitiveComponent* pComponent)
 
 void CRenderManager::AddCollider(CCollider* pCollider)
 {
-	m_vecRenderCollider.push_back(pCollider);
+	if(pCollider)
+		m_vecRenderLayer2D[2]->AddCollider(pCollider);
 }
 
 void CRenderManager::Render(float fTime)
@@ -184,15 +184,15 @@ void CRenderManager::Render2D(float fTime)
 
 	//SetState("DepthDisable");
 	// 충돌체를 그려낸다.
-	{
-		auto	iter = m_vecRenderCollider.begin();
-		auto	iterEnd = m_vecRenderCollider.end();
+	//{
+	//	auto	iter = m_vecRenderCollider.begin();
+	//	auto	iterEnd = m_vecRenderCollider.end();
 
-		for (; iter != iterEnd; ++iter)
-		{
-			(*iter)->Render(fTime);
-		}
-	}
+	//	for (; iter != iterEnd; ++iter)
+	//	{
+	//		(*iter)->Render(fTime);
+	//	}
+	//}
 
 	//ResetState("DepthDisable");
 
@@ -221,9 +221,6 @@ void CRenderManager::Clear()
 			(*iter)->Clear();
 		}
 	}
-
-
-	m_vecRenderCollider.clear();
 }
 
 bool CRenderManager::AddBlendInfo(const string& strName, bool bEnable, D3D11_BLEND eSrcBlend, D3D11_BLEND eDestBlend, D3D11_BLEND_OP eBlendOp, D3D11_BLEND eSrcBlendAlpha, D3D11_BLEND eDestBlendAlpha, D3D11_BLEND_OP eBlendAlphaOp, UINT8 iWriteMask)
